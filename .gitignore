@@ -1,0 +1,10 @@
+node_modules/
+.build
+.idea
+.project
+.settings
+logs
+*.log
+coverage/
+examples/simple/public/bundle.js
+examples/complex/public/bundle.js
