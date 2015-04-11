@@ -23,7 +23,7 @@ var cheerio = require('cheerio');
 var renderer = require('../index').server;
 var assertions = require('./fixtures/assertions');
 
-var DATA_MODEL = {
+var DATA_MODEL = exports.DATA_MODEL = {
   title: 'Hello, world!',
   name: 'Joshua'
 };

@@ -18,6 +18,8 @@
 var test = require('tape');
 var rewire = require('rewire');
 var jsdom = require('jsdom').jsdom;
+var DATA_MODEL = require('./server').DATA_MODEL;
+var DATA_MODEL_PROPS = Object.keys(DATA_MODEL);
 var assertions = require('./fixtures/assertions');
 
 // boot options
@@ -50,22 +52,35 @@ function prepare(markup) {
   return client;
 }
 
-function after() {
+function after(client) {
   window.onerror = null;
   global.document = null;
   global.window = null;
   global.navigator = null;
+  client = null;
 }
 
 test('client side boot for plain react views', function(t) {
   var client = prepare(assertions.PROFILE_OUTPUT_WITH_REACT_ATTRS);
+
   function _boot() {
-    client.boot(options);
+
+    client.boot(options, function(data) {
+      // test that all properties in the DATA_MODEL exist in the received `data`
+      // NOTE: we care only about the DATA_MODEL props and not other stuff that
+      // might come from things like express `res.locals`
+      // https://github.com/paypal/react-engine/blob/19cdca270c5b068f62c6436c9069e578eff7f280/lib/server.js#L65
+      DATA_MODEL_PROPS.map(function(key) {
+        t.notEqual(typeof data[key], 'undefined');
+        t.equal(data[key], DATA_MODEL[key]);
+      });
+
+      after(client);
+      t.end();
+    });
   }
 
   t.doesNotThrow(_boot);
-  after(client);
-  t.end();
 });
 
 test('client side boot throws error for invalid markup', function(t) {

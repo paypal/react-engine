@@ -90,10 +90,19 @@ var options = {
 // finally, boot whenever you are ready
 // example:
 document.addEventListener('DOMContentLoaded', function onLoad() {
-  client.boot(options);
+
+	// `onBoot` - Function (optional)
+	// returns data that was used
+	// during rendering as the first argument
+	client.boot(options, function onBoot(data) {
+
+	});
 };
 ```
 
-###### Notes
+### Notes
 * On the client side, the state is exposed on the window object's property `__REACT_ENGINE__`
 * In development mode, views are automatically reloaded before render. So there is no need to restart the server for seeing the changes.
+
+### License
+[Apache Software License v2.0](http://www.apache.org/licenses/LICENSE-2.0)
