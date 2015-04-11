@@ -90,7 +90,13 @@ var options = {
 // finally, boot whenever you are ready
 // example:
 document.addEventListener('DOMContentLoaded', function onLoad() {
-  client.boot(options);
+
+	// `onBoot` - Function (optional)
+	// returns data that was used
+	// during rendering as the first argument
+	client.boot(options, function onBoot(data) {
+
+	});
 };
 ```
 
