@@ -26,6 +26,7 @@ require('./views/**/*.jsx', {glob: true});
 // boot options
 var options = {
   react: React,
+
   // supply a function that can be called
   // to resolve the file that was rendered.
   viewResolver: function(viewName) {

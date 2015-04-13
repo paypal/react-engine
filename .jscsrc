@@ -1,5 +1,10 @@
 {
-    "preset": "airbnb",
-    "esprima": "esprima-fb",
-    "excludeFiles": ["node_modules/**", "examples/simple/public/bundle.js", "examples/complex/public/bundle.js"]
+  "fileExtensions": [".js", ".jsx"],
+  "preset": "airbnb",
+  "esprima": "esprima-fb",
+  "excludeFiles": ["node_modules/**",
+                  "examples/simple/node_modules/**",
+                  "examples/complex/node_modules/**",
+                  "examples/simple/public/bundle.js",
+                  "examples/complex/public/bundle.js"]
 }

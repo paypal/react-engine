@@ -30,6 +30,7 @@ var options = {
   react: React,
   router: Router,
   routes: Routes,
+
   // supply a function that can be called
   // to resolve the file that was rendered.
   viewResolver: function(viewName) {
