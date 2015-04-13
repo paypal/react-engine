@@ -42,7 +42,7 @@
   {
     "express": {
         "view engine": "jsx",
-        "view": "path:./node_modules/react-engine/lib/expressView",
+        "view": "require:react-engine/lib/expressView",
     },
     "view engines": {
         "jsx": {
