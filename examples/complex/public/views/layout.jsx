@@ -15,24 +15,26 @@
 
 'use strict';
 
-var Layout = require('./layout');
+var React = require('react');
 var React = require('../../../../node_modules/react/react');
 
 module.exports = React.createClass({
 
-  onButtonClick: function() {
-    alert('I was rendered on server side but I am clickable because of client mounting!');
-  },
-
   render: function render() {
 
-    return React.createElement(Layout, this.props,
-      React.createElement('div', { id: 'index' },
-        React.createElement(
-          'h1', null, 'Hello ', this.props.name + '!'
-        ),
-        React.createElement('button', {onClick: this.onButtonClick}, '___Click Me___')
-      )
+    return (
+      <html>
+        <head>
+          <meta charSet='utf-8' />
+          <title>
+            {this.props.title}
+          </title>
+        </head>
+        <body>
+          {this.props.children}
+        </body>
+        <script src='/bundle.js'></script>
+      </html>
     );
   }
 });

@@ -3,11 +3,13 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run browserify && node index.js",
-    "browserify": "browserify -t require-globify public/index.js -o public/bundle.js"
+    "browserify": "browserify -t reactify -t require-globify public/index.js -o public/bundle.js"
   },
   "dependencies": {
     "browserify": "^9.0.4",
     "express": "^4.12.3",
+    "node-jsx": "^0.12.4",
+    "reactify": "^1.1.0",
     "require-globify": "^1.1.0"
   }
 }
