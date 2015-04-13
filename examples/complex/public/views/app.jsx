@@ -15,14 +15,18 @@
 
 'use strict';
 
-var React = require('../../../node_modules/react/react');
-var Router = require('../../../node_modules/react-router/lib');
+var Layout = require('./layout.jsx');
+var React = require('../../../../node_modules/react/react');
+var Router = require('../../../../node_modules/react-router/lib');
 
-var App = require('./views/app');
-var Account = require('./views/account');
+module.exports = React.createClass({
 
-module.exports = React.createElement(
-    Router.Route,
-    { path: "/", handler: App },
-    React.createElement(Router.DefaultRoute, { name: "account", handler: Account })
-);
+  render: function render() {
+
+    return (
+      <Layout {...this.props}>
+        <Router.RouteHandler {...this.props}/>
+      </Layout>
+    );
+  }
+});

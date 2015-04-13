@@ -15,24 +15,18 @@
 
 'use strict';
 
+var Layout = require('./layout.jsx');
 var React = require('../../../../node_modules/react/react');
 
 module.exports = React.createClass({
 
-  displayName: 'account',
-
   render: function render() {
 
-    return React.createElement(
-      'div',
-      { id: 'account' },
-      React.createElement(
-        'h1',
-        null,
-        this.props.name
-      ),
-      React.createElement('h6', null, 'I am a React Router rendered view'),
-      React.createElement('a', {href: '/some_unknown'}, 'Click to go to an unhandled route')
+    return (
+      <Layout {...this.props}>
+        <h3>URL: {this.props.url} - Not Found(404)</h3>
+        <h6>I am a Plain vanilla react view</h6>
+      </Layout>
     );
   }
 });

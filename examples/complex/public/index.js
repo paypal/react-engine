@@ -15,7 +15,7 @@
 
 'use strict';
 
-var Routes = require('./routes');
+var Routes = require('./routes.jsx');
 var Client = require('../../../lib/client');
 var React = require('../../../node_modules/react/react');
 var Router = require('../../../node_modules/react-router/lib');
@@ -23,13 +23,14 @@ var Router = require('../../../node_modules/react-router/lib');
 // Include all view files. Browerify doesn't do
 // this automatically as it can only operate on
 // static require statements.
-require('./views/**/*.js', {glob: true});
+require('./views/**/*.jsx', {glob: true});
 
 // boot options
 var options = {
   react: React,
   router: Router,
   routes: Routes,
+
   // supply a function that can be called
   // to resolve the file that was rendered.
   viewResolver: function(viewName) {

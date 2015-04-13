@@ -15,16 +15,26 @@
 
 'use strict';
 
-var Layout = require('./layout');
+var React = require('react');
 var React = require('../../../../node_modules/react/react');
-var Router = require('../../../../node_modules/react-router/lib');
 
 module.exports = React.createClass({
 
   render: function render() {
 
-    return React.createElement(Layout, this.props,
-      React.createElement(Router.RouteHandler, this.props)
+    return (
+      <html>
+        <head>
+          <meta charSet='utf-8' />
+          <title>
+            {this.props.title}
+          </title>
+        </head>
+        <body>
+          {this.props.children}
+        </body>
+        <script src='/bundle.js'></script>
+      </html>
     );
   }
 });

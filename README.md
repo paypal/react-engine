@@ -103,6 +103,7 @@ document.addEventListener('DOMContentLoaded', function onLoad() {
 ### Notes
 * On the client side, the state is exposed on the window object's property `__REACT_ENGINE__`
 * In development mode, views are automatically reloaded before render. So there is no need to restart the server for seeing the changes.
+* You can use `js` as the engine if you decide not to write your react views in `jsx`.
 
 ### License
 [Apache Software License v2.0](http://www.apache.org/licenses/LICENSE-2.0)

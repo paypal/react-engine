@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "npm run jscs && npm run lint && npm run tape",
-    "jscs": "jscs --verbose **/*.js",
+    "jscs": "jscs --verbose .",
     "lint": "jshint --verbose --show-non-errors --config=.jshintrc **/*.js",
     "tape": "tape test/*.js | tap-spec"
   },

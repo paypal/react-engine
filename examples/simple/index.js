@@ -15,6 +15,9 @@
 
 'use strict';
 
+// make `.jsx` file requirable by node
+require('node-jsx').install();
+
 var express = require('express');
 var renderer = require('../../index');
 
@@ -24,13 +27,13 @@ var app = express();
 var engine = renderer.server.create();
 
 // set the engine
-app.engine('.js', engine);
+app.engine('.jsx', engine);
 
 // set the view directory
 app.set('views', __dirname + '/public/views');
 
 // set js as the view engine
-app.set('view engine', 'js');
+app.set('view engine', 'jsx');
 
 // finally, set the custom view
 app.set('view', renderer.expressView);

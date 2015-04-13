@@ -15,22 +15,14 @@
 
 'use strict';
 
-var React = require('react');
-var React = require('../../../../node_modules/react/react');
+var React = require('../../../node_modules/react/react');
+var Router = require('../../../node_modules/react-router/lib');
 
-module.exports = React.createClass({
+var App = require('./views/app.jsx');
+var Account = require('./views/account.jsx');
 
-  render: function render() {
-
-    return React.createElement(
-      'html', null,
-      React.createElement(
-        'head', null,
-        React.createElement('meta', { charSet: 'utf-8' }),
-        React.createElement('title', null, this.props.title)
-      ),
-      React.createElement('body', null, this.props.children),
-      React.createElement('script', {src: '/bundle.js'})
-    );
-  }
-});
+var routes = module.exports = (
+  <Router.Route path='/' handler={App}>
+    <Router.DefaultRoute name='account' handler={Account} />
+  </Router.Route>
+);
