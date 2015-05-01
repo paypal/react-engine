@@ -16,7 +16,7 @@
 'use strict';
 
 var Layout = require('./layout.jsx');
-var React = require('../../../../node_modules/react/react');
+var React = require('react');
 
 module.exports = React.createClass({
 
