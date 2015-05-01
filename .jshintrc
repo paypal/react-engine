@@ -35,7 +35,7 @@
     "maxlen": 120,
 
     // Require capitalized names for constructor functions.
-    "newcap": true,
+    "newcap": false,
 
     // Enforce use of single quotation marks for strings.
     "quotmark": "single",

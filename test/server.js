@@ -114,6 +114,55 @@ test('rendering a react view', function(t) {
   setup(options);
 });
 
+test('performance collector to be asserted to be a function', function(t) {
+
+  function underTest1() {
+    renderer.create({
+      performanceCollector: 'SOME_STRING_AND_NOT_FUNCTION'
+    });
+  }
+
+  function underTest2() {
+    renderer.create({
+      performanceCollector: console.dir
+    });
+  }
+
+  t.throws(underTest1);
+  t.doesNotThrow(underTest2);
+  t.end();
+});
+
+test('performance collector', function(t) {
+
+  var recorder = [];
+
+  function collector(stats) {
+    recorder.push(stats);
+  }
+
+  var options = {
+    engine: renderer.create({
+      performanceCollector: collector
+    }),
+    onSetup: function(done) {
+      inject('/profile', function(err, data) {
+        t.error(err);
+        t.strictEqual(typeof data, 'string');
+        t.strictEqual(recorder.length, 1);
+        t.strictEqual(Object.keys(recorder[0]).length, 4);
+        t.strictEqual(recorder[0].name, path.resolve(__dirname, 'fixtures/views', 'profile.js'));
+        t.strictEqual(typeof recorder[0].startTime, 'number');
+        t.strictEqual(typeof recorder[0].endTime, 'number');
+        t.strictEqual(typeof recorder[0].duration, 'number');
+        t.ok(recorder[0].endTime > recorder[0].startTime);
+        done(t);
+      });
+    }
+  };
+  setup(options);
+});
+
 test('all views get cleared from require cache in dev mode', function(t) {
   var options = {
     engine: renderer.create(),

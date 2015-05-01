@@ -1,3 +1,7 @@
+## 1.3.0 (April 30, 2015)
+
+* added Performance profiling
+
 ## 1.2.0 (April 25, 2015)
 
 * Generate semantic html by injecting script tag before end of html tag

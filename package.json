@@ -1,6 +1,6 @@
 {
   "name": "react-engine",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "a composite render engine for express apps to render both plain react views and react-router views",
   "main": "index.js",
   "scripts": {

@@ -19,6 +19,7 @@
     // create the view engine with `react-engine`
     var engine = require('react-engine').server.create({
       reactRoutes: <string> /* pass in the path to react-router routes optionally */
+      performanceCollector: <function> /* optional function to collect perf stats */
     });
 
     // set the engine
@@ -50,7 +51,8 @@
             "renderer": {
               "method": "create",
                 "arguments": [{
-                    "reactRoutes": "path:<PATH_TO_REACT-ROUTER_ROUTES>"
+                    "reactRoutes": "path:<PATH_TO_REACT-ROUTER_ROUTES>",
+                    "performanceCollector": "require:<PATH_TO_PERF_COLLECTOR_FUNCTION>"
                 }]
             }
         }
@@ -99,6 +101,32 @@ document.addEventListener('DOMContentLoaded', function onLoad() {
 	});
 };
 ```
+
+### Performance Profiling
+
+Pass in a function to the `performanceCollector` property to collect the `stats` 
+object for every render.
+
+##### `stats`
+The object that contains the stats info for each render by react-engine.
+It has the below properties.
+- `name` - Name of the template or the url in case of react router rendering.
+- `startTime` - The start time of render.
+- `endTime` - The completion time of render.
+- `duration` - The duration taken to render (in milliseconds).
+
+```js
+// example
+function collector(stats) {
+  console.log(stats);
+}
+
+var engine = require('react-engine').server.create({
+  reactRoutes: './routes.jsx'
+  performanceCollector: collector
+});
+```
+
 
 ### Notes
 * On the client side, the state is exposed on the window object's property `__REACT_ENGINE__`
