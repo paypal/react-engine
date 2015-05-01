@@ -19,7 +19,7 @@
 require('node-jsx').install();
 
 var express = require('express');
-var renderer = require('../../index');
+var renderer = require('react-engine');
 
 var app = express();
 
