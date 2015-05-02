@@ -16,7 +16,6 @@
 'use strict';
 
 var React = require('react');
-var React = require('../../../../node_modules/react/react');
 
 module.exports = React.createClass({
 

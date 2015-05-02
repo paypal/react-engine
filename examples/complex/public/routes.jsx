@@ -15,8 +15,8 @@
 
 'use strict';
 
-var React = require('../../../node_modules/react/react');
-var Router = require('../../../node_modules/react-router/lib');
+var React = require('react');
+var Router = require('react-router');
 
 var App = require('./views/app.jsx');
 var Account = require('./views/account.jsx');
