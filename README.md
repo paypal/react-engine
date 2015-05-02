@@ -80,8 +80,6 @@ var client = require('react-engine').client;
 
 // boot options
 var options = {
-    react: require('react'),
-    router: require('react-router'),
     routes: <PATH_TO_REACT-ROUTER_ROUTES>,
     // supply a function that can be called to resolve the file that was rendered
     viewResolver: function(viewName) {
