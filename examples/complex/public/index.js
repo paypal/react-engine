@@ -16,9 +16,9 @@
 'use strict';
 
 var Routes = require('./routes.jsx');
-var Client = require('../../../lib/client');
-var React = require('../../../node_modules/react/react');
-var Router = require('../../../node_modules/react-router/lib');
+var Client = require('react-engine').client;
+var React = require('react');
+var Router = require('react-router');
 
 // Include all view files. Browerify doesn't do
 // this automatically as it can only operate on
