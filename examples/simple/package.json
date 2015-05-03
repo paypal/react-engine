@@ -9,6 +9,7 @@
     "browserify": "^9.0.4",
     "express": "^4.12.3",
     "node-jsx": "^0.12.4",
+    "parent-require": "^1.0.0",
     "react": "^0.12.2",
     "react-engine": "^1.3.0",
     "react-router": "^0.12.4",
