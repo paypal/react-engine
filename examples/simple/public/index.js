@@ -15,7 +15,7 @@
 
 'use strict';
 
-var Client = require('react-engine').client;
+var Client = require('react-engine/lib/client');
 
 // Include all view files. Browerify doesn't do
 // this automatically as it can only operate on
