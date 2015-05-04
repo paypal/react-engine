@@ -91,12 +91,12 @@ var options = {
 // example:
 document.addEventListener('DOMContentLoaded', function onLoad() {
 
-	// `onBoot` - Function (optional)
-	// returns data that was used
-	// during rendering as the first argument
-	client.boot(options, function onBoot(data) {
+  // `onBoot` - Function (optional)
+  // returns data that was used
+  // during rendering as the first argument
+  client.boot(options, function onBoot(data) {
 
-	});
+  });
 };
 ```
 
@@ -130,6 +130,7 @@ var engine = require('react-engine').server.create({
 * On the client side, the state is exposed on the window object's property `__REACT_ENGINE__`
 * In development mode, views are automatically reloaded before render. So there is no need to restart the server for seeing the changes.
 * You can use `js` as the engine if you decide not to write your react views in `jsx`.
+* [Blog on react-engine](https://www.paypal-engineering.com/2015/04/27/isomorphic-react-apps-with-react-engine/)
 
 ### License
 [Apache Software License v2.0](http://www.apache.org/licenses/LICENSE-2.0)
