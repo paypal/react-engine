@@ -16,9 +16,7 @@
 'use strict';
 
 var Routes = require('./routes.jsx');
-var Client = require('react-engine').client;
-var React = require('react');
-var Router = require('react-router');
+var Client = require('react-engine/lib/client');
 
 // Include all view files. Browerify doesn't do
 // this automatically as it can only operate on
@@ -27,8 +25,6 @@ require('./views/**/*.jsx', {glob: true});
 
 // boot options
 var options = {
-  react: React,
-  router: Router,
   routes: Routes,
 
   // supply a function that can be called

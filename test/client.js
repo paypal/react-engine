@@ -24,8 +24,6 @@ var assertions = require('./fixtures/assertions');
 
 // boot options
 var options = {
-  react: require('react'),
-  router: require('react-router'),
   viewResolver: function(viewName) {
     return require('./fixtures/views/' + viewName);
   }
