@@ -1,5 +1,7 @@
 # react-engine
 
+[![Build Status](https://travis-ci.org/paypal/react-engine.svg?branch=master)](https://travis-ci.org/paypal/react-engine)
+
 ### What is react-engine?
 * a composite render engine for express apps to render both plain react views and react-router views on server
 * enables server rendered views to be client mountable
