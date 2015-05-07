@@ -1,3 +1,9 @@
+## 1.4.1 (May 7, 2015)
+
+* Fix: https://github.com/paypal/react-engine/issues/28
+* add unit tests for expressView.js
+* change tape test reporter from `tap-spec` to `faucet`
+
 ## 1.4.0 (May 3, 2015)
 
 * remove passing react & react-router as options in the client boot.
