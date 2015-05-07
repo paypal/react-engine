@@ -32,11 +32,14 @@
     "esprima-fb": "^14001.1.0-dev-harmony-fb",
     "faucet": "0.0.1",
     "jscs": "^1.11.3",
-    "jsdom": "3.1.2",
+    "jsdom": "3.0.0",
     "jshint": "^2.6.3",
     "rewire": "^2.3.1",
     "sinon": "^1.14.1",
-    "tape": "^3.5.0"
+    "tape": "^3.5.0",
+    "react": "~0.12",
+    "react-router": "~0.12",
+    "express": "^4.12"
   },
   "keywords": [
     "react",
