@@ -14,7 +14,7 @@
     "url": "git@github.com:paypal/react-engine.git"
   },
   "publishConfig": {
-    "registry": "https://registry.npmjs.com"
+    "registry": "https://registry.npmjs.org"
   },
   "peerDependencies": {
     "react": "~0.12",
