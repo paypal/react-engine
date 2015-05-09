@@ -1,3 +1,7 @@
+## 1.5.0 (May 9, 2015)
+
+* made peerDependencies and dependencies, `react` and `react-router`'s versions to be more flexible.
+
 ## 1.4.1 (May 7, 2015)
 
 * Fix: https://github.com/paypal/react-engine/issues/28

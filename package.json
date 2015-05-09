@@ -1,6 +1,6 @@
 {
   "name": "react-engine",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "description": "a composite render engine for express apps to render both plain react views and react-router views",
   "main": "index.js",
   "scripts": {
@@ -17,8 +17,8 @@
     "registry": "https://registry.npmjs.org"
   },
   "peerDependencies": {
-    "react": "~0.12",
-    "react-router": "~0.12",
+    "react": "~0",
+    "react-router": "~0",
     "express": "^4.12"
   },
   "dependencies": {
@@ -37,8 +37,8 @@
     "rewire": "^2.3.1",
     "sinon": "^1.14.1",
     "tape": "^3.5.0",
-    "react": "~0.12",
-    "react-router": "~0.12",
+    "react": "~0",
+    "react-router": "~0",
     "express": "^4.12"
   },
   "keywords": [
