@@ -1,3 +1,7 @@
+## 1.6.0 (May 13, 2015)
+
+* expose state/data on the client side using additional function called data. Helps in flux implementations, which need data even before booting.
+
 ## 1.5.0 (May 9, 2015)
 
 * made peerDependencies and dependencies, `react` and `react-router`'s versions to be more flexible.

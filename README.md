@@ -100,6 +100,11 @@ document.addEventListener('DOMContentLoaded', function onLoad() {
 
   });
 };
+
+// if the data is needed before booting on 
+// client, call `data` function anytime to get it.
+// example:
+var data = client.data();
 ```
 
 ### Performance Profiling
