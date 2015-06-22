@@ -1,3 +1,7 @@
+## 1.7.0 (June 22, 2015)
+
+* Windows path fix (https://github.com/paypal/react-engine/pull/41)
+
 ## 1.6.0 (May 13, 2015)
 
 * expose state/data on the client side using additional function called data. Helps in flux implementations, which need data even before booting.
