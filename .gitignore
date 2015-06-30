@@ -8,3 +8,4 @@ logs
 coverage/
 examples/simple/public/bundle.js
 examples/complex/public/bundle.js
+examples/webpack/public/bundle.js
