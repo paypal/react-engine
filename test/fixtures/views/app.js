@@ -16,7 +16,7 @@
 'use strict';
 
 var React = require('react');
-var Router = require('react-router');
+var Router = require('react-router').Router;
 var Layout = require('./layout');
 
 module.exports = React.createClass({
@@ -24,9 +24,6 @@ module.exports = React.createClass({
   displayName: 'app',
 
   render: function render() {
-
-    return React.createElement(Layout, this.props,
-      React.createElement(Router.RouteHandler, this.props)
-    );
+    return React.createElement(Layout, this.props)
   }
 });

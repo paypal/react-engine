@@ -16,17 +16,18 @@
 'use strict';
 
 var React = require('react');
-var Router = require('react-router');
+var Router = require('react-router').Router;
+var Route = require('react-router').Route;
 
 var App = require('./views/app');
 var Account = require('./views/account');
 
-module.exports = React.createElement(
-    Router.Route,
-    { path: '/' },
+module.exports =
+  React.createElement(
+    Route,
+    { path: '/', component: App },
     React.createElement(
-        Router.Route,
-        { path: 'account', handler: App },
-        React.createElement(Router.DefaultRoute, { name: 'account', handler: Account })
+      Route,
+      { path: 'account', component: Account }
     )
 );
