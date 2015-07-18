@@ -62,10 +62,6 @@
   }
 ```
 
-###### Yeoman Generator
-There is a Yeoman generator available to create a new express or KrakenJS application which uses react-engine.
-[generator-react-engine](https://www.npmjs.com/package/generator-react-engine)
-
 ###### Rendering
 ```js
 var data = {}; // your data model
@@ -110,6 +106,10 @@ document.addEventListener('DOMContentLoaded', function onLoad() {
 // example:
 var data = client.data();
 ```
+
+### Yeoman Generator
+There is a Yeoman generator available to create a new express or KrakenJS application which uses react-engine: 
+[generator-react-engine](https://www.npmjs.com/package/generator-react-engine).
 
 ### Performance Profiling
 
