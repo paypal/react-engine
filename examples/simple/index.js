@@ -32,7 +32,7 @@ app.engine('.jsx', engine);
 // set the view directory
 app.set('views', __dirname + '/public/views');
 
-// set js as the view engine
+// set jsx as the view engine
 app.set('view engine', 'jsx');
 
 // finally, set the custom view
