@@ -107,6 +107,10 @@ document.addEventListener('DOMContentLoaded', function onLoad() {
 var data = client.data();
 ```
 
+### Yeoman Generator
+There is a Yeoman generator available to create a new express or KrakenJS application which uses react-engine: 
+[generator-react-engine](https://www.npmjs.com/package/generator-react-engine).
+
 ### Performance Profiling
 
 Pass in a function to the `performanceCollector` property to collect the `stats` 
