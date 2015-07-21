@@ -18,27 +18,33 @@
     var express = require('express');
     var app = express();
 
-    // create the view engine with `react-engine`
-    var engine = require('react-engine').server.create({
-      reactRoutes: <string> /* pass in the path to react-router routes optionally */
-      performanceCollector: <function> /* optional function to collect perf stats */
+    app.use(function(req, res) {
+      var engine = require('react-engine').server.create({
+        reactRoutes: <string> /* pass in the path to react-router routes optionally */
+        performanceCollector: <function> /* optional function to collect perf stats */
+        onAbort: <function> /* optional function to handle redirected routes */
+      });
+
+      // set the engine
+      app.engine('.jsx', engine);
+
+      // set the view directory
+      app.set('views', __dirname + '/views');
+
+      // set jsx as the view engine
+      // Without this you would need to
+      // supply the extension to res.render()
+      // ex: res.render('index.jsx').
+      app.set('view engine', 'jsx');
+
+      // finally, set the custom view
+      app.set('view', require('react-engine/lib/expressView'));
+
     });
-
-    // set the engine
-    app.engine('.jsx', engine);
-
-    // set the view directory
-    app.set('views', __dirname + '/views');
-
-    // set jsx as the view engine
-    // Without this you would need to
-    // supply the extension to res.render()
-    // ex: res.render('index.jsx').
-    app.set('view engine', 'jsx');
-
-    // finally, set the custom view
-    app.set('view', require('react-engine/lib/expressView'));
+    // create the view engine with `react-engine`
 ```
+
+
 
 ###### Configuration (if you prefer KrakenJS - http://krakenjs.com)
 ```json
@@ -136,6 +142,29 @@ var engine = require('react-engine').server.create({
 });
 ```
 
+### Handling component redirects
+
+Pass in a function to the `onAbort` property to handle react-router transitions and redirects.
+
+##### `location`
+The object that contains the stats info for each render by react-engine.
+It has the below properties.
+- `to` - url path of the redirect
+
+```js
+// example
+app.use(function(req, res, next) {
+  function onAbort(location) {
+    res.redirect(301, location.to); /** redirecting to the right component **/
+  }
+
+  var engine = require('react-engine').server.create({
+    reactRoutes: './routes.jsx',
+    onAbort: onAbort
+  });
+  next();
+});
+```
 
 ### Notes
 * On the client side, the state is exposed on the window object's property `__REACT_ENGINE__`
