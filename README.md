@@ -97,27 +97,14 @@ res.render(req.url, data);
 // assuming we use `browserify`
 var client = require('react-engine').client;
 
-// boot options
-var options = {
-    // This options object can contain properties from react 
-    router's create configuration object 
-    (http://rackt.github.io/react-router/#Router.create). 
-
-    // Additionally, supply a function that can be called to 
-    resolve the file that was rendered. (Note that this is required.)
-    viewResolver: function(viewName) {
-        return <THE RESOLVED VIEW>; //Example: return require('./views/' + viewName);
-    }
-};
-
-// finally, boot whenever you are ready
+// finally, boot whenever your app is ready
 // example:
 document.addEventListener('DOMContentLoaded', function onLoad() {
 
   // `onBoot` - Function (optional)
   // returns data that was used
   // during rendering as the first argument
-  client.boot(options, function onBoot(data) {
+  client.boot(/* client options object */, function onBoot(data) {
 
   });
 };
@@ -127,6 +114,15 @@ document.addEventListener('DOMContentLoaded', function onLoad() {
 // example:
 var data = client.data();
 ```
+
+###### Client options spec
+Pass in a JavaScript object as options to the react-engine's client boot function.
+The options object can contain properties from [react router's create configuration object](http://rackt.github.io/react-router/#Router.create).
+
+Additionally, it should contain the following `required` property, 
+
+- `viewResolver` : <function> - a function that react-engine needs to resolve the view file.
+  an example of the viewResolver can be [found here](https://github.com/paypal/react-engine/blob/ecd27b30a9028d3f02b8f8e89d355bb5fc909de9/examples/simple/public/index.js#L29).
 
 ### Yeoman Generator
 There is a Yeoman generator available to create a new express or KrakenJS application which uses react-engine: 
