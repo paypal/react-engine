@@ -69,12 +69,12 @@
 ```
 
 ###### Server options spec
-Pass in an optional JavaScript object as options to the react-engine's [server engine create method](https://github.com/paypal/react-engine#setup-in-an-express-app).
+Pass in an optional JavaScript object as options to the react-engine's [server engine create method](#setup-in-an-express-app).
 The options object can contain properties from [react router's create configuration object](http://rackt.github.io/react-router/#Router.create).
 
 Additionally, it can contain the following optional properties, 
 
-- `performanceCollector`: <function> - to collects [perf stats](https://github.com/paypal/react-engine#performance-profiling)
+- `performanceCollector`: <function> - to collects [perf stats](#performance-profiling)
 - `routesFilePath`: <string> - path for the file that contains the react router routes.
                    react-engine used this behind the scenes to reload the routes file in 
                    development mode, this way you don't need to restart the server every time a change is made in the view files or routes file.
@@ -99,9 +99,12 @@ var client = require('react-engine').client;
 
 // boot options
 var options = {
-    // This options object can contain properties from [react router's create configuration object](http://rackt.github.io/react-router/#Router.create).  
+    // This options object can contain properties from react 
+    router's create configuration object 
+    (http://rackt.github.io/react-router/#Router.create). 
 
-    // Additionally, supply a function that can be called to resolve the file that was rendered. (Note that this is required.)
+    // Additionally, supply a function that can be called to 
+    resolve the file that was rendered. (Note that this is required.)
     viewResolver: function(viewName) {
         return <THE RESOLVED VIEW>; //Example: return require('./views/' + viewName);
     }
