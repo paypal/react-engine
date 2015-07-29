@@ -1,3 +1,8 @@
+## 2.0.0 (TBD)
+
+* Major API changes (specifically the options object property name changes)
+* React-Router config properties can be passed through the react engine now.
+
 ## 1.7.0 (June 22, 2015)
 
 * Windows path fix (https://github.com/paypal/react-engine/pull/41)
