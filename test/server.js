@@ -209,7 +209,7 @@ test('router gets run when we pass urls into render function', function(t) {
 
   var options = {
     engine: renderer.create({
-      reactRoutes: path.join(__dirname + '/fixtures/reactRoutes')
+      routes: require(path.join(__dirname + '/fixtures/reactRoutes'))
     }),
     expressRoutes: function(req, res) {
       res.render(req.url, DATA_MODEL);
