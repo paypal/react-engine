@@ -72,11 +72,11 @@
 Pass in an optional JavaScript object as options to the react-engine's [server engine create method](#setup-in-an-express-app).
 The options object can contain properties from [react router's create configuration object](http://rackt.github.io/react-router/#Router.create).
 
-Additionally, it can contain the following optional properties, 
+Additionally, it can contain the following optional properties,
 
 - `performanceCollector`: <function> - to collects [perf stats](#performance-profiling)
 - `routesFilePath`: <string> - path for the file that contains the react router routes.
-                   react-engine used this behind the scenes to reload the routes file in 
+                   react-engine used this behind the scenes to reload the routes file in
                    development mode, this way you don't need to restart the server every time a change is made in the view files or routes file.
 
 ###### Rendering views on server side
@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function onLoad() {
   });
 };
 
-// if the data is needed before booting on 
+// if the data is needed before booting on
 // client, call `data` function anytime to get it.
 // example:
 var data = client.data();
@@ -119,18 +119,20 @@ var data = client.data();
 Pass in a JavaScript object as options to the react-engine's client boot function.
 The options object can contain properties from [react router's create configuration object](http://rackt.github.io/react-router/#Router.create).
 
-Additionally, it should contain the following `required` property, 
+Additionally, it should contain the following `required` property,
+
+- `mountNode`: <Element Object> override mount point for the client. Default is `document`.
 
 - `viewResolver` : <function> - a function that react-engine needs to resolve the view file.
   an example of the viewResolver can be [found here](https://github.com/paypal/react-engine/blob/ecd27b30a9028d3f02b8f8e89d355bb5fc909de9/examples/simple/public/index.js#L29).
 
 ### Yeoman Generator
-There is a Yeoman generator available to create a new express or KrakenJS application which uses react-engine: 
+There is a Yeoman generator available to create a new express or KrakenJS application which uses react-engine:
 [generator-react-engine](https://www.npmjs.com/package/generator-react-engine).
 
 ### Performance Profiling
 
-Pass in a function to the `performanceCollector` property to collect the `stats` 
+Pass in a function to the `performanceCollector` property to collect the `stats`
 object for every render.
 
 ##### `stats`
