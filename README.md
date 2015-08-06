@@ -13,15 +13,20 @@
 ```
 
 ### Usage On Server Side
-###### Configuration (Express)
+###### Setup in an Express app
 ```javascript
-    var express = require('express');
-    var app = express();
 
-    // create the view engine with `react-engine`
-    var engine = require('react-engine').server.create({
-      reactRoutes: <string> /* pass in the path to react-router routes optionally */
-      performanceCollector: <function> /* optional function to collect perf stats */
+    var Express = require('express');
+    var ReactEngine = require('react-engine');
+
+    var app = Express();
+
+    // create an engine instance
+    var engine = ReactEngine.server.create({
+      /*
+        see the complete server options spec here:
+        https://github.com/paypal/react-engine#server-options-spec
+      */
     });
 
     // set the engine
@@ -30,17 +35,16 @@
     // set the view directory
     app.set('views', __dirname + '/views');
 
-    // set jsx as the view engine
-    // Without this you would need to
-    // supply the extension to res.render()
-    // ex: res.render('index.jsx').
+    // set jsx or js as the view engine
+    // (without this you would need to supply the extension to res.render())
+    // ex: res.render('index.jsx') instead of just res.render('index').
     app.set('view engine', 'jsx');
 
     // finally, set the custom view
     app.set('view', require('react-engine/lib/expressView'));
 ```
 
-###### Configuration (if you prefer KrakenJS - http://krakenjs.com)
+###### Setup in a [KrakenJS](http://krakenjs.com) app's config.json
 ```json
   {
     "express": {
@@ -53,8 +57,10 @@
             "renderer": {
               "method": "create",
                 "arguments": [{
-                    "reactRoutes": "path:<PATH_TO_REACT-ROUTER_ROUTES>",
-                    "performanceCollector": "require:<PATH_TO_PERF_COLLECTOR_FUNCTION>"
+                        /*
+                          see the complete server options spec here:
+                          https://github.com/paypal/react-engine#server-options-spec
+                        */
                 }]
             }
         }
@@ -62,11 +68,22 @@
   }
 ```
 
-###### Rendering
+###### Server options spec
+Pass in an optional JavaScript object as options to the react-engine's [server engine create method](#setup-in-an-express-app).
+The options object can contain properties from [react router's create configuration object](http://rackt.github.io/react-router/#Router.create).
+
+Additionally, it can contain the following optional properties, 
+
+- `performanceCollector`: <function> - to collects [perf stats](#performance-profiling)
+- `routesFilePath`: <string> - path for the file that contains the react router routes.
+                   react-engine used this behind the scenes to reload the routes file in 
+                   development mode, this way you don't need to restart the server every time a change is made in the view files or routes file.
+
+###### Rendering views on server side
 ```js
 var data = {}; // your data model
 
-// for normal view rendering
+// for a simple react view rendering
 res.render(viewName, data);
 
 // for react-router rendering
@@ -80,23 +97,14 @@ res.render(req.url, data);
 // assuming we use `browserify`
 var client = require('react-engine').client;
 
-// boot options
-var options = {
-    routes: <PATH_TO_REACT-ROUTER_ROUTES>,
-    // supply a function that can be called to resolve the file that was rendered
-    viewResolver: function(viewName) {
-        return <THE RESOLVED VIEW>; //Example: return require('./views/' + viewName);
-    }
-};
-
-// finally, boot whenever you are ready
+// finally, boot whenever your app is ready
 // example:
 document.addEventListener('DOMContentLoaded', function onLoad() {
 
   // `onBoot` - Function (optional)
   // returns data that was used
   // during rendering as the first argument
-  client.boot(options, function onBoot(data) {
+  client.boot(/* client options object */, function onBoot(data) {
 
   });
 };
@@ -106,6 +114,19 @@ document.addEventListener('DOMContentLoaded', function onLoad() {
 // example:
 var data = client.data();
 ```
+
+###### Client options spec
+Pass in a JavaScript object as options to the react-engine's client boot function.
+The options object can contain properties from [react router's create configuration object](http://rackt.github.io/react-router/#Router.create).
+
+Additionally, it should contain the following `required` property, 
+
+- `viewResolver` : <function> - a function that react-engine needs to resolve the view file.
+  an example of the viewResolver can be [found here](https://github.com/paypal/react-engine/blob/ecd27b30a9028d3f02b8f8e89d355bb5fc909de9/examples/simple/public/index.js#L29).
+
+### Yeoman Generator
+There is a Yeoman generator available to create a new express or KrakenJS application which uses react-engine: 
+[generator-react-engine](https://www.npmjs.com/package/generator-react-engine).
 
 ### Performance Profiling
 

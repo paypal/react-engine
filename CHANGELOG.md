@@ -1,3 +1,12 @@
+## 2.0.0 (TBD)
+
+* Major API changes (specifically the options object property name changes)
+* React-Router config properties can be passed through the react engine now.
+
+## 1.7.0 (June 22, 2015)
+
+* Windows path fix (https://github.com/paypal/react-engine/pull/41)
+
 ## 1.6.0 (May 13, 2015)
 
 * expose state/data on the client side using additional function called data. Helps in flux implementations, which need data even before booting.

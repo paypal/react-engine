@@ -15,43 +15,25 @@
 
 'use strict';
 
-// make `.jsx` file requirable by node
-require('node-jsx').install();
+var React = require('react');
 
-var express = require('express');
-var renderer = require('react-engine');
+module.exports = React.createClass({
 
-var app = express();
+  displayName: 'account',
 
-// create the view engine with `react-engine`
-var engine = renderer.server.create();
+  onButtonClick: function() {
+    alert('I was rendered on server side but I am clickable because of client mounting!');
+  },
 
-// set the engine
-app.engine('.jsx', engine);
+  render: function render() {
 
-// set the view directory
-app.set('views', __dirname + '/public/views');
-
-// set jsx as the view engine
-app.set('view engine', 'jsx');
-
-// finally, set the custom view
-app.set('view', renderer.expressView);
-
-//expose public folder as static assets
-app.use(express.static(__dirname + '/public'));
-
-app.use('/', function(req, res) {
-  res.render('index', {
-    title: 'React Engine Express Sample App',
-    name: 'Jordan'
-  });
-});
-
-var server = app.listen(3000, function() {
-
-  var host = server.address().address;
-  var port = server.address().port;
-
-  console.log('Example app listening at http://%s:%s', host, port);
+    return (
+      <div id='account'>
+        <h1>{this.props.name}</h1>
+        <h6>I am a React Router rendered view</h6>
+        <button onClick={this.onButtonClick}>___Click Me___</button>
+        <a href='/some_unknown'>Click to go to an unhandled route</a>
+      </div>
+    );
+  }
 });
