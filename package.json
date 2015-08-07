@@ -50,7 +50,16 @@
     "express",
     "jsx"
   ],
-  "author": "Sam Selvanathan",
+  "author": "Sam Selvanathan <sjasel@gmail.com>",
+  "contributors": [
+    "Vu Hwang <vuhwang@gmail.com>",
+    "Robert Kuo <slkuo230@yahoo.com>",
+    "Jinto Jose <jintoppy@gmail.com>",
+    "Jared Halpert <jaredhalpert90@gmail.com>",
+    "Weng Zhi Ping",
+    "Vincent Orr <vincent@cmdv.org>",
+    "skarflacka"
+  ],
   "licenses": [
     {
       "type": "Apache 2.0",
