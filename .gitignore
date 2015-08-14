@@ -6,5 +6,4 @@ node_modules/
 logs
 *.log
 coverage/
-examples/simple/public/bundle.js
-examples/with-react-router/public/bundle.js
+example/public/bundle.js
