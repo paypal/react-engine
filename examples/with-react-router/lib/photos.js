@@ -15,32 +15,12 @@
 
 'use strict';
 
-import {join} from 'path';
-import {Router} from 'express';
-import {loadPhotos} from '../lib/photos';
-import reactRouterRoutes from './react-router';
-import {getRoutePathFromReactRouterRoutes} from '../lib/helper';
+import YQL from 'yql';
 
-// export the express router
-var router = module.exports = Router();
+var query = new YQL('select * from flickr.photos.search \
+                    where has_geo="true" and tags="New York City" \
+                    and api_key="YOUR KEY"', { ssl: true });
 
-function handler(req, res, next) {
-  loadPhotos(function(err, data) {
-
-    if (err) {
-      return next(err);
-    }
-
-    console.dir(data);
-
-    res.render(req.url, {
-      title: 'React Engine Express Sample App',
-      name: 'Jordan'
-    });
-
-  });
-}
-
-getRoutePathFromReactRouterRoutes(reactRouterRoutes).map(function(routePath) {
-  router.get(routePath, handler);
-});
+exports.loadPhotos = function loadPhotos(callback) {
+  query.exec(callback);
+};

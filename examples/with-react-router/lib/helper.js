@@ -15,32 +15,30 @@
 
 'use strict';
 
-import {join} from 'path';
-import {Router} from 'express';
-import {loadPhotos} from '../lib/photos';
-import reactRouterRoutes from './react-router';
-import {getRoutePathFromReactRouterRoutes} from '../lib/helper';
+/* -------------------------------------------------------------
+    this helper function, takes the react-router's route
+    manifest and returns an array of routes (url path strings)
+    -------------------------------------------------------------
+    copied from: https://github.com/rackt/react-router/issues/953
+    ------------------------------------------------------------- */
+exports.getRoutePathFromReactRouterRoutes = function getRoutePathFromReactRouterRoutes(routes, parentPath) {
 
-// export the express router
-var router = module.exports = Router();
+    let result = [];
+    routes = Array.isArray(routes) ? routes : [routes];
 
-function handler(req, res, next) {
-  loadPhotos(function(err, data) {
+    routes.forEach((route) => {
+        const props = route._store.props;
+        let path = props.path;
 
-    if (err) {
-      return next(err);
-    }
+        if (path) {
+            path = parentPath ? join(parentPath, path) : path;
+            result.push(path);
+        }
 
-    console.dir(data);
-
-    res.render(req.url, {
-      title: 'React Engine Express Sample App',
-      name: 'Jordan'
+        if (props.children) {
+            result = result.concat(getRoutePathFromReactRouterRoutes(props.children, path));
+        }
     });
 
-  });
+    return result;
 }
-
-getRoutePathFromReactRouterRoutes(reactRouterRoutes).map(function(routePath) {
-  router.get(routePath, handler);
-});
