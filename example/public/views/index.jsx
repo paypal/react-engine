@@ -16,21 +16,21 @@
 'use strict';
 
 var React = require('react');
+import Card from './card.jsx';
 
 module.exports = React.createClass({
-
-  onButtonClick: function() {
-    alert('I was rendered on server side but I am clickable because of client mounting!');
-  },
 
   render: function render() {
 
     return (
-      <div id='index'>
-        <h1>{this.props.name}</h1>
-        <h6>I am a React Router rendered view</h6>
-        <button onClick={this.onButtonClick}>___Click Me___</button>
-        <a href='/some_unknown'>Click to go to an unhandled route</a>
+      <div className='row' id='index'>
+        <h1>Movies</h1>
+        <h6>Click to see details</h6>
+        <div className='row'>
+          {this.props.movies.map(function (movie) {
+            return (<Card {...movie} />);
+          })}
+        </div>
       </div>
     );
   }

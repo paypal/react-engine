@@ -15,12 +15,27 @@
 
 'use strict';
 
-import YQL from 'yql';
+var React = require('react');
 
-var query = new YQL('select * from flickr.photos.search \
-                    where has_geo="true" and tags="New York City" \
-                    and api_key="YOUR KEY"', { ssl: true });
+module.exports = React.createClass({
 
-exports.loadPhotos = function loadPhotos(callback) {
-  query.exec(callback);
-};
+  onButtonClick: function() {
+    alert('I was rendered on server side but I am clickable because of client mounting!');
+  },
+
+  render: function render() {
+
+    return (
+      <div className='col s6'>
+        <div className='card small'>
+          <div className='card-image'>
+            <img src={this.props.image} />
+          </div>
+          <div className='card-content'>
+            <p>{this.props.title}</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+});

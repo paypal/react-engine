@@ -1,5 +1,5 @@
 {
-  "name": "react-engine-example-with-react-router",
+  "name": "react-engine-example",
   "main": "index.js",
   "scripts": {
     "start": "webpack && node index.js"

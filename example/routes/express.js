@@ -15,9 +15,8 @@
 
 'use strict';
 
-import {join} from 'path';
+import movies from '../movies';
 import {Router} from 'express';
-import {loadPhotos} from '../lib/photos';
 import reactRouterRoutes from './react-router';
 import {getRoutePathFromReactRouterRoutes} from '../lib/helper';
 
@@ -25,19 +24,8 @@ import {getRoutePathFromReactRouterRoutes} from '../lib/helper';
 var router = module.exports = Router();
 
 function handler(req, res, next) {
-  loadPhotos(function(err, data) {
-
-    if (err) {
-      return next(err);
-    }
-
-    console.dir(data);
-
-    res.render(req.url, {
-      title: 'React Engine Express Sample App',
-      name: 'Jordan'
-    });
-
+  res.render(req.url, {
+    movies: movies
   });
 }
 
