@@ -154,12 +154,18 @@ var engine = require('react-engine').server.create({
 });
 ```
 
-
 ### Notes
 * On the client side, the state is exposed on the window object's property `__REACT_ENGINE__`
 * In development mode, views are automatically reloaded before render. So there is no need to restart the server for seeing the changes.
 * You can use `js` as the engine if you decide not to write your react views in `jsx`.
 * [Blog on react-engine](https://www.paypal-engineering.com/2015/04/27/isomorphic-react-apps-with-react-engine/)
+
+### Migration from 1.x to 2.x
+2.x version of react-engine brought in a major api change. Basically it affects the property names of the [object that gets passed in during the engine creation](https://github.com/paypal/react-engine#server-options-spec) on the server side and also how routes definition is passed into react-engine.
+
+In v2.x, `routes` need to be explicitly required and passed in to the engine creation method. Also, any [react-router known properties can be passed in](http://rackt.github.io/react-router/#Router.create).
+
+An example engine creation can be found [here](https://github.com/paypal/react-engine/blob/71ac27196e72059484332a491cd66982797a60a3/examples/complex/index.js#L28).
 
 ### License
 [Apache Software License v2.0](http://www.apache.org/licenses/LICENSE-2.0)
