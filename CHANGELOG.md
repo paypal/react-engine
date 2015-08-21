@@ -1,4 +1,10 @@
-## 2.0.0 (TBD)
+## 2.1.0 (Aug 20 2015)
+
+* resolve cache clear logic based on the 'view cache' (https://github.com/paypal/react-engine/issues/74)
+* updated readme with migration to v2.x notes (https://github.com/paypal/react-engine/issues/75)
+* updated readme references of Isomorphic JavaScript to Universal JavaScript (https://github.com/paypal/react-engine/issues/60)
+
+## 2.0.0 (Aug 1 2015)
 
 * Major API changes (specifically the options object property name changes)
 * React-Router config properties can be passed through the react engine now.
