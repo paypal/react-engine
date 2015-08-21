@@ -77,8 +77,8 @@ Additionally, it can contain the following optional properties,
 
 - `performanceCollector`: <function> - to collects [perf stats](#performance-profiling)
 - `routesFilePath`: <string> - path for the file that contains the react router routes.
-                   react-engine used this behind the scenes to reload the routes file in
-                   development mode, this way you don't need to restart the server every time a change is made in the view files or routes file.
+                   react-engine uses this behind the scenes to reload the routes file in
+                   cases where [express's app property](http://expressjs.com/api.html#app.set) `view cache` is false, this way you don't need to restart the server every time a change is made in the view files or routes file.
 
 ###### Rendering views on server side
 ```js
@@ -156,7 +156,7 @@ var engine = require('react-engine').server.create({
 
 ### Notes
 * On the client side, the state is exposed on the window object's property `__REACT_ENGINE__`
-* In development mode, views are automatically reloaded before render. So there is no need to restart the server for seeing the changes.
+* When Express's `view cache` app property is false (mostly in non-production environments), views are automatically reloaded before render. So there is no need to restart the server for seeing the changes.
 * You can use `js` as the engine if you decide not to write your react views in `jsx`.
 * [Blog on react-engine](https://www.paypal-engineering.com/2015/04/27/isomorphic-react-apps-with-react-engine/)
 
