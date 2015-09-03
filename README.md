@@ -78,7 +78,7 @@ Additionally, it can contain the following **optional** properties,
 - `routesFilePath`: <String> - path for the file that contains the react router routes.
                    react-engine uses this behind the scenes to reload the routes file in
                    cases where [express's app property](http://expressjs.com/api.html#app.set) `view cache` is false, this way you don't need to restart the server every time a change is made in the view files or routes file.
-- `renderOptionsKeysToFilter`: <Array> - an array of keys that need to be filtered out from the data object that gets fed into the react component for rendering. [more info](https://github.com/paypal/react-engine#data-for-component-rendering)
+- `renderOptionsKeysToFilter`: <Array> - an array of keys that need to be filtered out from the data object that gets fed into the react component for rendering. [more info](#data-for-component-rendering)
 - `performanceCollector`: <Function> - to collects [perf stats](#performance-profiling)
 
 ###### Rendering views on server side
