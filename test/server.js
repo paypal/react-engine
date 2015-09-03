@@ -248,3 +248,52 @@ test('error that renderer throws when asked to run react router without providin
   };
   setup(options);
 });
+
+test('all keys in express render `options` should be be sent to client', function(t) {
+
+  var options = {
+    engine: renderer.create({
+      routes: require(path.join(__dirname + '/fixtures/reactRoutes'))
+    }),
+    expressRoutes: function(req, res) {
+      res.locals.someSensitiveData = 1234;
+      res.render(req.url, DATA_MODEL);
+    },
+
+    onSetup: function(done) {
+      inject('/account', function(err, data) {
+        t.error(err);
+        var $ = cheerio.load(data);
+        var matchIndex = $.html().indexOf('someSensitiveData');
+        t.notEqual(matchIndex, -1);
+        done(t);
+      });
+    }
+  };
+  setup(options);
+});
+
+test('all keys in express render `renderOptionsKeysToFilter` should be used to filter out renderOptions', function(t) {
+
+  var options = {
+    engine: renderer.create({
+      routes: require(path.join(__dirname + '/fixtures/reactRoutes')),
+      renderOptionsKeysToFilter: ['someSensitiveData']
+    }),
+    expressRoutes: function(req, res) {
+      res.locals.someSensitiveData = 1234;
+      res.render(req.url, DATA_MODEL);
+    },
+
+    onSetup: function(done) {
+      inject('/account', function(err, data) {
+        t.error(err);
+        var $ = cheerio.load(data);
+        var matchIndex = $.html().indexOf('someSensitiveData');
+        t.equal(matchIndex, -1);
+        done(t);
+      });
+    }
+  };
+  setup(options);
+});
