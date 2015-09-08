@@ -1,3 +1,7 @@
+## 2.2.0 (Sep 02 2015)
+
+* Allow finer grain control of render properties (https://github.com/paypal/react-engine/issues/73)
+
 ## 2.1.0 (Aug 20 2015)
 
 * resolve cache clear logic based on the 'view cache' (https://github.com/paypal/react-engine/issues/74)

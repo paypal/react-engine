@@ -73,12 +73,13 @@
 Pass in an optional JavaScript object as options to the react-engine's [server engine create method](#setup-in-an-express-app).
 The options object can contain properties from [react router's create configuration object](http://rackt.github.io/react-router/#Router.create).
 
-Additionally, it can contain the following optional properties,
+Additionally, it can contain the following **optional** properties,
 
-- `performanceCollector`: <function> - to collects [perf stats](#performance-profiling)
-- `routesFilePath`: <string> - path for the file that contains the react router routes.
+- `routesFilePath`: <String> - path for the file that contains the react router routes.
                    react-engine uses this behind the scenes to reload the routes file in
                    cases where [express's app property](http://expressjs.com/api.html#app.set) `view cache` is false, this way you don't need to restart the server every time a change is made in the view files or routes file.
+- `renderOptionsKeysToFilter`: <Array> - an array of keys that need to be filtered out from the data object that gets fed into the react component for rendering. [more info](#data-for-component-rendering)
+- `performanceCollector`: <Function> - to collects [perf stats](#performance-profiling)
 
 ###### Rendering views on server side
 ```js
@@ -120,10 +121,29 @@ var data = client.data();
 Pass in a JavaScript object as options to the react-engine's client boot function.
 The options object can contain properties from [react router's create configuration object](http://rackt.github.io/react-router/#Router.create).
 
-Additionally, it should contain the following `required` property,
+Additionally, it should contain the following **required** property,
 
-- `viewResolver` : <function> - a function that react-engine needs to resolve the view file.
+- `viewResolver` : <Function> - a function that react-engine needs to resolve the view file.
   an example of the viewResolver can be [found here](https://github.com/paypal/react-engine/blob/ecd27b30a9028d3f02b8f8e89d355bb5fc909de9/examples/simple/public/index.js#L29).
+
+### Data for component rendering
+The actual data that gets fed into the component for rendering is the `renderOptions` object that [express generates](https://github.com/strongloop/express/blob/2f8ac6726fa20ab5b4a05c112c886752868ac8ce/lib/application.js#L535-L588).
+
+If you don't want to pass all that data, you can pass in an array of object keys that react-engine can filter out from the `renderOptions` object before passing it into the component for rendering.
+
+```javascript
+  // example of using `renderOptionsKeysToFilter` to filter `renderOptions` keys
+  var engine = ReactEngine.server.create({
+    renderOptionsKeysToFilter: ['mySensitiveDataThatIsIn_res.locals'],
+    routes: require(path.join(__dirname + './reactRoutes'))
+  });
+```
+
+Note: By default, the following three keys are always filtered out from `renderOptions` no matter whether `renderOptionsKeysToFilter` is configured or not.
+
+- `settings`
+- `enrouten`
+- `_locals`
 
 ### Yeoman Generator
 There is a Yeoman generator available to create a new express or KrakenJS application which uses react-engine:
