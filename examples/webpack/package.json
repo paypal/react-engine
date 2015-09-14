@@ -12,7 +12,7 @@
     "jsx-loader": "^0.13.2",
     "node-jsx": "^0.12.4",
     "node-libs-browser": "^0.5.2",
-    "react-engine": "^1.7.0",
+    "react-engine": "^2",
     "webpack": "^1.10.0",
     "react": "^0",
     "react-router": "^0"
