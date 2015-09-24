@@ -16,7 +16,7 @@
 'use strict';
 
 // make `.jsx` file requirable by node
-require("babel/register")({});
+require('babel/register');
 
 var path = require('path');
 var express = require('express');
@@ -26,7 +26,7 @@ var app = express();
 
 // create the view engine with `react-engine`
 var engine = renderer.server.create({
-  reactRoutes: path.join(__dirname + '/public/routes.jsx')
+  routesFilePath: path.join(__dirname + '/public/routes.jsx')
 });
 
 // set the engine

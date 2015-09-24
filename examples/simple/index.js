@@ -16,7 +16,7 @@
 'use strict';
 
 // make `.jsx` file requirable by node
-require("babel/register")({});
+require('babel/register')({});
 
 var express = require('express');
 var renderer = require('react-engine');
