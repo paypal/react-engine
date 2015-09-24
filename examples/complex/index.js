@@ -16,7 +16,7 @@
 'use strict';
 
 // make `.jsx` file requirable by node
-require('node-jsx').install();
+require('babel/register');
 
 var path = require('path');
 var express = require('express');
