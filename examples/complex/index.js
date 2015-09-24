@@ -26,7 +26,7 @@ var app = express();
 
 // create the view engine with `react-engine`
 var engine = renderer.server.create({
-  routesFilePath: path.join(__dirname + '/public/routes.jsx')
+  reactRoutes: path.join(__dirname + '/public/routes.jsx')
 });
 
 // set the engine
