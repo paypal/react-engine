@@ -26,7 +26,7 @@ module.exports = React.createElement(
     { path: '/' },
     React.createElement(
         Router.Route,
-        { path: 'account', handler: App },
-        React.createElement(Router.DefaultRoute, { name: 'account', handler: Account })
+        { path: 'account', component: App },
+        React.createElement(Router.IndexRoute, { component: Account })
     )
 );
