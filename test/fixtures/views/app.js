@@ -26,7 +26,7 @@ module.exports = React.createClass({
   render: function render() {
 
     return React.createElement(Layout, this.props,
-      React.createElement(Router.RouteHandler, this.props)
+      React.cloneElement(this.props.children, this.props)
     );
   }
 });
