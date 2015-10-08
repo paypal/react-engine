@@ -15,6 +15,7 @@
 
 'use strict';
 
+var debug = require('debug')('route-engine');
 var test = require('tape');
 var rewire = require('rewire');
 var jsdom = require('jsdom').jsdom;
@@ -64,6 +65,8 @@ test('client side boot for plain react views', function(t) {
   function _boot() {
 
     client.boot(options, function(data) {
+
+      debug('test/client.js match data %s', data);
       // test that all properties in the DATA_MODEL exist in the received `data`
       // NOTE: we care only about the DATA_MODEL props and not other stuff that
       // might come from things like express `res.locals`
@@ -78,7 +81,9 @@ test('client side boot for plain react views', function(t) {
     });
   }
 
-  t.doesNotThrow(_boot);
+  _boot();
+
+  //t.doesNotThrow(_boot);
 });
 
 test('client side boot throws error for invalid markup', function(t) {
