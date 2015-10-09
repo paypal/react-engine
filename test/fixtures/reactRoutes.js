@@ -18,15 +18,18 @@
 var React = require('react');
 var Router = require('react-router');
 
+var Route = Router.Route;
+var IndexRoute = Router.IndexRoute;
+
 var App = require('./views/app');
 var Account = require('./views/account');
 
 module.exports = React.createElement(
-    Router.Route,
-    { path: '/' },
-    React.createElement(
-        Router.Route,
-        { path: 'account', component: App },
-        React.createElement(Router.IndexRoute, { component: Account })
-    )
+  Router,
+  null,
+  React.createElement(
+    Route,
+    { path: '/', component: App },
+    React.createElement(Route, { path: '/account', component: Account })
+  )
 );

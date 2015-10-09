@@ -21,15 +21,15 @@ module.exports = React.createClass({
 
   displayName: 'account',
 
-  render: function render() {
-
+  render: function render(props) {
+    var name = this.props.name || 'Joshua';
     return React.createElement(
       'div',
       { id: 'account' },
       React.createElement(
         'h1',
         null,
-        this.props.name
+        name
       )
     );
   }
