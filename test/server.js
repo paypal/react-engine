@@ -297,3 +297,26 @@ test('all keys in express render `renderOptionsKeysToFilter` should be used to f
   };
   setup(options);
 });
+
+test('router redirection capability from redirect-account to account', function(t) {
+
+  var options = {
+    engine: renderer.create({
+      routes: require(path.join(__dirname + '/fixtures/reactRoutes'))
+    }),
+    expressRoutes: function(req, res) {
+      res.render(req.url, DATA_MODEL);
+    },
+
+    onSetup: function(done) {
+      inject('/redirect-account', function(err, data) {
+        t.error(err);
+        var $ = cheerio.load(data);
+        $('*').removeAttr('data-reactid').removeAttr('data-react-checksum');
+        t.strictEqual($.html(), assertions.ACCOUNT_OUTPUT);
+        done(t);
+      });
+    }
+  };
+  setup(options);
+});
