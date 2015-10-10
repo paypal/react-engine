@@ -21,12 +21,26 @@ var Router = require('react-router');
 var App = require('./views/app');
 var Account = require('./views/account');
 
+var Route = Router.Route;
+var Redirect = Router.Redirect;
+
 module.exports = React.createElement(
   Router,
   null,
   React.createElement(
-    Router.Route,
+    Route,
     { path: '/', component: App },
-    React.createElement(Router.Route, { path: '/account', component: Account })
+    React.createElement(Route, { path: 'account', component: Account }),
+    React.createElement(Redirect, { from: 'redirect-account', to: 'account' }),
+    React.createElement(Route, { path: '*', component: Account })
   )
 );
+
+// In JSX
+// <Router>
+//   <Route path='/' component={App}>
+//     <Route path='account' component={Account}/>
+//     <Redirect from='redirect-account' to='account' />
+//     <Route path='*' component={Account}/>
+//   </Route>
+// </Router>
