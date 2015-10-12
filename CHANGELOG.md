@@ -1,3 +1,7 @@
+## 2.3.0 (Oct 11 2015)
+
+* Allow custom doctype option. (https://github.com/paypal/react-engine/pull/96)
+
 ## 2.2.1 (Oct 09 2015)
 
 * make the clearRequireCacheInDir platform windows friendly (https://github.com/paypal/react-engine/issues/93)
