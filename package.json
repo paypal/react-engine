@@ -6,7 +6,6 @@
   "scripts": {
     "test": "npm run jscs && npm run lint && npm run tape",
     "jscs": "jscs --verbose .",
-    "lint": "jshint --verbose --show-non-errors --config=.jshintrc **/*.js",
     "tape": "tape test/*.js | faucet"
   },
   "repository": {
@@ -27,6 +26,11 @@
     "esprima-fb": "^14001.1.0-dev-harmony-fb",
     "express": "^4.12",
     "faucet": "0.0.1",
+    "grunt": "^0.4.5",
+    "grunt-babel": "^5.0.1",
+    "grunt-cli": "^0.1.13",
+    "grunt-config-dir": "^0.3.2",
+    "grunt-eslint": "^17.2.0",
     "jscs": "^1.11.3",
     "jsdom": "3.0.0",
     "jshint": "^2.6.3",
@@ -34,7 +38,8 @@
     "react-router": "^0.13.4",
     "rewire": "^2.3.1",
     "sinon": "^1.14.1",
-    "tape": "^3.5.0"
+    "tape": "^3.5.0",
+    "time-grunt": "^1.2.1"
   },
   "keywords": [
     "react",
