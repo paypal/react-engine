@@ -9,8 +9,8 @@
     "babel": "^5.8.23",
     "browserify": "^9.0.4",
     "express": "^4.12.3",
-    "react": "^0.14.0-rc1",
-    "react-engine": "../../",
+    "react": "^0.12.2",
+    "react-engine": "^1.3.0",
     "react-router": "^0.12.4",
     "reactify": "^1.1.0",
     "require-globify": "^1.1.0"
