@@ -15,58 +15,58 @@
 
 'use strict';
 
-var React = require('react');
-var Config = require('./config');
-var Router = require('react-router');
-var history = require('history');
-var ReactDOM = require('react-dom');
+// make `.jsx` file requirable by node
+require('babel/register');
 
-// declaring like this helps in unit test
-// dependency injection using `rewire` module
-var _window;
-var _document;
-if (typeof window !== 'undefined' && typeof document !== 'undefined') {
-  _window = window;
-  _document = document;
-}
+var path = require('path');
+var express = require('express');
+var renderer = require('react-engine');
 
-// returns the data/state that was
-// injected by server during rendering
-exports.data = function data() {
-  return _window[Config.client.variableName];
-};
+var app = express();
 
-// the client side boot function
-exports.boot = function boot(options, callback) {
+// create the view engine with `react-engine`
+var engine = renderer.server.create({
+  routes: require(path.join(__dirname, '/public/routes.jsx')),
+  routesFilePath: path.join(__dirname, '/public/routes.jsx')
+});
 
-  var viewResolver = options.viewResolver;
+// set the engine
+app.engine('.jsx', engine);
 
-  // pick up the state that was injected by server during rendering
-  var props = _window[Config.client.variableName];
+// set the view directory
+app.set('views', path.join(__dirname, '/public/views'));
 
-  var useRouter = (props.__meta.view === null);
+// set jsx as the view engine
+app.set('view engine', 'jsx');
 
-  if (useRouter) {
+// finally, set the custom view
+app.set('view', renderer.expressView);
 
-    if (!options.routes) {
-      throw new Error('asking to use react router for rendering, but no routes are provided');
-    }
+//expose public folder as static assets
+app.use(express.static(path.join(__dirname, '/public')));
 
-    var routerComponent = React.createElement(Router.Router, { routes: options.routes, history: history.createHistory() });
-    ReactDOM.render(routerComponent, _document);
-  } else {
-    // get the file from viewResolver supplying it with a view name
-    var view = viewResolver(props.__meta.view);
-
-    // create a react view factory
-    var viewFactory = React.createFactory(view);
-
-    // render the factory on the client
-    // doing this, sets up the event
-    // listeners and stuff aka mounting views.
-    ReactDOM.render(viewFactory(props), _document);
+// match everything and work from there
+app.use('/', function(req, res) {
+  if (req.originalUrl !== '/favicon.ico') {
+    res.render(req.originalUrl, {
+      title: 'React Engine Express Sample App',
+      name: 'Jordan'
+    });
   }
+});
 
-  // call the callback with the data that was used for rendering
-  return callback && callback(props);
-};
+// 404 template
+app.use(function(req, res) {
+  res.render('404', {
+    title: 'React Engine Express Sample App',
+    url: req.url
+  });
+});
+
+var server = app.listen(3000, function() {
+
+  var host = server.address().address;
+  var port = server.address().port;
+
+  console.log('Example app listening at http://%s:%s', host, port);
+});

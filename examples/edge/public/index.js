@@ -12,61 +12,29 @@
 |  on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for  |
 |  the specific language governing permissions and limitations under the License.                                     |
 \*-------------------------------------------------------------------------------------------------------------------*/
+/* global document */
 
 'use strict';
 
-var React = require('react');
-var Config = require('./config');
-var Router = require('react-router');
-var history = require('history');
-var ReactDOM = require('react-dom');
+var Routes = require('./routes.jsx');
+var Client = require('react-engine/lib/client');
 
-// declaring like this helps in unit test
-// dependency injection using `rewire` module
-var _window;
-var _document;
-if (typeof window !== 'undefined' && typeof document !== 'undefined') {
-  _window = window;
-  _document = document;
-}
+// Include all view files. Browerify doesn't do
+// this automatically as it can only operate on
+// static require statements.
+require('./views/**/*.jsx', {glob: true});
 
-// returns the data/state that was
-// injected by server during rendering
-exports.data = function data() {
-  return _window[Config.client.variableName];
-};
+// boot options
+var options = {
+  routes: Routes,
 
-// the client side boot function
-exports.boot = function boot(options, callback) {
-
-  var viewResolver = options.viewResolver;
-
-  // pick up the state that was injected by server during rendering
-  var props = _window[Config.client.variableName];
-
-  var useRouter = (props.__meta.view === null);
-
-  if (useRouter) {
-
-    if (!options.routes) {
-      throw new Error('asking to use react router for rendering, but no routes are provided');
-    }
-
-    var routerComponent = React.createElement(Router.Router, { routes: options.routes, history: history.createHistory() });
-    ReactDOM.render(routerComponent, _document);
-  } else {
-    // get the file from viewResolver supplying it with a view name
-    var view = viewResolver(props.__meta.view);
-
-    // create a react view factory
-    var viewFactory = React.createFactory(view);
-
-    // render the factory on the client
-    // doing this, sets up the event
-    // listeners and stuff aka mounting views.
-    ReactDOM.render(viewFactory(props), _document);
+  // supply a function that can be called
+  // to resolve the file that was rendered.
+  viewResolver: function(viewName) {
+    return require('./views/' + viewName);
   }
-
-  // call the callback with the data that was used for rendering
-  return callback && callback(props);
 };
+
+document.addEventListener('DOMContentLoaded', function onLoad() {
+  Client.boot(options);
+});
