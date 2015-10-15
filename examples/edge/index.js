@@ -46,13 +46,27 @@ app.set('view', renderer.expressView);
 app.use(express.static(path.join(__dirname, '/public')));
 
 // match everything and work from there
-app.use('/', function(req, res) {
-  if (req.originalUrl !== '/favicon.ico') {
-    res.render(req.originalUrl, {
-      title: 'React Engine Express Sample App',
-      name: 'Jordan'
-    });
+app.use('/', function(req, res, next) {
+  var model = {
+    title: 'React Engine Express Sample App',
+    name: 'Jordan'
+  };
+
+  if (req.originalUrl === '/messages') {
+    model.name = 'Messages';
+    model.messages = [
+      {id: 1, text: 'Lorem'},
+      {id: 2, text: 'Ipsum'},
+      {id: 3, text: 'Dolor'}
+    ];
   }
+
+  // hack to ignore favicon.ico
+  if (req.originalUrl !== '/favicon.ico') {
+    return res.render(req.originalUrl, model);
+  }
+
+  next();
 });
 
 // 404 template

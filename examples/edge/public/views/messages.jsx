@@ -19,17 +19,6 @@ export default React.createClass({
 
   displayName: 'messages',
 
-  getDefaultProps() {
-    return {
-      name: 'Messages',
-      messages: [
-        { id: 1, text: 'Lorem' },
-        { id: 2, text: 'Ipsum' },
-        { id: 3, text: 'Dolor' }
-      ]
-    }
-  },
-
   render() {
 
     return (
