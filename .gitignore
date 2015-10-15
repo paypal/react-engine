@@ -6,6 +6,5 @@ node_modules/
 logs
 *.log
 coverage/
-examples/simple/public/bundle.js
-examples/complex/public/bundle.js
-examples/webpack/public/bundle.js
+examples/**/node_modules
+examples/**/public/bundle.js
