@@ -107,7 +107,9 @@ document.addEventListener('DOMContentLoaded', function onLoad() {
   // `onBoot` - Function (optional)
   // returns data that was used
   // during rendering as the first argument
-  client.boot(/* client options object */, function onBoot(data) {
+  // the second argument is the `router` created behind the scenes
+  // (only available while using react-router)
+  client.boot(/* client options object */, function onBoot(data, router) {
 
   });
 };

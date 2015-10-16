@@ -1,3 +1,7 @@
+## 2.4.0 (Oct 15 2015)
+
+* Export Router object to consumers. (https://github.com/paypal/react-engine/issues/81)
+
 ## 2.3.0 (Oct 11 2015)
 
 * Allow custom doctype option. (https://github.com/paypal/react-engine/pull/96)
