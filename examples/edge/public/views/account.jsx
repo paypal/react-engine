@@ -25,9 +25,11 @@ export default React.createClass({
       <div id='account'>
         <h1>{this.props.name}</h1>
         <h6>I am a React Router rendered view</h6>
-        <a href='/some_unknown'>Click to go to an unhandled route</a>
-        <a href='/messages'>Messages</a>
-        <a href='/mymessages'>Redirects to /messages</a>
+        <ul>
+          <li><a href='/some_unknown'>Click to go to an unhandled route</a></li>
+          <li><a href='/messages'>Messages</a></li>
+          <li><a href='/mymessages'>Redirects to /messages</a></li>
+        </ul>
       </div>
     );
   }
