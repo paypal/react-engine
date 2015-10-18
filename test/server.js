@@ -297,3 +297,50 @@ test('all keys in express render `renderOptionsKeysToFilter` should be used to f
   };
   setup(options);
 });
+
+test('route not found and a default 404 is rendered', function(t) {
+
+  var options = {
+    engine: renderer.create({
+      routes: require(path.join(__dirname + '/fixtures/reactRoutes'))
+    }),
+    expressRoutes: function(req, res) {
+      res.render(req.url, DATA_MODEL);
+    },
+
+    onSetup: function(done) {
+      inject('/nonexistentpath', function(err, data) {
+        t.error(err);
+        var $ = cheerio.load(data);
+        $('*').removeAttr('data-reactid').removeAttr('data-react-checksum');
+        t.strictEqual($.html(), assertions.DEFAULT404_OUTPUT);
+        done(t);
+      });
+    }
+  };
+  setup(options);
+});
+
+test('route not found and a custom 404 is rendered with data', function(t) {
+
+  var options = {
+    engine: renderer.create({
+      routes: require(path.join(__dirname + '/fixtures/reactRoutes')),
+      page404: require(path.join(__dirname + '/fixtures/views/page404'))
+    }),
+    expressRoutes: function(req, res) {
+      res.render(req.url, DATA_MODEL);
+    },
+
+    onSetup: function(done) {
+      inject('/nonexistentpath', function(err, data) {
+        t.error(err);
+        var $ = cheerio.load(data);
+        $('*').removeAttr('data-reactid').removeAttr('data-react-checksum');
+        t.strictEqual($.html(), assertions.CUSTOM404_OUTPUT);
+        done(t);
+      });
+    }
+  };
+  setup(options);
+});

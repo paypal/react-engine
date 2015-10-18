@@ -27,7 +27,8 @@ var app = express();
 // create the view engine with `react-engine`
 var engine = renderer.server.create({
   routes: require(path.join(__dirname, '/public/routes.jsx')),
-  routesFilePath: path.join(__dirname, '/public/routes.jsx')
+  routesFilePath: path.join(__dirname, '/public/routes.jsx'),
+  page404: require(path.join(__dirname, '/public/views/404.jsx'))
 });
 
 // set the engine
@@ -67,14 +68,6 @@ app.use('/', function(req, res, next) {
   }
 
   next();
-});
-
-// 404 template
-app.use(function(req, res) {
-  res.render('404', {
-    title: 'React Engine Express Sample App',
-    url: req.url
-  });
 });
 
 var server = app.listen(3000, function() {
