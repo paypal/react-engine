@@ -1,12 +1,11 @@
 {
   "name": "react-engine",
-  "version": "2.0.2",
+  "version": "2.4.0",
   "description": "a composite render engine for express apps to render both plain react views and react-router views",
   "main": "index.js",
   "scripts": {
-    "test": "npm run jscs && npm run lint && npm run tape",
+    "test": "npm run jscs && grunt eslint && npm run tape",
     "jscs": "jscs --verbose .",
-    "lint": "jshint --verbose --show-non-errors --config=.jshintrc **/*.js",
     "tape": "tape test/*.js | faucet"
   },
   "repository": {
@@ -15,11 +14,6 @@
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
-  },
-  "peerDependencies": {
-    "react": "~0",
-    "react-router": "~0",
-    "express": "^4.12"
   },
   "dependencies": {
     "debug": "^2.1.3",
@@ -30,16 +24,22 @@
   "devDependencies": {
     "cheerio": "^0.19.0",
     "esprima-fb": "^14001.1.0-dev-harmony-fb",
+    "express": "^4.12",
     "faucet": "0.0.1",
+    "grunt": "^0.4.5",
+    "grunt-babel": "^5.0.1",
+    "grunt-cli": "^0.1.13",
+    "grunt-config-dir": "^0.3.2",
+    "grunt-eslint": "^17.2.0",
     "jscs": "^1.11.3",
     "jsdom": "3.0.0",
     "jshint": "^2.6.3",
+    "react": "^0.13.3",
+    "react-router": "^0.13.4",
     "rewire": "^2.3.1",
     "sinon": "^1.14.1",
     "tape": "^3.5.0",
-    "react": "~0",
-    "react-router": "~0",
-    "express": "^4.12"
+    "time-grunt": "^1.2.1"
   },
   "keywords": [
     "react",
@@ -50,7 +50,16 @@
     "express",
     "jsx"
   ],
-  "author": "Sam Selvanathan",
+  "author": "Sam Selvanathan <sjasel@gmail.com>",
+  "contributors": [
+    "Vu Hwang <vuhwang@gmail.com>",
+    "Robert Kuo <slkuo230@yahoo.com>",
+    "Jinto Jose <jintoppy@gmail.com>",
+    "Jared Halpert <jaredhalpert90@gmail.com>",
+    "Weng Zhi Ping",
+    "Vincent Orr <vincent@cmdv.org>",
+    "skarflacka"
+  ],
   "licenses": [
     {
       "type": "Apache 2.0",
