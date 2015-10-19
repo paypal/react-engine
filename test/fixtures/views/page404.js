@@ -22,7 +22,9 @@ module.exports = React.createClass({
         React.createElement(
           'h1',
           null,
-          'Custom 404 Page Not Found - Sorry',
+          'URL: ',
+          this.props.url,
+          ' - Custom 404 Page Not Found - Sorry',
           this.props.name
         )
       )
