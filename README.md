@@ -124,13 +124,7 @@ var data = client.data();
 Pass in a JavaScript object as options to the react-engine's client boot function.
 The options object can contain properties from [react router's create configuration object](http://rackt.github.io/react-router/#Router.create).
 
-<<<<<<< HEAD
-Additionally, it should contain the following `required` property,
-
-- `mountNode`: <Element Object> override mount point for the client. Default is `document`.
-=======
 Additionally, it should contain the following **required** property,
->>>>>>> upstream/master
 
 - `viewResolver` : <Function> - a function that react-engine needs to resolve the view file.
   an example of the viewResolver can be [found here](https://github.com/paypal/react-engine/blob/ecd27b30a9028d3f02b8f8e89d355bb5fc909de9/examples/simple/public/index.js#L29).
