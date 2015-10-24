@@ -13,20 +13,18 @@
 |  the specific language governing permissions and limitations under the License.                                     |
 \*-------------------------------------------------------------------------------------------------------------------*/
 
-'use strict';
+import Layout from './layout.jsx';
+import React from 'react';
 
-var React = require('react');
-var Router = require('react-router');
-var Layout = require('./layout');
+export default React.createClass({
 
-module.exports = React.createClass({
+  render() {
 
-  displayName: 'app',
-
-  render: function render() {
-
-    return React.createElement(Layout, this.props,
-      React.cloneElement(this.props.children, this.props)
+    return (
+      <Layout {...this.props}>
+        <h3>URL: {this.props.url} - Not Found(404)</h3>
+        <h6>I am a Plain vanilla react view</h6>
+      </Layout>
     );
   }
 });
