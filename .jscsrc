@@ -10,8 +10,10 @@
     "./examples/simple/node_modules/**",
     "./examples/complex/node_modules/**",
     "./examples/webpack/node_modules/**",
+    "./examples/edge/node_modules/**",
     "./examples/simple/public/bundle.js",
     "./examples/complex/public/bundle.js",
-    "./examples/webpack/public/bundle.js"
+    "./examples/webpack/public/bundle.js",
+    "./examples/edge/public/bundle.js"
   ]
 }

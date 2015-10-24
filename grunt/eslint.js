@@ -9,6 +9,8 @@ module.exports = function eslint(grunt) {
     target: [
       '!examples/simple/public/bundle.js',
       '!examples/complex/public/bundle.js',
+      '!examples/webpack/public/bundle.js',
+      '!examples/edge/public/bundle.js',
       'examples/**/*.js',
       'lib/**/*.js',
       'index.js'

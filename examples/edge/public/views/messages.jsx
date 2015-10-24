@@ -13,20 +13,26 @@
 |  the specific language governing permissions and limitations under the License.                                     |
 \*-------------------------------------------------------------------------------------------------------------------*/
 
-'use strict';
+import React from 'react';
 
-var React = require('react');
-var Router = require('react-router');
-var Layout = require('./layout');
+export default React.createClass({
 
-module.exports = React.createClass({
+  displayName: 'messages',
 
-  displayName: 'app',
+  render() {
 
-  render: function render() {
-
-    return React.createElement(Layout, this.props,
-      React.cloneElement(this.props.children, this.props)
+    return (
+      <div id='messages'>
+        <h1>{this.props.name}</h1>
+        <ol>
+        {
+          this.props.messages.map(message => <li key={message.id}>{message.text}</li>)
+        }
+        </ol>
+        <a href='/some_unknown'>Click to go to an unhandled route</a>
+        <a href='/messages'>Messages</a>
+        <a href='/mymessages'>Redirects to /messages</a>
+      </div>
     );
   }
 });

@@ -13,20 +13,17 @@
 |  the specific language governing permissions and limitations under the License.                                     |
 \*-------------------------------------------------------------------------------------------------------------------*/
 
-'use strict';
+import React from 'react';
+import { Route, IndexRoute, Redirect } from 'react-router';
+import Layout from './views/layout.jsx';
+import Account from './views/account.jsx';
+import Messages from './views/messages.jsx';
 
-var React = require('react');
-var Router = require('react-router');
-var Layout = require('./layout');
-
-module.exports = React.createClass({
-
-  displayName: 'app',
-
-  render: function render() {
-
-    return React.createElement(Layout, this.props,
-      React.cloneElement(this.props.children, this.props)
-    );
-  }
-});
+var routes = module.exports = (
+  <Route path='/' component={Layout}>
+    <IndexRoute component={Account} />
+    <Route path='messages' component={Messages} />
+    <Redirect from='home' to='/' />
+    <Redirect from='mymessages' to='/messages' />
+  </Route>
+);

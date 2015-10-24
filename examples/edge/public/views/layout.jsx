@@ -13,20 +13,25 @@
 |  the specific language governing permissions and limitations under the License.                                     |
 \*-------------------------------------------------------------------------------------------------------------------*/
 
-'use strict';
+import React from 'react';
 
-var React = require('react');
-var Router = require('react-router');
-var Layout = require('./layout');
+export default React.createClass({
 
-module.exports = React.createClass({
+  render() {
 
-  displayName: 'app',
-
-  render: function render() {
-
-    return React.createElement(Layout, this.props,
-      React.cloneElement(this.props.children, this.props)
+    return (
+      <html>
+        <head>
+          <meta charSet='utf-8' />
+          <title>
+            {this.props.title}
+          </title>
+        </head>
+        <body>
+          {this.props.children}
+          <script src='/bundle.js'></script>
+        </body>
+      </html>
     );
   }
 });

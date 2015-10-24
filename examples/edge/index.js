@@ -15,18 +15,65 @@
 
 'use strict';
 
-var React = require('react');
-var Router = require('react-router');
-var Layout = require('./layout');
+// make `.jsx` file requirable by node
+require('babel/register');
 
-module.exports = React.createClass({
+var path = require('path');
+var express = require('express');
+var renderer = require('react-engine');
 
-  displayName: 'app',
+var app = express();
 
-  render: function render() {
+// create the view engine with `react-engine`
+var engine = renderer.server.create({
+  routes: require(path.join(__dirname, '/public/routes.jsx')),
+  routesFilePath: path.join(__dirname, '/public/routes.jsx'),
+  page404: require(path.join(__dirname, '/public/views/404.jsx'))
+});
 
-    return React.createElement(Layout, this.props,
-      React.cloneElement(this.props.children, this.props)
-    );
+// set the engine
+app.engine('.jsx', engine);
+
+// set the view directory
+app.set('views', path.join(__dirname, '/public/views'));
+
+// set jsx as the view engine
+app.set('view engine', 'jsx');
+
+// finally, set the custom view
+app.set('view', renderer.expressView);
+
+//expose public folder as static assets
+app.use(express.static(path.join(__dirname, '/public')));
+
+// match everything and work from there
+app.use('/', function(req, res, next) {
+  var model = {
+    title: 'React Engine Express Sample App',
+    name: 'Jordan'
+  };
+
+  if (req.originalUrl === '/messages') {
+    model.name = 'Messages';
+    model.messages = [
+      {id: 1, text: 'Lorem'},
+      {id: 2, text: 'Ipsum'},
+      {id: 3, text: 'Dolor'}
+    ];
   }
+
+  // hack to ignore favicon.ico
+  if (req.originalUrl !== '/favicon.ico') {
+    return res.render(req.originalUrl, model);
+  }
+
+  next();
+});
+
+var server = app.listen(3000, function() {
+
+  var host = server.address().address;
+  var port = server.address().port;
+
+  console.log('Example app listening at http://%s:%s', host, port);
 });
