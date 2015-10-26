@@ -1,3 +1,15 @@
+## 2.4.0 (Oct 15 2015)
+
+* Export Router object to consumers. (https://github.com/paypal/react-engine/issues/81)
+
+## 2.3.0 (Oct 11 2015)
+
+* Allow custom doctype option. (https://github.com/paypal/react-engine/pull/96)
+
+## 2.2.1 (Oct 09 2015)
+
+* make the clearRequireCacheInDir platform windows friendly (https://github.com/paypal/react-engine/issues/93)
+
 ## 2.2.0 (Sep 02 2015)
 
 * Allow finer grain control of render properties (https://github.com/paypal/react-engine/issues/73)

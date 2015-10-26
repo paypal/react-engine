@@ -76,6 +76,8 @@ The options object can contain properties from [react router's create configurat
 Additionally, it can contain the following **optional** properties,
 
 - `routesFilePath`: \<String> - path for the file that contains the react router routes.
+- `docType`: <String> - string that can be used as a doctype (_Default: `<!DOCTYPE html>`_)
+- `routesFilePath`: <String> - path for the file that contains the react router routes.
                    react-engine uses this behind the scenes to reload the routes file in
                    cases where [express's app property](http://expressjs.com/api.html#app.set) `view cache` is false, this way you don't need to restart the server every time a change is made in the view files or routes file.
 - `renderOptionsKeysToFilter`: \<Array> - an array of keys that need to be filtered out from the data object that gets fed into the react component for rendering. [more info](#data-for-component-rendering)
@@ -107,7 +109,9 @@ document.addEventListener('DOMContentLoaded', function onLoad() {
   // `onBoot` - Function (optional)
   // returns data that was used
   // during rendering as the first argument
-  client.boot(/* client options object */, function onBoot(data) {
+  // the second argument is the `router` created behind the scenes
+  // (only available while using react-router)
+  client.boot(/* client options object */, function onBoot(data, router) {
 
   });
 };
