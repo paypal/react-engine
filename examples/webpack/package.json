@@ -14,7 +14,7 @@
     "node-libs-browser": "^0.5.2",
     "react-engine": "^2",
     "webpack": "^1.10.0",
-    "react": "^0",
-    "react-router": "^0"
+    "react": "^0.13.3",
+    "react-router": "^0.13.4"
   }
 }
