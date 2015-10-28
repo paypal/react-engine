@@ -4,7 +4,7 @@
 
 ### What is react-engine?
 * a react render engine for [Universal](https://medium.com/@mjackson/universal-javascript-4761051b7ae9) (previously [Isomorphic](http://nerds.airbnb.com/isomorphic-javascript-future-web-apps/)) JavaScript apps written with express
-* renders both plain react views and react-router views
+* renders both plain react views and **optionally** react-router views
 * enables server rendered views to be client mountable
 
 
