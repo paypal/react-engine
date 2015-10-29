@@ -10,7 +10,8 @@
 
 ### Install
 ```sh
-  npm install react-engine --save
+  # react-engine needs to be installed along side react, express and optionally react-router
+  npm install react-engine@2 express react@0.13 react-router@0.13  --save
 ```
 
 ### Usage On Server Side
