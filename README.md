@@ -76,13 +76,13 @@ The options object can contain properties from [react router's create configurat
 
 Additionally, it can contain the following **optional** properties,
 
-- `docType`: <String> - a string that can be used as a doctype (_Default: `<!DOCTYPE html>`_).
-                        (docType might not make sense if you are rendering partials/sub page components, in that case you can pass and empty string as docType)
-- `routesFilePath`: <String> - path for the file that contains the react router routes.
+- `docType`: _String_ - a string that can be used as a doctype (_Default: `<!DOCTYPE html>`_).
+                        docType might not make sense if you are rendering partials/sub page components, in that case, you should pass an empty string as docType.
+- `routesFilePath`: _String_ - path for the file that contains the react router routes.
                    react-engine uses this behind the scenes to reload the routes file in
                    cases where [express's app property](http://expressjs.com/api.html#app.set) `view cache` is false, this way you don't need to restart the server every time a change is made in the view files or routes file.
-- `renderOptionsKeysToFilter`: <Array> - an array of keys that need to be filtered out from the data object that gets fed into the react component for rendering. [more info](#data-for-component-rendering)
-- `performanceCollector`: <Function> - to collects [perf stats](#performance-profiling)
+- `renderOptionsKeysToFilter`: _Array_ - an array of keys that need to be filtered out from the data object that gets fed into the react component for rendering. [more info](#data-for-component-rendering)
+- `performanceCollector`: _Function_ - to collects [perf stats](#performance-profiling)
 
 ###### Rendering views on server side
 ```js
@@ -128,9 +128,9 @@ The options object can contain properties from [react router's create configurat
 
 Additionally, it can contain the following properties,
 
-- `viewResolver` : **required** - <Function> - a function that react-engine needs to resolve the view file.
+- `viewResolver` : **required** - _Function_ - a function that react-engine needs to resolve the view file.
   an example of the viewResolver can be [found here](https://github.com/paypal/react-engine/blob/ecd27b30a9028d3f02b8f8e89d355bb5fc909de9/examples/simple/public/index.js#L29).
-- `mountNode` : **optional** - <HTMLDOMNode> - supply a HTML DOM Node to mount the server rendered component in the case of partial/non-full page rendering.
+- `mountNode` : **optional** - _HTMLDOMNode_ - supply a HTML DOM Node to mount the server rendered component in the case of partial/non-full page rendering.
 
 ### Data for component rendering
 The actual data that gets fed into the component for rendering is the `renderOptions` object that [express generates](https://github.com/strongloop/express/blob/2f8ac6726fa20ab5b4a05c112c886752868ac8ce/lib/application.js#L535-L588).
