@@ -10,8 +10,8 @@
 
 ### Install
 ```sh
-  # react-engine needs to be installed along side react, express and optionally react-router
-  npm install react-engine@2 express react@0.13 react-router@0.13  --save
+  # In your express app, react-engine needs to be installed along side react and optionally react-router
+  npm install react-engine@2 react@0.13 react-router@0.13 --save
 ```
 
 ### Usage On Server Side
@@ -76,7 +76,8 @@ The options object can contain properties from [react router's create configurat
 
 Additionally, it can contain the following **optional** properties,
 
-- `docType`: <String> - string that can be used as a doctype (_Default: `<!DOCTYPE html>`_)
+- `docType`: <String> - a string that can be used as a doctype (_Default: `<!DOCTYPE html>`_).
+                        (docType might not make sense if you are rendering partials/sub page components, in that case you can pass and empty string as docType)
 - `routesFilePath`: <String> - path for the file that contains the react router routes.
                    react-engine uses this behind the scenes to reload the routes file in
                    cases where [express's app property](http://expressjs.com/api.html#app.set) `view cache` is false, this way you don't need to restart the server every time a change is made in the view files or routes file.
@@ -125,10 +126,11 @@ var data = client.data();
 Pass in a JavaScript object as options to the react-engine's client boot function.
 The options object can contain properties from [react router's create configuration object](http://rackt.github.io/react-router/#Router.create).
 
-Additionally, it should contain the following **required** property,
+Additionally, it can contain the following properties,
 
-- `viewResolver` : <Function> - a function that react-engine needs to resolve the view file.
+- `viewResolver` : **required** - <Function> - a function that react-engine needs to resolve the view file.
   an example of the viewResolver can be [found here](https://github.com/paypal/react-engine/blob/ecd27b30a9028d3f02b8f8e89d355bb5fc909de9/examples/simple/public/index.js#L29).
+- `mountNode` : **optional** - <HTMLDOMNode> - supply a HTML DOM Node to mount the server rendered component in the case of partial/non-full page rendering.
 
 ### Data for component rendering
 The actual data that gets fed into the component for rendering is the `renderOptions` object that [express generates](https://github.com/strongloop/express/blob/2f8ac6726fa20ab5b4a05c112c886752868ac8ce/lib/application.js#L535-L588).
