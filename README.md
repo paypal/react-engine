@@ -10,64 +10,63 @@
 
 ### Install
 ```sh
-  # In your express app, react-engine needs to be installed along side react and optionally react-router
-  npm install react-engine@2 react@0.13 react-router@0.13 --save
+# In your express app, react-engine needs to be installed along side react and optionally react-router
+npm install react-engine@2 react@0.13 react-router@0.13 --save
 ```
 
 ### Usage On Server Side
 ###### Setup in an Express app
 ```javascript
+var Express = require('express');
+var ReactEngine = require('react-engine');
 
-    var Express = require('express');
-    var ReactEngine = require('react-engine');
+var app = Express();
 
-    var app = Express();
+// create an engine instance
+var engine = ReactEngine.server.create({
+  /*
+    see the complete server options spec here:
+    https://github.com/paypal/react-engine#server-options-spec
+  */
+});
 
-    // create an engine instance
-    var engine = ReactEngine.server.create({
-      /*
-        see the complete server options spec here:
-        https://github.com/paypal/react-engine#server-options-spec
-      */
-    });
+// set the engine
+app.engine('.jsx', engine);
 
-    // set the engine
-    app.engine('.jsx', engine);
+// set the view directory
+app.set('views', __dirname + '/views');
 
-    // set the view directory
-    app.set('views', __dirname + '/views');
+// set jsx or js as the view engine
+// (without this you would need to supply the extension to res.render())
+// ex: res.render('index.jsx') instead of just res.render('index').
+app.set('view engine', 'jsx');
 
-    // set jsx or js as the view engine
-    // (without this you would need to supply the extension to res.render())
-    // ex: res.render('index.jsx') instead of just res.render('index').
-    app.set('view engine', 'jsx');
-
-    // finally, set the custom view
-    app.set('view', require('react-engine/lib/expressView'));
+// finally, set the custom view
+app.set('view', require('react-engine/lib/expressView'));
 ```
 
 ###### Setup in a [KrakenJS](http://krakenjs.com) app's config.json
 ```json
-  {
-    "express": {
-        "view engine": "jsx",
-        "view": "require:react-engine/lib/expressView",
-    },
-    "view engines": {
-        "jsx": {
-            "module": "react-engine/lib/server",
-            "renderer": {
-              "method": "create",
-                "arguments": [{
-                        /*
-                          see the complete server options spec here:
-                          https://github.com/paypal/react-engine#server-options-spec
-                        */
-                }]
-            }
-        }
+{
+  "express": {
+    "view engine": "jsx",
+    "view": "require:react-engine/lib/expressView",
+  },
+  "view engines": {
+    "jsx": {
+      "module": "react-engine/lib/server",
+      "renderer": {
+        "method": "create",
+        "arguments": [{
+          /*
+            see the complete server options spec here:
+            https://github.com/paypal/react-engine#server-options-spec
+          */
+        }]
+      }
     }
   }
+}
 ```
 
 ###### Server options spec
@@ -138,11 +137,11 @@ The actual data that gets fed into the component for rendering is the `renderOpt
 If you don't want to pass all that data, you can pass in an array of object keys that react-engine can filter out from the `renderOptions` object before passing it into the component for rendering.
 
 ```javascript
-  // example of using `renderOptionsKeysToFilter` to filter `renderOptions` keys
-  var engine = ReactEngine.server.create({
-    renderOptionsKeysToFilter: ['mySensitiveDataThatIsIn_res.locals'],
-    routes: require(path.join(__dirname + './reactRoutes'))
-  });
+// example of using `renderOptionsKeysToFilter` to filter `renderOptions` keys
+var engine = ReactEngine.server.create({
+  renderOptionsKeysToFilter: ['mySensitiveDataThatIsIn_res.locals'],
+  routes: require(path.join(__dirname + './reactRoutes'))
+});
 ```
 
 Note: By default, the following three keys are always filtered out from `renderOptions` no matter whether `renderOptionsKeysToFilter` is configured or not.
