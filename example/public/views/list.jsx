@@ -17,16 +17,27 @@
 
 var React = require('react');
 var Router = require('react-router');
-var Layout = require('./layout.jsx');
 
 module.exports = React.createClass({
 
   render: function render() {
 
     return (
-      <Layout {...this.props}>
-        <Router.RouteHandler {...this.props}/>
-      </Layout>
+      <div id='list'>
+        <h1>Movies</h1>
+        <h6>Click on a movie to see the details</h6>
+        <ul>
+          {this.props.movies.map(function(movie) {
+            return (
+              <li>
+                <Router.Link to='detail' params={{id: movie.id}}
+                  <img src={movie.image} alt={movie.title} />
+                </Router.Link>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     );
   }
 });

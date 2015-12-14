@@ -18,11 +18,23 @@
 var React = require('react');
 var Router = require('react-router');
 
-var App = require('../public/views/app.jsx');
-var Index = require('../public/views/index.jsx');
+module.exports = React.createClass({
 
-var routes = module.exports = (
-  <Router.Route path='/' handler={App}>
-    <Router.DefaultRoute name='index' handler={Index} />
-  </Router.Route>
-);
+  render: function render() {
+
+    return (
+      <html>
+        <head>
+          <meta charSet='utf-8' />
+          <title>React Engine Example App</title>
+        </head>
+        <body>
+          <div>
+            {/* Component that renders the active child route handler of a parent route handler component. */}
+            <Router.RouteHandler {...this.props} />
+          </div>
+        </body>
+      </html>
+    );
+  }
+});

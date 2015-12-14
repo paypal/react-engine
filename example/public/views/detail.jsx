@@ -16,25 +16,23 @@
 'use strict';
 
 var React = require('react');
+var Router = require('react-router');
 
 module.exports = React.createClass({
 
-  onButtonClick: function() {
-    alert('I was rendered on server side but I am clickable because of client mounting!');
-  },
+  mixins: [Router.State],
 
   render: function render() {
+    var movieId = this.getParams().id;
+    var movie = this.props.movies.find(function(_movie) {
+      return _movie.id === movieId;
+    });
 
     return (
-      <div className='col s6'>
-        <div className='card small'>
-          <div className='card-image'>
-            <img src={this.props.image} />
-          </div>
-          <div className='card-content'>
-            <p>{this.props.title}</p>
-          </div>
-        </div>
+      <div id='detail'>
+        <h1>{movie.title}</h1>
+        <img src={movie.image} alt={movie.title} />
+        <h3>{movie.url}</h3>
       </div>
     );
   }
