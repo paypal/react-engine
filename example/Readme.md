@@ -159,7 +159,52 @@ $ open http://localhost:3000
 ```
 
 ```javascript
+  // start by configuring Babel at the top
+  // this takes care of parsing JSX files and also ES6 code
+  require('babel-register')({
+    presets: ['react']
+  });
 
+  // next, lets create the express app
+  var express = require('express');
+  var renderer = require('react-engine');
+  var app = express();
+
+  // then create the view engine for our express app
+  var reactRoutesFilePath = path.join(__dirname + '/public/routes.jsx');
+  var engine = renderer.server.create({
+    routes: require(reactRoutesFilePath),
+    routesFilePath: reactRoutesFilePath
+  });
+
+  // then configure our express app with the view engine that we created
+  // set the engine
+  app.engine('.jsx', engine);
+  // set the view directory
+  app.set('views', path.join(__dirname, '/public/views'));
+  // set jsx as the view engine
+  app.set('view engine', 'jsx');
+  // finally, set the custom view
+  app.set('view', renderer.expressView);
+
+  // next, lets configure the routes for the express app
+  // expose public folder as static assets (JS/CSS)
+  app.use(express.static(path.join(__dirname, '/public')));
+  // add the our app routes
+  // we open a free pass to all GET requests to our app and use react-engine to render them
+  app.get('*', function(req, res) {
+    res.render(req.url, {
+      movies: require('./movies.json')
+    });
+  });  
+
+  // the last step in the server side is to configure the express app to listen on port 3000
+  app.listen(3000, function() {
+    console.log('Example app listening at http://localhost:%s', PORT);
+  });
+
+  // the consolidated full code for this file can be
+  // found here: http://bit.ly/1MdzR5c
 ```
 
 ### step 6
@@ -224,8 +269,8 @@ $ open http://localhost:3000
   # modify the public/views/layout.jsx file to add the styles.css into it
   # <link rel='stylesheet' href='/styles.css'></link>
   $ touch public/styles.css
-  # copy the contents for this file from http://bit.ly/
+  # copy the contents for this file from http://bit.ly/1m2co1B
 ```
 
-##### to-do
+### to-do
 * add support for [404 and 500 pages](https://github.com/samsel/react-engine/tree/9666fb3bf47f29981dbdcb4160445e3efce67b5c/example/old/public/views)
