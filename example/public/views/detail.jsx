@@ -24,15 +24,15 @@ module.exports = React.createClass({
 
   render: function render() {
     var movieId = this.getParams().id;
-    var movie = this.props.movies.find(function(_movie) {
+    var movie = this.props.movies.filter(function(_movie) {
       return _movie.id === movieId;
-    });
+    })[0];
 
     return (
       <div id='detail'>
         <h1>{movie.title}</h1>
         <img src={movie.image} alt={movie.title} />
-        <h3>{movie.url}</h3>
+        <a href={movie.url} target='_blank'>more info</a>
       </div>
     );
   }

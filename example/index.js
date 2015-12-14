@@ -15,19 +15,20 @@
 
 'use strict';
 
-// auto-magically transforms `.jsx` files and files with ES6 code
-require('babel/register');
+require('babel-register')({
+  presets: ['react']
+});
 
 var PORT = 3000;
 var path = require('path');
+var movies = require('./movies.json');
 var express = require('express');
 var renderer = require('react-engine');
-var expressRoutes = require('./routes/express');
 
 var app = express();
 
 // create the view engine with `react-engine`
-var reactRoutesFilePath = path.join(__dirname + '/routes/react-router.jsx');
+var reactRoutesFilePath = path.join(__dirname + '/public/routes.jsx');
 
 var engine = renderer.server.create({
   routes: require(reactRoutesFilePath),
@@ -46,23 +47,13 @@ app.set('view engine', 'jsx');
 // finally, set the custom view
 app.set('view', renderer.expressView);
 
-//expose public folder as static assets
+// expose public folder as static assets
 app.use(express.static(path.join(__dirname, '/public')));
 
 // add the our app routes
-app.use('/', expressRoutes);
-
-// 404 handler
-app.use(function(req, res) {
-  res.render('404', {
-    url: req.url
-  });
-});
-
-// 500 handler
-app.use(function(err, req, res, next) {
-  res.render('500', {
-    err: err
+app.get('*', function(req, res) {
+  res.render(req.url, {
+    movies: movies
   });
 });
 

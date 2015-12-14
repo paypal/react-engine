@@ -30,7 +30,7 @@ $ open http://localhost:3000
   $ npm install express react-engine@2 react@0.13 react-router@0.13 --save
 
   # install the rest of the dependencies
-  $ npm install babel-register webpack --save
+  $ npm install babel-register babel-preset-react webpack --save
 
   # we are going to use a static json file that contains an array of movie information as the data source for our movie catalog app
   $ touch movies.json (the contents for this file can be found here: http://sam)
@@ -114,7 +114,7 @@ $ open http://localhost:3000
             {this.props.movies.map(function(movie) {
               return (
                 <li>
-                  <Router.Link to='detail' params={{id: movie.id}}
+                  <Router.Link to='detail' params={{id: movie.id}}>
                     <img src={movie.image} alt={movie.title} />
                   </Router.Link>
                 </li>
@@ -131,24 +131,85 @@ $ open http://localhost:3000
     mixins: [Router.State],
     render: function render() {
       var movieId = this.getParams().id;
-      var movie = this.props.movies.find(function(_movie) {
+      var movie = this.props.movies.filter(function(_movie) {
         return _movie.id === movieId;
-      });
+      })[0];
       return (
         <div id='detail'>
           <h1>{movie.title}</h1>
           <img src={movie.image} alt={movie.title} />
-          <h3>{movie.url}</h3>
+          <a href={movie.url} target='_blank'>more info</a>
         </div>
       );
     }
-  });  
+  });
 ```
+
+### step 3
+```shell
+  # next, lets add the server side file
+  $ touch index.js
+```
+
+### step 4
+```shell
+  # finally, lets configure webpack
+  # we need two webpack loaders for our app
+  # 1. babel-loader for webpack to load jsx and es6 code
+  # 2. json-loader for webpack to load json files
+  $ npm install babel-loader json-loader --save
+
+  # next, add a webpack configuration file  
+  $ touch webpack.config.js
+
+  # configure webpack to build a bundle.js file using public/index.js as the main file
+  #  module.exports = {
+  #
+  #    entry: __dirname + '/public/index.js',
+  #
+  #    output: {
+  #      path: __dirname + '/public',
+  #      filename: 'bundle.js'
+  #    },
+  #
+  #    module: {
+  #      loaders: [
+  #          {
+  #            test: /\.jsx?$/,
+  #            exclude: /node_modules/,
+  #            loader: 'babel?presets[]=react'
+  #          },
+  #          {
+  #            test: /\.json$/,
+  #            loader: 'json-loader'
+  #          }
+  #      ]
+  #    },
+  #
+  #    resolve: {
+  #      extensions: ['', '.js', '.jsx', '.json']
+  #    }
+  #  };
+
+  # modify the public/views/layout.jsx file to add the bundle.js into it
+  # <script src='/bundle.js'></script>
+
+  # lets add a start script to our package.json to build our client code using webpack and then start the app
+  #  "scripts": {
+  #    "start": "webpack && node index.js"
+  #  }
+
+  # now that we are done with the app, start the app and go to http://localhost:3000
+  $ npm start
+```
+
+### misc
+To beautify our movie catalog app we are going to add some css
 
 
 http://bit.ly/1P2aM1H
 
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css' />
 
-<script src='/bundle.js'></script>
-{this.props.children}
+##### to-do
+* add support for [404 and 500 pages](https://github.com/samsel/react-engine/tree/9666fb3bf47f29981dbdcb4160445e3efce67b5c/example/old/public/views)
