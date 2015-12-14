@@ -38,7 +38,7 @@ var engine = renderer.server.create({
 app.engine('.jsx', engine);
 
 // set the view directory
-app.set('views', __dirname + '/public/views');
+app.set('views', path.join(__dirname, '/public/views'));
 
 // set jsx as the view engine
 app.set('view engine', 'jsx');
@@ -47,7 +47,7 @@ app.set('view engine', 'jsx');
 app.set('view', renderer.expressView);
 
 //expose public folder as static assets
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(path.join(__dirname, '/public')));
 
 // add the our app routes
 app.use('/', expressRoutes);

@@ -1,4 +1,34 @@
-## 2.0.0 (TBD)
+## 2.6.0 (Nov 06 2015)
+
+* make the render root configurable (https://github.com/paypal/react-engine/issues/68)
+
+## 2.5.0 (Oct 29 2015)
+
+* Throw an error only if peer dependency is not installed and is really required (https://github.com/paypal/react-engine/pull/98)
+
+## 2.4.0 (Oct 15 2015)
+
+* Export Router object to consumers. (https://github.com/paypal/react-engine/issues/81)
+
+## 2.3.0 (Oct 11 2015)
+
+* Allow custom doctype option. (https://github.com/paypal/react-engine/pull/96)
+
+## 2.2.1 (Oct 09 2015)
+
+* make the clearRequireCacheInDir platform windows friendly (https://github.com/paypal/react-engine/issues/93)
+
+## 2.2.0 (Sep 02 2015)
+
+* Allow finer grain control of render properties (https://github.com/paypal/react-engine/issues/73)
+
+## 2.1.0 (Aug 20 2015)
+
+* resolve cache clear logic based on the 'view cache' (https://github.com/paypal/react-engine/issues/74)
+* updated readme with migration to v2.x notes (https://github.com/paypal/react-engine/issues/75)
+* updated readme references of Isomorphic JavaScript to Universal JavaScript (https://github.com/paypal/react-engine/issues/60)
+
+## 2.0.0 (Aug 1 2015)
 
 * Major API changes (specifically the options object property name changes)
 * React-Router config properties can be passed through the react engine now.
