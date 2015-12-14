@@ -21,14 +21,37 @@ $ open http://localhost:3000
 
 ### step 1
 ```shell
- # let us start by installing the dependencies for our app
- # create a npm manifest
- # (fill out the needed information like name, author, etc..)
- $ npm init
+  # let us start by installing the dependencies for our app
+  # create a npm manifest
+  # (fill out the needed information like name, author, etc..)
+  $ npm init
 
- # install express, react, react-router & react-engine
- npm install express react-engine@2 react@0.13 react-router@0.13 --save
+  # install express, react, react-router & react-engine
+  npm install express react-engine@2 react@0.13 react-router@0.13 --save
 
- # install the rest of the dependencies
- npm install babel-register webpack --save
+  # install the rest of the dependencies
+  npm install babel-register webpack --save
 ```
+
+### step 2.1
+```shell
+  # next, let us build the client side of our app
+  # create a directory called public and the client side index file
+  $ mkdir public
+  $ touch public/index.js
+
+  # create a directory called views to hold all the view files and a client side routes file to hold the react-router routes
+  $ mkdir public/views
+  $ touch public/routes.jsx
+```
+
+### step 2.2
+```javascript
+  // setup the client side react-engine inside public/index.js
+  // Instructions: https://github.com/paypal/react-engine#usage-on-client-side-mounting
+  
+```
+
+
+
+http://bit.ly/1P2aM1H

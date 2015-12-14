@@ -15,8 +15,11 @@
 
 'use strict';
 
-var Client = require('react-engine/lib/client');
-var Routes = require('../routes/react-router.jsx');
+// import the react-router routes
+var Routes = require('./routes.jsx');
+
+// import the react-engine's client side booter
+var ReactEngineClient = require('react-engine/lib/client');
 
 // boot options
 var options = {
@@ -30,5 +33,6 @@ var options = {
 };
 
 document.addEventListener('DOMContentLoaded', function onLoad() {
-  Client.boot(options);
+  // boot the app when the DOM is ready
+  ReactEngineClient.boot(options);
 });
