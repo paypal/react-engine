@@ -7,9 +7,9 @@ This movie catalog app illustrates the usage of react-engine to build and run an
 * [react - 0.13.x](https://github.com/facebook/react) for building the UI
 * [react-router - 0.13.x](https://github.com/rackt/react-router) for UI routing
 * [webpack - 1.x](https://github.com/webpack/webpack) as the client side module loader
-* [babel - 6.x](https://github.com/babel/babel) for compiling the ES6 JS code
+* [babel - 6.x](https://github.com/babel/babel) for compiling the ES6/JSX code
 
-## to run the example
+## tl;dr - to run the example
 ```shell
 # cd `into_this_dir`
 $ npm install
@@ -32,18 +32,23 @@ $ open http://localhost:3000
   # install the rest of the dependencies
   $ npm install babel-register babel-preset-react webpack --save
 
-  # we are going to use a static json file that contains an array of movie information as the data source for our movie catalog app
-  $ touch movies.json (the contents for this file can be found here: http://sam)
+  # we are going to use a static json file that contains
+  # an array of movie information as the data source for
+  # our movie catalog app
+  $ touch movies.json
+  # copy the contents for this file from http://bit.ly/1NOU4nk
 ```
 
-### step 2.1
+### step 2
 ```shell
   # next, let us build the client side of our app
-  # create a directory called public and the client side index file
+  # create a directory called public and inside that
+  # create the client side index file
   $ mkdir public
   $ touch public/index.js
 
-  # create a directory called views to hold all the view files and a client side routes file to hold the react-router routes
+  # create a directory called views to hold all the view files
+  # also create a client side routes file to hold the react-router routes
   $ mkdir public/views
   $ touch public/routes.jsx
 
@@ -52,14 +57,14 @@ $ open http://localhost:3000
   # public/index.js code for our app can be found here - http://bit.ly/1Y8DOEh
 ```
 
-### step 2.2
+### step 3
 ```javascript
   // since we are building a movie catalog app, let us plan to have two UI pages.
-  // 1. list page - to list catalog of movies
+  // 1. list page - to list the catalog of movies
   // 2. detail page - to show the detailed description of a movie
 
-  // lets start building the react-router route file keeping in mind the above requirements
-  // (public/routes.jsx file contents)
+  // lets start building the react-router route file (public/routes.jsx)
+  // keeping in mind the above requirements
   var Layout = require('./views/layout.jsx');
   var ListPage = require('./views/list.jsx');
   var DetailPage = require('./views/detail.jsx');
@@ -72,7 +77,7 @@ $ open http://localhost:3000
   );
 ```
 
-### step 2.3
+### step 4
 ```shell
   # next, lets build the actual UI inside the pages
   # create the below three files inside the public/views directory
@@ -82,7 +87,8 @@ $ open http://localhost:3000
 ```
 
 ```javascript
-  // public/views/layout.jsx file contains the main parts of the app such as html, body and script tags.
+  // public/views/layout.jsx file contains the main parts of the app
+  // such as html, body and script tags.
   module.exports = React.createClass({
     render: function render() {
       return (
@@ -103,7 +109,7 @@ $ open http://localhost:3000
   });  
 
   // public/views/list.jsx file contains the catalog view elements of our app.
-  // we iterate through the array of movies
+  // we iterate through the array of movies and display them on this page.
   module.exports = React.createClass({
     render: function render() {
       return (
@@ -126,7 +132,8 @@ $ open http://localhost:3000
     }
   });
 
-  // public/views/detail.jsx file contains the markup to display the detail information of a movie
+  // public/views/detail.jsx file contains the markup to
+  // display the detail information of a movie
   module.exports = React.createClass({
     mixins: [Router.State],
     render: function render() {
@@ -145,15 +152,19 @@ $ open http://localhost:3000
   });
 ```
 
-### step 3
+### step 5
 ```shell
   # next, lets add the server side file
   $ touch index.js
 ```
 
-### step 4
+```javascript
+
+```
+
+### step 6
 ```shell
-  # finally, lets configure webpack
+  # finally, lets configure webpack, our client side module loader
   # we need two webpack loaders for our app
   # 1. babel-loader for webpack to load jsx and es6 code
   # 2. json-loader for webpack to load json files
@@ -190,26 +201,31 @@ $ open http://localhost:3000
   #      extensions: ['', '.js', '.jsx', '.json']
   #    }
   #  };
+```
 
+### step 7
+```shell
   # modify the public/views/layout.jsx file to add the bundle.js into it
   # <script src='/bundle.js'></script>
 
-  # lets add a start script to our package.json to build our client code using webpack and then start the app
+  # also lets add a start script to our package.json to build our client code using webpack and then start the app
   #  "scripts": {
   #    "start": "webpack && node index.js"
   #  }
 
-  # now that we are done with the app, start the app and go to http://localhost:3000
+  # now that we are done with the app,
+  # lets start the app and launch http://localhost:3000 in a browser
   $ npm start
 ```
 
 ### misc
-To beautify our movie catalog app we are going to add some css
-
-
-http://bit.ly/1P2aM1H
-
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css' />
+```shell
+  # to beautify our movie catalog app we are going to add some css
+  # modify the public/views/layout.jsx file to add the styles.css into it
+  # <link rel='stylesheet' href='/styles.css'></link>
+  $ touch public/styles.css
+  # copy the contents for this file from http://bit.ly/
+```
 
 ##### to-do
 * add support for [404 and 500 pages](https://github.com/samsel/react-engine/tree/9666fb3bf47f29981dbdcb4160445e3efce67b5c/example/old/public/views)

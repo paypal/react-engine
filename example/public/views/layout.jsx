@@ -27,6 +27,7 @@ module.exports = React.createClass({
         <head>
           <meta charSet='utf-8' />
           <title>React Engine Example App</title>
+          <link rel='stylesheet' href='/styles.css'></link>
         </head>
         <body>
           <div>
