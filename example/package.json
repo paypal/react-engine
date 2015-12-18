@@ -1,0 +1,21 @@
+{
+  "name": "react-engine-example-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack && node index.js"
+  },
+  "author": "Sam Selvanathan (sjasel@gmail.com)",
+  "dependencies": {
+    "babel-core": "^6.3.17",
+    "babel-loader": "^6.2.0",
+    "babel-preset-react": "^6.3.13",
+    "babel-register": "^6.3.13",
+    "express": "^4.13.3",
+    "json-loader": "^0.5.4",
+    "react": "^0.13.3",
+    "react-engine": "^2.6.0",
+    "react-router": "^0.13.5",
+    "webpack": "^1.12.9"
+  }
+}

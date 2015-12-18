@@ -7,11 +7,7 @@
   "esprima": "esprima-fb",
   "excludeFiles": [
     "node_modules/**",
-    "./examples/simple/node_modules/**",
-    "./examples/complex/node_modules/**",
-    "./examples/webpack/node_modules/**",
-    "./examples/simple/public/bundle.js",
-    "./examples/complex/public/bundle.js",
-    "./examples/webpack/public/bundle.js"
+    "./example/node_modules/**",
+    "./example/public/bundle.js"
   ]
 }
