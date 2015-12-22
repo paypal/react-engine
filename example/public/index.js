@@ -15,25 +15,24 @@
 
 'use strict';
 
-var React = require('react');
+// import the react-router routes
+var Routes = require('./routes.jsx');
 
-module.exports = React.createClass({
+// import the react-engine's client side booter
+var ReactEngineClient = require('react-engine/lib/client');
 
-  render: function render() {
+// boot options
+var options = {
+  routes: Routes,
 
-    return (
-      <html>
-        <head>
-          <meta charSet='utf-8' />
-          <title>
-            {this.props.title}
-          </title>
-        </head>
-        <body>
-          {this.props.children}
-        </body>
-        <script src='/bundle.js'></script>
-      </html>
-    );
+  // supply a function that can be called
+  // to resolve the file that was rendered.
+  viewResolver: function(viewName) {
+    return require('./views/' + viewName);
   }
+};
+
+document.addEventListener('DOMContentLoaded', function onLoad() {
+  // boot the app when the DOM is ready
+  ReactEngineClient.boot(options);
 });

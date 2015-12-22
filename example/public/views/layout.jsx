@@ -16,6 +16,7 @@
 'use strict';
 
 var React = require('react');
+var Router = require('react-router');
 
 module.exports = React.createClass({
 
@@ -25,12 +26,14 @@ module.exports = React.createClass({
       <html>
         <head>
           <meta charSet='utf-8' />
-          <title>
-            {this.props.title}
-          </title>
+          <title>React Engine Example App</title>
+          <link rel='stylesheet' href='/styles.css'></link>
         </head>
         <body>
-          {this.props.children}
+          <div>
+            {/* Component that renders the active child route handler of a parent route handler component. */}
+            <Router.RouteHandler {...this.props} />
+          </div>
         </body>
         <script src='/bundle.js'></script>
       </html>

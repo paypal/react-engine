@@ -15,25 +15,30 @@
 
 'use strict';
 
-var React = require('react');
+module.exports = {
 
-module.exports = React.createClass({
+  entry: __dirname + '/public/index.js',
 
-  render: function render() {
+  output: {
+    path: __dirname + '/public',
+    filename: 'bundle.js'
+  },
 
-    return (
-      <html>
-        <head>
-          <meta charSet='utf-8' />
-          <title>
-            {this.props.title}
-          </title>
-        </head>
-        <body>
-          {this.props.children}
-        </body>
-        <script src='/bundle.js'></script>
-      </html>
-    );
+  module: {
+    loaders: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: 'babel?presets[]=react'
+      },
+      {
+        test: /\.json$/,
+        loader: 'json-loader'
+      }
+    ]
+  },
+
+  resolve: {
+    extensions: ['', '.js', '.jsx', '.json']
   }
-});
+};

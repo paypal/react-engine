@@ -4,69 +4,69 @@
 
 ### What is react-engine?
 * a react render engine for [Universal](https://medium.com/@mjackson/universal-javascript-4761051b7ae9) (previously [Isomorphic](http://nerds.airbnb.com/isomorphic-javascript-future-web-apps/)) JavaScript apps written with express
-* renders both plain react views and react-router views
+* renders both plain react views and **optionally** react-router views
 * enables server rendered views to be client mountable
 
 
 ### Install
 ```sh
-  npm install react-engine --save
+# In your express app, react-engine needs to be installed along side react and optionally react-router
+npm install react-engine@2 react@0.13 react-router@0.13 --save
 ```
 
 ### Usage On Server Side
 ###### Setup in an Express app
 ```javascript
+var Express = require('express');
+var ReactEngine = require('react-engine');
 
-    var Express = require('express');
-    var ReactEngine = require('react-engine');
+var app = Express();
 
-    var app = Express();
+// create an engine instance
+var engine = ReactEngine.server.create({
+  /*
+    see the complete server options spec here:
+    https://github.com/paypal/react-engine#server-options-spec
+  */
+});
 
-    // create an engine instance
-    var engine = ReactEngine.server.create({
-      /*
-        see the complete server options spec here:
-        https://github.com/paypal/react-engine#server-options-spec
-      */
-    });
+// set the engine
+app.engine('.jsx', engine);
 
-    // set the engine
-    app.engine('.jsx', engine);
+// set the view directory
+app.set('views', __dirname + '/views');
 
-    // set the view directory
-    app.set('views', __dirname + '/views');
+// set jsx or js as the view engine
+// (without this you would need to supply the extension to res.render())
+// ex: res.render('index.jsx') instead of just res.render('index').
+app.set('view engine', 'jsx');
 
-    // set jsx or js as the view engine
-    // (without this you would need to supply the extension to res.render())
-    // ex: res.render('index.jsx') instead of just res.render('index').
-    app.set('view engine', 'jsx');
-
-    // finally, set the custom view
-    app.set('view', require('react-engine/lib/expressView'));
+// finally, set the custom view
+app.set('view', require('react-engine/lib/expressView'));
 ```
 
 ###### Setup in a [KrakenJS](http://krakenjs.com) app's config.json
 ```json
-  {
-    "express": {
-        "view engine": "jsx",
-        "view": "require:react-engine/lib/expressView",
-    },
-    "view engines": {
-        "jsx": {
-            "module": "react-engine/lib/server",
-            "renderer": {
-              "method": "create",
-                "arguments": [{
-                        /*
-                          see the complete server options spec here:
-                          https://github.com/paypal/react-engine#server-options-spec
-                        */
-                }]
-            }
-        }
+{
+  "express": {
+    "view engine": "jsx",
+    "view": "require:react-engine/lib/expressView",
+  },
+  "view engines": {
+    "jsx": {
+      "module": "react-engine/lib/server",
+      "renderer": {
+        "method": "create",
+        "arguments": [{
+          /*
+            see the complete server options spec here:
+            https://github.com/paypal/react-engine#server-options-spec
+          */
+        }]
+      }
     }
   }
+}
 ```
 
 ###### Server options spec
@@ -126,10 +126,11 @@ var data = client.data();
 Pass in a JavaScript object as options to the react-engine's client boot function.
 The options object can contain properties from [react router's create configuration object](http://rackt.github.io/react-router/#Router.create).
 
-Additionally, it should contain the following **required** property,
+Additionally, it can contain the following properties,
 
-- `viewResolver` : <Function> - a function that react-engine needs to resolve the view file.
+- `viewResolver` : **required** - _Function_ - a function that react-engine needs to resolve the view file.
   an example of the viewResolver can be [found here](https://github.com/paypal/react-engine/blob/ecd27b30a9028d3f02b8f8e89d355bb5fc909de9/examples/simple/public/index.js#L29).
+- `mountNode` : **optional** - _HTMLDOMNode_ - supply a HTML DOM Node to mount the server rendered component in the case of partial/non-full page rendering.
 
 ### Data for component rendering
 The actual data that gets fed into the component for rendering is the `renderOptions` object that [express generates](https://github.com/strongloop/express/blob/2f8ac6726fa20ab5b4a05c112c886752868ac8ce/lib/application.js#L535-L588).
@@ -137,11 +138,11 @@ The actual data that gets fed into the component for rendering is the `renderOpt
 If you don't want to pass all that data, you can pass in an array of object keys that react-engine can filter out from the `renderOptions` object before passing it into the component for rendering.
 
 ```javascript
-  // example of using `renderOptionsKeysToFilter` to filter `renderOptions` keys
-  var engine = ReactEngine.server.create({
-    renderOptionsKeysToFilter: ['mySensitiveDataThatIsIn_res.locals'],
-    routes: require(path.join(__dirname + './reactRoutes'))
-  });
+// example of using `renderOptionsKeysToFilter` to filter `renderOptions` keys
+var engine = ReactEngine.server.create({
+  renderOptionsKeysToFilter: ['mySensitiveDataThatIsIn_res.locals'],
+  routes: require(path.join(__dirname + './reactRoutes'))
+});
 ```
 
 Note: By default, the following three keys are always filtered out from `renderOptions` no matter whether `renderOptionsKeysToFilter` is configured or not.

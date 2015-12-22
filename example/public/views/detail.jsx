@@ -15,22 +15,25 @@
 
 'use strict';
 
-var Client = require('react-engine/lib/client');
+var React = require('react');
+var Router = require('react-router');
 
-// Include all view files. Browerify doesn't do
-// this automatically as it can only operate on
-// static require statements.
-require('./views/**/*.jsx', {glob: true});
+module.exports = React.createClass({
 
-// boot options
-var options = {
-  // supply a function that can be called
-  // to resolve the file that was rendered.
-  viewResolver: function(viewName) {
-    return require('./views/' + viewName);
+  mixins: [Router.State],
+
+  render: function render() {
+    var movieId = this.getParams().id;
+    var movie = this.props.movies.filter(function(_movie) {
+      return _movie.id === movieId;
+    })[0];
+
+    return (
+      <div id='detail'>
+        <h1>{movie.title}</h1>
+        <img src={movie.image} alt={movie.title} />
+        <a href={movie.url} target='_blank'>more info</a>
+      </div>
+    );
   }
-};
-
-document.addEventListener('DOMContentLoaded', function onLoad() {
-  Client.boot(options);
 });

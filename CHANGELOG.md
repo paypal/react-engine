@@ -1,3 +1,11 @@
+## 2.6.0 (Nov 06 2015)
+
+* make the render root configurable (https://github.com/paypal/react-engine/issues/68)
+
+## 2.5.0 (Oct 29 2015)
+
+* Throw an error only if peer dependency is not installed and is really required (https://github.com/paypal/react-engine/pull/98)
+
 ## 2.4.0 (Oct 15 2015)
 
 * Export Router object to consumers. (https://github.com/paypal/react-engine/issues/81)
