@@ -31,8 +31,8 @@ module.exports = React.createClass({
         </head>
         <body>
           <div>
-            {/* Component that renders the active child route handler of a parent route handler component. */}
-            <Router.RouteHandler {...this.props} />
+            {/* Router now automatically populates this.props.children of your components based on the active route. https://github.com/rackt/react-router/blob/latest/CHANGES.md#routehandler */}
+            {this.props.children}
           </div>
         </body>
         <script src='/bundle.js'></script>

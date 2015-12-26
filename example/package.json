@@ -12,10 +12,11 @@
     "babel-preset-react": "^6.3.13",
     "babel-register": "^6.3.13",
     "express": "^4.13.3",
+    "history": "^1.17.0",
     "json-loader": "^0.5.4",
-    "react": "^0.13.3",
-    "react-engine": "^2.6.0",
-    "react-router": "^0.13.5",
+    "react": "^0.14.3",
+    "react-engine": "3.0.0-alpha.2",
+    "react-router": "^1.0.3",
     "webpack": "^1.12.9"
   }
 }

@@ -24,8 +24,10 @@ var ListPage = require('./views/list.jsx');
 var DetailPage = require('./views/detail.jsx');
 
 var routes = module.exports = (
-  <Router.Route path='/' handler={Layout}>
-    <Router.DefaultRoute name='list' handler={ListPage} />
-    <Router.Route name='detail' path='/:id' handler={DetailPage} />
-  </Router.Route>
+  <Router>
+    <Router.Route path='/' component={Layout}>
+      <Router.IndexRoute component={ListPage} />
+      <Router.Route path='/:id' component={DetailPage} />
+    </Router.Route>
+  </Router>
 );
