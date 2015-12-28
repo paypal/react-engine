@@ -29,7 +29,7 @@ module.exports = React.createClass({
         <ul>
           {this.props.movies.map(function(movie) {
             return (
-              <li>
+              <li key={movie.id}>
                 <Router.Link to={'/' + movie.id}>
                   <img src={movie.image} alt={movie.title} />
                 </Router.Link>

@@ -15,19 +15,18 @@
 
 'use strict';
 
-// import react and react-router
-var React = require('react');
-var Router = require('react-router');
+import React from 'react';
+import { Router, Route, IndexRoute } from 'react-router';
 
-var Layout = require('./views/layout.jsx');
-var ListPage = require('./views/list.jsx');
-var DetailPage = require('./views/detail.jsx');
+import Layout from './views/layout.jsx';
+import ListPage from './views/list.jsx';
+import DetailPage from './views/detail.jsx';
 
 var routes = module.exports = (
   <Router>
-    <Router.Route path='/' component={Layout}>
-      <Router.IndexRoute component={ListPage} />
-      <Router.Route path='/:id' component={DetailPage} />
-    </Router.Route>
+    <Route path='/' component={Layout}>
+      <IndexRoute component={ListPage} />
+      <Route path='/:id' component={DetailPage} />
+    </Route>
   </Router>
 );
