@@ -33,8 +33,8 @@ module.exports = React.createClass({
             {/* Router now automatically populates this.props.children of your components based on the active route. https://github.com/rackt/react-router/blob/latest/CHANGES.md#routehandler */}
             {this.props.children}
           </div>
+          <script src='/bundle.js'></script>
         </body>
-        <script src='/bundle.js'></script>
       </html>
     );
   }
