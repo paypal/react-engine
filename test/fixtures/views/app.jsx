@@ -16,21 +16,17 @@
 'use strict';
 
 var React = require('react');
+var Router = require('react-router');
+var Layout = require('./layout.jsx');
 
 module.exports = React.createClass({
 
-  displayName: 'layout',
-
   render: function render() {
-    var title = this.props.title || 'Hello, world!';
-    return React.createElement(
-      'html', null,
-      React.createElement(
-        'head', null,
-        React.createElement('meta', { charSet: 'utf-8' }),
-        React.createElement('title', null, title)
-      ),
-      React.createElement('body', null, this.props.children)
+
+    return (
+      <Layout>
+        {this.props.children}
+      </Layout>
     );
   }
 });

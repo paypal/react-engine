@@ -19,18 +19,11 @@ var React = require('react');
 
 module.exports = React.createClass({
 
-  displayName: 'account',
-
-  render: function render(props) {
-    var name = this.props.name || 'Joshua';
-    return React.createElement(
-      'div',
-      { id: 'account' },
-      React.createElement(
-        'h1',
-        null,
-        name
-      )
+  render: function() {
+    return (
+      <div id='account'>
+        <h1>{this.props.name || 'Joshua'}</h1>
+      </div>
     );
   }
 });
