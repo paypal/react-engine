@@ -10,7 +10,8 @@
 
 ### Install
 ```sh
-# In your express app, react-engine needs to be installed along side react and optionally react-router (+ history, react-router's dependency)
+# In your express app, react-engine needs to be installed along
+# side react and optionally react-router (+ history, react-router's dependency)
 npm install react-engine react react-router history --save
 ```
 
@@ -154,11 +155,14 @@ Note: By default, the following three keys are always filtered out from `renderO
 While using react-router, it matches the url to a component based on the app's defined routes. react-engine captures the redirects and not-found cases that are encountered while trying to run the react-router's [match function on the server side](https://github.com/rackt/react-router/blob/5590516ec228765cbb176c81fb15fe1d4662e475/docs/guides/advanced/ServerRendering.md).
 
 To handle the above during the lifecycle of a request, add a error type check in your express middleware. The following are the three types of error that get thrown by react-engine:
-| Error Type (err._type) | Description   |
-| ---------------------- |:-------------:|
-| MATCH_REDIRECT         | indicates that the url  matched to a redirection (`redirectLocation` property of the err has the new redirection location) |
-| MATCH_NOT_FOUND        |  indicates that the url  did not match to any component     |
-| MATCH_INTERNAL_ERROR   | indicates that react-router encountered an internal error      |  
+
+Error Type           | Description   
+-------------------- | --------------------------------------------------------
+MATCH_REDIRECT**     | indicates that the url  matched to a redirection
+MATCH_NOT_FOUND      |  indicates that the url  did not match to any component     
+MATCH_INTERNAL_ERROR | indicates that react-router encountered an internal error
+
+ _**  for redirection error, `redirectLocation` property of the err has the new redirection location_
 
 ```javascript
 // example express error middleware
@@ -221,7 +225,7 @@ var engine = require('react-engine').server.create({
 
 ### Migration from 2.x to 3.x
 While upgrading to 3.x version of react-engine, make sure to follow the [react-router's 1.x upgrade guide](https://github.com/rackt/react-router/blob/5590516ec228765cbb176c81fb15fe1d4662e475/upgrade-guides/v1.0.0.md) to upgrade react-router related code in your app.
-Then add to your express error middleware, react-engine's MATCH_REDIRECT and MATCH_NOT_FOUND checks.
+Then, add to your express error middleware, react-engine's MATCH_REDIRECT and MATCH_NOT_FOUND checks.
 
 ### Migration from 1.x to 2.x
 2.x version of react-engine brought in a major api change. Basically it affects the property names of the [object that gets passed in during the engine creation](https://github.com/paypal/react-engine#server-options-spec) on the server side and also how routes definition is passed into react-engine.
