@@ -3,9 +3,9 @@ This movie catalog app illustrates the usage of react-engine to build and run an
 
 ## app composition
 * [express - 4.x](https://github.com/strongloop/express) on the server side
-* [react-engine - 2.x](https://github.com/paypal/react-engine) as the express view render engine
-* [react - 0.13.x](https://github.com/facebook/react) for building the UI
-* [react-router - 0.13.x](https://github.com/rackt/react-router) for UI routing
+* [react-engine - 3.x](https://github.com/paypal/react-engine) as the express view render engine
+* [react - 0.14.x](https://github.com/facebook/react) for building the UI
+* [react-router - 1.x](https://github.com/rackt/react-router) for UI routing
 * [webpack - 1.x](https://github.com/webpack/webpack) as the client side module loader
 * [babel - 6.x](https://github.com/babel/babel) for compiling the ES6/JSX code
 
@@ -26,8 +26,8 @@ $ open http://localhost:3000
   # (fill out the needed information like name, author, etc..)
   $ npm init
 
-  # install express, react, react-router & react-engine
-  $ npm install express react-engine@2 react@0.13 react-router@0.13 --save
+  # install express, react, react-router (+ history, its dependency) & react-engine
+  $ npm install express react-engine react react-router history --save
 
   # install the rest of the dependencies
   $ npm install babel-register babel-preset-react webpack --save
@@ -70,10 +70,13 @@ $ open http://localhost:3000
   var DetailPage = require('./views/detail.jsx');
 
   var routes = module.exports = (
-    <Router.Route path='/' handler={Layout}>
-      <Router.DefaultRoute name='list' handler={ListPage} />
-      <Router.Route name='detail' path='/:id' handler={DetailPage} />
-    </Router.Route>
+    <Router>
+      <Route path='/' component={Layout}>
+        <IndexRoute component={ListPage} />
+        <Route path='/movie/:id' component={DetailPage} />
+        <Redirect from='/gohome' to='/' />
+      </Route>
+    </Router>
   );
 ```
 
@@ -96,17 +99,19 @@ $ open http://localhost:3000
           <head>
             <meta charSet='utf-8' />
             <title>React Engine Example App</title>
+            <link rel='stylesheet' href='/styles.css'></link>
           </head>
           <body>
             <div>
-              {/* Component that renders the active child route handler of a parent route handler component. */}
-              <Router.RouteHandler {...this.props} />
+              {/* Router now automatically populates this.props.children of your components based on the active route. https://github.com/rackt/react-router/blob/latest/CHANGES.md#routehandler */}
+              {this.props.children}
             </div>
+            <script src='/bundle.js'></script>
           </body>
         </html>
       );
     }
-  });  
+  });
 
   // public/views/list.jsx file contains the catalog view elements of our app.
   // we iterate through the array of movies and display them on this page.
@@ -119,13 +124,14 @@ $ open http://localhost:3000
           <ul>
             {this.props.movies.map(function(movie) {
               return (
-                <li>
-                  <Router.Link to='detail' params={{id: movie.id}}>
+                <li key={movie.id}>
+                  <Router.Link to={'/movie/' + movie.id}>
                     <img src={movie.image} alt={movie.title} />
                   </Router.Link>
                 </li>
               );
             })}
+
           </ul>
         </div>
       );
@@ -135,12 +141,12 @@ $ open http://localhost:3000
   // public/views/detail.jsx file contains the markup to
   // display the detail information of a movie
   module.exports = React.createClass({
-    mixins: [Router.State],
     render: function render() {
-      var movieId = this.getParams().id;
+      var movieId = this.props.params.id;
       var movie = this.props.movies.filter(function(_movie) {
         return _movie.id === movieId;
       })[0];
+
       return (
         <div id='detail'>
           <h1>{movie.title}</h1>
@@ -196,6 +202,28 @@ $ open http://localhost:3000
     res.render(req.url, {
       movies: require('./movies.json')
     });
+  });  
+
+  // add the error handler middleware
+  app.use(function(err, req, res, next) {
+    console.error(err);
+
+    // http://expressjs.com/en/guide/error-handling.html
+    if (res.headersSent) {
+      return next(err);
+    }
+
+    if (err._type && err._type === ReactEngine.reactRouterServerErrors.MATCH_REDIRECT) {
+      return res.redirect(302, err.redirectLocation);
+    }
+    else if (err._type && err._type === ReactEngine.reactRouterServerErrors.MATCH_NOT_FOUND) {
+      return res.status(404).send('Route Not Found!');
+    }
+    else {
+      // for ReactEngine.reactRouterServerErrors.MATCH_INTERNAL_ERROR or
+      // any other error we just send the error message back
+      return res.status(500).send(err.message);
+    }
   });  
 
   // the last step in the server side is to configure the express app to listen on port 3000

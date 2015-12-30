@@ -16,7 +16,7 @@
 'use strict';
 
 import React from 'react';
-import { Router, Route, IndexRoute } from 'react-router';
+import { Router, Route, IndexRoute, Redirect } from 'react-router';
 
 import Layout from './views/layout.jsx';
 import ListPage from './views/list.jsx';
@@ -26,7 +26,8 @@ var routes = module.exports = (
   <Router>
     <Route path='/' component={Layout}>
       <IndexRoute component={ListPage} />
-      <Route path='/:id' component={DetailPage} />
+      <Route path='/movie/:id' component={DetailPage} />
+      <Redirect from='/gohome' to='/' />
     </Route>
   </Router>
 );

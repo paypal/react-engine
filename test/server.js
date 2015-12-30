@@ -15,13 +15,17 @@
 
 'use strict';
 
+require('babel-register')({
+  presets: ['react']
+});
+
 var fs = require('fs');
 var path = require('path');
 var test = require('tape');
 var express = require('express');
 var cheerio = require('cheerio');
 var renderer = require('../index').server;
-var assertions = require('./fixtures/assertions');
+var assertions = require('./fixtures/assertions.json');
 
 var DATA_MODEL = exports.DATA_MODEL = {
   title: 'Hello, world!',
@@ -67,8 +71,8 @@ function setup(options) {
     };
   }
 
-  app.engine('js', setupEngine);
-  app.set('view engine', 'js');
+  app.engine('jsx', setupEngine);
+  app.set('view engine', 'jsx');
   app.set('view cache', false);
   app.set('views', path.resolve(__dirname, 'fixtures/views'));
 
@@ -91,7 +95,29 @@ function setup(options) {
   });
 }
 
-// start of test definitions
+/*
+  -------------------------
+  start of test definitions
+  -------------------------
+*/
+
+test('react-engine public api', function(t) {
+  var index = require('../index');
+  t.strictEqual(typeof index.server.create, 'function');
+  t.strictEqual(typeof index.client.data, 'function');
+  t.strictEqual(typeof index.client.boot, 'function');
+  t.strictEqual(typeof index.expressView, 'function');
+  t.strictEqual(typeof index.reactRouterServerErrors, 'object');
+  t.strictEqual(index.reactRouterServerErrors.MATCH_REDIRECT, 'MATCH_REDIRECT');
+  t.strictEqual(index.reactRouterServerErrors.MATCH_NOT_FOUND, 'MATCH_NOT_FOUND');
+  t.strictEqual(index.reactRouterServerErrors.MATCH_INTERNAL_ERROR, 'MATCH_INTERNAL_ERROR');
+  t.throws(function reactRouterServerErrorsObjectShouldNotBeModifiable() {
+    index.reactRouterServerErrors.MATCH_REDIRECT = '123';
+  });
+
+  t.end();
+});
+
 test('construct an engine', function(t) {
   var engine = renderer.create();
   t.ok(engine instanceof Function);
@@ -151,7 +177,7 @@ test('performance collector', function(t) {
         t.strictEqual(typeof data, 'string');
         t.strictEqual(recorder.length, 1);
         t.strictEqual(Object.keys(recorder[0]).length, 4);
-        t.strictEqual(recorder[0].name, path.resolve(__dirname, 'fixtures/views', 'profile.js'));
+        t.strictEqual(recorder[0].name, path.resolve(__dirname, 'fixtures/views', 'profile.jsx'));
         t.strictEqual(typeof recorder[0].startTime, 'number');
         t.strictEqual(typeof recorder[0].endTime, 'number');
         t.strictEqual(typeof recorder[0].duration, 'number');
@@ -209,7 +235,7 @@ test('router gets run when we pass urls into render function', function(t) {
 
   var options = {
     engine: renderer.create({
-      routes: require(path.join(__dirname + '/fixtures/reactRoutes'))
+      routes: require(path.join(__dirname + '/fixtures/reactRoutes.jsx'))
     }),
     expressRoutes: function(req, res) {
       res.render(req.url, DATA_MODEL);
@@ -253,7 +279,7 @@ test('all keys in express render `options` should be be sent to client', functio
 
   var options = {
     engine: renderer.create({
-      routes: require(path.join(__dirname + '/fixtures/reactRoutes'))
+      routes: require(path.join(__dirname + '/fixtures/reactRoutes.jsx'))
     }),
     expressRoutes: function(req, res) {
       res.locals.someSensitiveData = 1234;
@@ -277,7 +303,7 @@ test('all keys in express render `renderOptionsKeysToFilter` should be used to f
 
   var options = {
     engine: renderer.create({
-      routes: require(path.join(__dirname + '/fixtures/reactRoutes')),
+      routes: require(path.join(__dirname + '/fixtures/reactRoutes.jsx')),
       renderOptionsKeysToFilter: ['someSensitiveData']
     }),
     expressRoutes: function(req, res) {
@@ -298,22 +324,21 @@ test('all keys in express render `renderOptionsKeysToFilter` should be used to f
   setup(options);
 });
 
-test('route not found and a default 404 is rendered', function(t) {
+test('error that renderer throws when asked to run a unknown route', function(t) {
 
   var options = {
     engine: renderer.create({
-      routes: require(path.join(__dirname + '/fixtures/reactRoutes'))
+      routes: require(path.join(__dirname + '/fixtures/reactRoutes.jsx'))
     }),
     expressRoutes: function(req, res) {
       res.render(req.url, DATA_MODEL);
     },
 
     onSetup: function(done) {
-      inject('/nonexistentpath', function(err, data) {
-        t.error(err);
-        var $ = cheerio.load(data);
-        $('*').removeAttr('data-reactid').removeAttr('data-react-checksum');
-        t.strictEqual($.html(), assertions.DEFAULT404_OUTPUT);
+      inject('/some_garbage', function(err, data) {
+        // TODO: t.strictEqual(err._type, 'MATCH_NOT_FOUND');
+        t.ok(typeof err === 'object');
+        t.ok(typeof data === 'undefined');
         done(t);
       });
     }
@@ -321,23 +346,21 @@ test('route not found and a default 404 is rendered', function(t) {
   setup(options);
 });
 
-test('route not found and a custom 404 is rendered with data', function(t) {
+test('error that renderer throws when asked to run a redirect route', function(t) {
 
   var options = {
     engine: renderer.create({
-      routes: require(path.join(__dirname + '/fixtures/reactRoutes')),
-      page404: require(path.join(__dirname + '/fixtures/views/page404'))
+      routes: require(path.join(__dirname + '/fixtures/reactRoutes.jsx'))
     }),
     expressRoutes: function(req, res) {
       res.render(req.url, DATA_MODEL);
     },
 
     onSetup: function(done) {
-      inject('/nonexistentpath', function(err, data) {
-        t.error(err);
-        var $ = cheerio.load(data);
-        $('*').removeAttr('data-reactid').removeAttr('data-react-checksum');
-        t.strictEqual($.html(), assertions.CUSTOM404_OUTPUT);
+      inject('/gohome', function(err, data) {
+        // TODO: t.strictEqual(err._type, 'MATCH_REDIRECT');
+        t.ok(typeof err === 'object');
+        t.ok(typeof data === 'undefined');
         done(t);
       });
     }

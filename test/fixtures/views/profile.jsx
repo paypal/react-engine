@@ -15,28 +15,19 @@
 
 'use strict';
 
-var util = require('util');
+var React = require('react');
+var Layout = require('./layout.jsx');
 
-// Creating custom Error classes in Node.js
-// https://gist.github.com/justmoon/15511f92e5216fa2624b
+module.exports = React.createClass({
 
-var Router302Error = exports.Router302Error = function Router302Error(redirectLocation) {
-  Error.captureStackTrace(this, this.constructor);
-  this.name = this.constructor.name;
-  this.redirectLocation = redirectLocation;
-};
+  render: function render() {
 
-var Router404Error = exports.Router404Error = function Router404Error() {
-  Error.captureStackTrace(this, this.constructor);
-  this.name = this.constructor.name;
-};
-
-var Router500Error = exports.Router500Error = function Router500Error(message) {
-  Error.captureStackTrace(this, this.constructor);
-  this.name = this.constructor.name;
-  this.message = message;
-};
-
-util.inherits(Router302Error, Error);
-util.inherits(Router404Error, Error);
-util.inherits(Router500Error, Error);
+    return (
+      <Layout>
+        <div id='profile'>
+          <h1>{this.props.name}</h1>
+        </div>
+      </Layout>
+    );
+  }
+});

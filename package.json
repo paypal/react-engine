@@ -1,6 +1,6 @@
 {
   "name": "react-engine",
-  "version": "3.0.0-rc.1",
+  "version": "3.0.0-rc.2",
   "description": "a composite render engine for express apps to render both plain react views and react-router views",
   "main": "index.js",
   "scripts": {
@@ -26,6 +26,9 @@
     "react-dom": "^0.14.0"
   },
   "devDependencies": {
+    "babel-core": "^6.3.26",
+    "babel-preset-react": "^6.3.13",
+    "babel-register": "^6.3.13",
     "cheerio": "^0.19.0",
     "esprima-fb": "^14001.1.0-dev-harmony-fb",
     "express": "^4.12",
@@ -39,7 +42,7 @@
     "jsdom": "3.0.0",
     "jshint": "^2.6.3",
     "react": "^0.14.0",
-    "react-router": "^1.0.0-rc3",
+    "react-router": "^1.0.3",
     "rewire": "^2.3.1",
     "sinon": "^1.14.1",
     "tape": "^3.5.0",
