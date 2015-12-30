@@ -18,7 +18,4 @@
 exports.server = require('./lib/server');
 exports.client = require('./lib/client');
 exports.expressView = require('./lib/expressView');
-
-exports.Router302Error = require('./lib/errors').Router302Error;
-exports.Router404Error = require('./lib/errors').Router404Error;
-exports.Router500Error = require('./lib/errors').Router500Error;
+exports.reactRouterServerErrors = require('./lib/reactRouterServerErrors');
