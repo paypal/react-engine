@@ -1,3 +1,7 @@
+## 2.6.1 (Dec 30 2015)
+
+* fix undefined createOptions var [client.js] (https://github.com/paypal/react-engine/issues/119)
+
 ## 2.6.0 (Nov 06 2015)
 
 * make the render root configurable (https://github.com/paypal/react-engine/issues/68)
