@@ -21,7 +21,6 @@
     "history": "^1.12.2",
     "lodash": "^3.10.1",
     "lodash-compat": "^3.10.1",
-    "lodash-node": "^3.10.1",
     "parent-require": "^1.0.0",
     "react-dom": "^0.14.0"
   },

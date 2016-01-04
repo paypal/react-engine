@@ -1,3 +1,7 @@
+## 2.6.2 (Jan 3 2016)
+
+* fix - lodash-node package is deprecated(https://github.com/paypal/react-engine/issues/122)
+
 ## 2.6.1 (Dec 30 2015)
 
 * fix undefined createOptions var [client.js] (https://github.com/paypal/react-engine/issues/119)
