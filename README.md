@@ -77,7 +77,7 @@ The options object can contain properties from [react router's create configurat
 Additionally, it can contain the following **optional** properties,
 
 - `docType`: \<String> - a string that can be used as a doctype (_Default: `<!DOCTYPE html>`_).
-                        (docType might not make sense if you are rendering partials/sub page components, in that case you can pass and empty string as docType)
+                        (docType might not make sense if you are rendering partials/sub page components, in that case you can pass an empty string as docType)
 - `routesFilePath`: \<String> - path for the file that contains the react router routes.
                    react-engine uses this behind the scenes to reload the routes file in
                    cases where [express's app property](http://expressjs.com/api.html#app.set) `view cache` is false, this way you don't need to restart the server every time a change is made in the view files or routes file.

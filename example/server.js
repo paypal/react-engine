@@ -52,7 +52,7 @@ app.use(express.static(join(__dirname, '/public')));
 
 app.use(favicon(join(__dirname, '/public/favicon.ico')));
 
-// add the our app routes
+// add our app routes
 app.get('*', function(req, res) {
   res.render(req.url, {
     movies: movies
