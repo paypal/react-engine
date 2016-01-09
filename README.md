@@ -154,7 +154,7 @@ Note: By default, the following three keys are always filtered out from `renderO
 ### Handling redirects and route not found errors on the server side
 While using react-router, it matches the url to a component based on the app's defined routes. react-engine captures the redirects and not-found cases that are encountered while trying to run the react-router's [match function on the server side](https://github.com/rackt/react-router/blob/5590516ec228765cbb176c81fb15fe1d4662e475/docs/guides/advanced/ServerRendering.md).
 
-To handle the above during the lifecycle of a request, add a error type check in your express error middleware. The following are the three types of error that get thrown by react-engine:
+To handle the above during the lifecycle of a request, add an error type check in your express error middleware. The following are the three types of error that get thrown by react-engine:
 
 Error Type           | Description   
 -------------------- | --------------------------------------------------------
