@@ -16,7 +16,6 @@
 'use strict';
 
 var React = require('react');
-var Router = require('react-router');
 
 module.exports = React.createClass({
 
@@ -31,11 +30,11 @@ module.exports = React.createClass({
         </head>
         <body>
           <div>
-            {/* Component that renders the active child route handler of a parent route handler component. */}
-            <Router.RouteHandler {...this.props} />
+            {/* Router now automatically populates this.props.children of your components based on the active route. https://github.com/rackt/react-router/blob/latest/CHANGES.md#routehandler */}
+            {this.props.children}
           </div>
+          <script src='/bundle.js'></script>
         </body>
-        <script src='/bundle.js'></script>
       </html>
     );
   }

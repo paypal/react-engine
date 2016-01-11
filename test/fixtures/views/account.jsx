@@ -15,7 +15,15 @@
 
 'use strict';
 
-exports.server = require('./lib/server');
-exports.client = require('./lib/client');
-exports.expressView = require('./lib/expressView');
-exports.reactRouterServerErrors = require('./lib/reactRouterServerErrors');
+var React = require('react');
+
+module.exports = React.createClass({
+
+  render: function() {
+    return (
+      <div id='account'>
+        <h1>{this.props.name || 'Joshua'}</h1>
+      </div>
+    );
+  }
+});

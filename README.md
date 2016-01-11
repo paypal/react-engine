@@ -10,8 +10,9 @@
 
 ### Install
 ```sh
-# In your express app, react-engine needs to be installed along side react and optionally react-router
-npm install react-engine@2 react@0.13 react-router@0.13 --save
+# In your express app, react-engine needs to be installed along
+# side react and optionally react-router (+ history, react-router's dependency)
+npm install react-engine react react-router history --save
 ```
 
 ### Usage On Server Side
@@ -75,13 +76,13 @@ The options object can contain properties from [react router's create configurat
 
 Additionally, it can contain the following **optional** properties,
 
-- `docType`: _String_ - a string that can be used as a doctype (_Default: `<!DOCTYPE html>`_).
-                        docType might not make sense if you are rendering partials/sub page components, in that case, you should pass an empty string as docType.
-- `routesFilePath`: _String_ - path for the file that contains the react router routes.
+- `docType`: \<String> - a string that can be used as a doctype (_Default: `<!DOCTYPE html>`_).
+                        (docType might not make sense if you are rendering partials/sub page components, in that case you can pass an empty string as docType)
+- `routesFilePath`: \<String> - path for the file that contains the react router routes.
                    react-engine uses this behind the scenes to reload the routes file in
                    cases where [express's app property](http://expressjs.com/api.html#app.set) `view cache` is false, this way you don't need to restart the server every time a change is made in the view files or routes file.
-- `renderOptionsKeysToFilter`: _Array_ - an array of keys that need to be filtered out from the data object that gets fed into the react component for rendering. [more info](#data-for-component-rendering)
-- `performanceCollector`: _Function_ - to collects [perf stats](#performance-profiling)
+- `renderOptionsKeysToFilter`: \<Array> - an array of keys that need to be filtered out from the data object that gets fed into the react component for rendering. [more info](#data-for-component-rendering)
+- `performanceCollector`: \<Function> - to collects [perf stats](#performance-profiling)
 
 ###### Rendering views on server side
 ```js
@@ -150,6 +151,43 @@ Note: By default, the following three keys are always filtered out from `renderO
 - `enrouten`
 - `_locals`
 
+### Handling redirects and route not found errors on the server side
+While using react-router, it matches the url to a component based on the app's defined routes. react-engine captures the redirects and not-found cases that are encountered while trying to run the react-router's [match function on the server side](https://github.com/rackt/react-router/blob/5590516ec228765cbb176c81fb15fe1d4662e475/docs/guides/advanced/ServerRendering.md).
+
+To handle the above during the lifecycle of a request, add an error type check in your express error middleware. The following are the three types of error that get thrown by react-engine:
+
+Error Type           | Description   
+-------------------- | --------------------------------------------------------
+MATCH_REDIRECT**     | indicates that the url  matched to a redirection
+MATCH_NOT_FOUND      |  indicates that the url  did not match to any component     
+MATCH_INTERNAL_ERROR | indicates that react-router encountered an internal error
+
+ _**  for MATCH_REDIRECT error, `redirectLocation` property of the err has the new redirection location_
+
+```javascript
+// example express error middleware
+app.use(function(err, req, res, next) {
+  console.error(err);
+
+  // http://expressjs.com/en/guide/error-handling.html
+  if (res.headersSent) {
+    return next(err);
+  }
+
+  if (err._type && err._type === ReactEngine.reactRouterServerErrors.MATCH_REDIRECT) {
+    return res.redirect(302, err.redirectLocation);
+  }
+  else if (err._type && err._type === ReactEngine.reactRouterServerErrors.MATCH_NOT_FOUND) {
+    return res.status(404).send('Route Not Found!');
+  }
+  else {
+    // for ReactEngine.reactRouterServerErrors.MATCH_INTERNAL_ERROR or
+    // any other error we just send the error message back
+    return res.status(500).send(err.message);
+  }
+});
+```
+
 ### Yeoman Generator
 There is a Yeoman generator available to create a new express or KrakenJS application which uses react-engine:
 [generator-react-engine](https://www.npmjs.com/package/generator-react-engine).
@@ -174,7 +212,7 @@ function collector(stats) {
 }
 
 var engine = require('react-engine').server.create({
-  reactRoutes: './routes.jsx'
+  routes: './routes.jsx'
   performanceCollector: collector
 });
 ```
@@ -184,6 +222,10 @@ var engine = require('react-engine').server.create({
 * When Express's `view cache` app property is false (mostly in non-production environments), views are automatically reloaded before render. So there is no need to restart the server for seeing the changes.
 * You can use `js` as the engine if you decide not to write your react views in `jsx`.
 * [Blog on react-engine](https://www.paypal-engineering.com/2015/04/27/isomorphic-react-apps-with-react-engine/)
+
+### Migration from 2.x to 3.x
+While upgrading to 3.x version of react-engine, make sure to follow the [react-router's 1.x upgrade guide](https://github.com/rackt/react-router/blob/5590516ec228765cbb176c81fb15fe1d4662e475/upgrade-guides/v1.0.0.md) to upgrade react-router related code in your app.
+Then, add to your express error middleware, react-engine's MATCH_REDIRECT and MATCH_NOT_FOUND checks.
 
 ### Migration from 1.x to 2.x
 2.x version of react-engine brought in a major api change. Basically it affects the property names of the [object that gets passed in during the engine creation](https://github.com/paypal/react-engine#server-options-spec) on the server side and also how routes definition is passed into react-engine.

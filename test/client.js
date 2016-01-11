@@ -20,7 +20,7 @@ var rewire = require('rewire');
 var jsdom = require('jsdom').jsdom;
 var DATA_MODEL = require('./server').DATA_MODEL;
 var DATA_MODEL_PROPS = Object.keys(DATA_MODEL);
-var assertions = require('./fixtures/assertions');
+var assertions = require('./fixtures/assertions.json');
 
 // boot options
 var options = {

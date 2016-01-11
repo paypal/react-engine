@@ -17,16 +17,16 @@
 
 var React = require('react');
 var Router = require('react-router');
+var Layout = require('./layout.jsx');
 
-var App = require('./views/app');
-var Account = require('./views/account');
+module.exports = React.createClass({
 
-module.exports = React.createElement(
-    Router.Route,
-    { path: '/' },
-    React.createElement(
-        Router.Route,
-        { path: 'account', handler: App },
-        React.createElement(Router.DefaultRoute, { name: 'account', handler: Account })
-    )
-);
+  render: function render() {
+
+    return (
+      <Layout>
+        {this.props.children}
+      </Layout>
+    );
+  }
+});

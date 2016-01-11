@@ -16,21 +16,16 @@
 'use strict';
 
 var React = require('react');
+var Router = require('react-router');
 
-module.exports = React.createClass({
+var App = require('./views/app.jsx');
+var Account = require('./views/account.jsx');
 
-  displayName: 'account',
-
-  render: function render() {
-
-    return React.createElement(
-      'div',
-      { id: 'account' },
-      React.createElement(
-        'h1',
-        null,
-        this.props.name
-      )
-    );
-  }
-});
+var routes = module.exports = (
+  <Router.Router>
+    <Router.Route path='/' component={App}>
+      <Router.Route path='/account' component={Account} />
+      <Router.Redirect from='/gohome' to='/' />
+    </Router.Route>
+  </Router.Router>
+);
