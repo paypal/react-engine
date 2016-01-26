@@ -1,5 +1,6 @@
 ## 3.1.0 (Jan 25 2016)
 
+* fix - set implicit extension to import file names 
 * fix - Allow consumers to override history object
 * Use path instead of pathname to ensure querystring is not stripped - https://github.com/paypal/react-engine/pull/131
 * Client-side error when using code splitting in webpack - https://github.com/paypal/react-engine/pull/129
