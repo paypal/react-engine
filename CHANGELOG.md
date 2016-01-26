@@ -1,3 +1,13 @@
+## 3.1.0 (Jan 25 2016)
+
+* fix - Allow consumers to override history object
+* Use path instead of pathname to ensure querystring is not stripped - https://github.com/paypal/react-engine/pull/131
+* Client-side error when using code splitting in webpack - https://github.com/paypal/react-engine/pull/129
+
+## 3.0.0 (Jan 10 2016)
+
+* [v3.x] - support react-router@1 and react@0.14
+
 ## 2.6.2 (Jan 3 2016)
 
 * fix - lodash-node package is deprecated(https://github.com/paypal/react-engine/issues/122)
