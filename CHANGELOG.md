@@ -1,3 +1,7 @@
+## 3.2.1 (Apr 12 2016)
+
+* Support ES6 module syntax for React views (https://github.com/paypal/react-engine/pull/149)
+
 ## 3.2.0 (Mar 27 2016)
 
 * Allow consumers to override history object  (https://github.com/paypal/react-engine/issues/126)
