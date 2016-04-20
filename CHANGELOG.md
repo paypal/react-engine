@@ -1,3 +1,7 @@
+## 3.2.2 (Apr 19 2016)
+
+* fix #151, make react-router optional (https://github.com/paypal/react-engine/pull/152)
+
 ## 3.2.1 (Apr 12 2016)
 
 * Support ES6 module syntax for React views (https://github.com/paypal/react-engine/pull/149)
