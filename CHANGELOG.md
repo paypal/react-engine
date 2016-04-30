@@ -1,3 +1,7 @@
+## 3.3.0 (Apr 30 2016)
+* Added scriptLocation server option to allow consumers to specify location of REACT_ENGINE script (https://github.com/paypal/react-engine/pull/153)
+* Support ES6 module syntax for routes (https://github.com/paypal/react-engine/pull/154)
+
 ## 3.2.2 (Apr 19 2016)
 
 * fix #151, make react-router optional (https://github.com/paypal/react-engine/pull/152)
