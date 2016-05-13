@@ -1,3 +1,6 @@
+## 3.4.0 (May 13 2016)
+* Update deprecated `history` and `RoutingContext` for react-router (https://github.com/paypal/react-engine/pull/155)
+
 ## 3.3.0 (Apr 30 2016)
 * Added scriptLocation server option to allow consumers to specify location of REACT_ENGINE script (https://github.com/paypal/react-engine/pull/153)
 * Support ES6 module syntax for routes (https://github.com/paypal/react-engine/pull/154)

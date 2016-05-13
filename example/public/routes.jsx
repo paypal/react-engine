@@ -21,7 +21,6 @@ import { Router, Route, IndexRoute, Redirect, browserHistory } from 'react-route
 import Layout from './views/layout.jsx';
 import ListPage from './views/list.jsx';
 import DetailPage from './views/detail.jsx';
-import Error404 from './views/404.jsx';
 
 module.exports = (
   <Router history={browserHistory}>
