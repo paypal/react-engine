@@ -76,7 +76,12 @@ app.use(function(err, req, res, next) {
   else {
     // for ReactEngine.reactRouterServerErrors.MATCH_INTERNAL_ERROR or
     // any other error we just send the error message back
-    return res.status(500).send(err.message);
+    return res.status(500).render('500.jsx', {
+      err: {
+        message: err.message,
+        stack: err.stack
+      }
+    });
   }
 });
 
