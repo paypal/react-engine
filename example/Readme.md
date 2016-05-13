@@ -13,7 +13,7 @@ This movie catalog app illustrates the usage of react-engine to build and run an
 ```shell
 # cd `into_this_dir`
 $ npm install
-$ npm start
+$ npm start # or `npm run dev`
 $ open http://localhost:3000
 ```
 
@@ -202,7 +202,7 @@ $ open http://localhost:3000
     res.render(req.url, {
       movies: require('./movies.json')
     });
-  });  
+  });
 
   // add the error handler middleware
   app.use(function(err, req, res, next) {
@@ -224,7 +224,7 @@ $ open http://localhost:3000
       // any other error we just send the error message back
       return res.status(500).send(err.message);
     }
-  });  
+  });
 
   // the last step in the server side is to configure the express app to listen on port 3000
   app.listen(3000, function() {
@@ -243,7 +243,7 @@ $ open http://localhost:3000
   # 2. json-loader for webpack to load json files
   $ npm install babel-loader json-loader --save
 
-  # next, add a webpack configuration file  
+  # next, add a webpack configuration file
   $ touch webpack.config.js
 
   # configure webpack to build a bundle.js file using public/index.js as the main file
@@ -299,6 +299,3 @@ $ open http://localhost:3000
   $ touch public/styles.css
   # copy the contents for this file from http://bit.ly/1m2co1B
 ```
-
-### to-do
-* add support for [404 and 500 pages](https://github.com/samsel/react-engine/tree/9666fb3bf47f29981dbdcb4160445e3efce67b5c/example/old/public/views)
