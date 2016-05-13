@@ -72,7 +72,7 @@ app.set('view', require('react-engine/lib/expressView'));
 
 ###### Server options spec
 Pass in an optional JavaScript object as options to the react-engine's [server engine create method](#setup-in-an-express-app).
-The options object can contain properties from [react router's create configuration object](http://rackt.github.io/react-router/#Router.create).
+The options object can contain properties from [react router's create configuration object](https://github.com/reactjs/react-router/blob/0.13.x/doc/02%20Top-Level/Router.create.md).
 
 Additionally, it can contain the following **optional** properties,
 
@@ -127,7 +127,7 @@ var data = client.data();
 
 ###### Client options spec
 Pass in a JavaScript object as options to the react-engine's client boot function.
-The options object can contain properties from [react router's create configuration object](http://rackt.github.io/react-router/#Router.create).
+The options object can contain properties from [react router's create configuration object](https://github.com/reactjs/react-router/blob/0.13.x/doc/02%20Top-Level/Router.create.md).
 
 Additionally, it can contain the following properties,
 
@@ -156,7 +156,7 @@ Note: By default, the following three keys are always filtered out from `renderO
 - `_locals`
 
 ### Handling redirects and route not found errors on the server side
-While using react-router, it matches the url to a component based on the app's defined routes. react-engine captures the redirects and not-found cases that are encountered while trying to run the react-router's [match function on the server side](https://github.com/rackt/react-router/blob/5590516ec228765cbb176c81fb15fe1d4662e475/docs/guides/advanced/ServerRendering.md).
+While using react-router, it matches the url to a component based on the app's defined routes. react-engine captures the redirects and not-found cases that are encountered while trying to run the react-router's [match function on the server side](https://github.com/react/react-router/blob/5590516ec228765cbb176c81fb15fe1d4662e475/docs/guides/advanced/ServerRendering.md).
 
 To handle the above during the lifecycle of a request, add an error type check in your express error middleware. The following are the three types of error that get thrown by react-engine:
 
@@ -228,13 +228,13 @@ var engine = require('react-engine').server.create({
 * [Blog on react-engine](https://www.paypal-engineering.com/2015/04/27/isomorphic-react-apps-with-react-engine/)
 
 ### Migration from 2.x to 3.x
-While upgrading to 3.x version of react-engine, make sure to follow the [react-router's 1.x upgrade guide](https://github.com/rackt/react-router/blob/5590516ec228765cbb176c81fb15fe1d4662e475/upgrade-guides/v1.0.0.md) to upgrade react-router related code in your app.
+While upgrading to 3.x version of react-engine, make sure to follow the [react-router's 1.x upgrade guide](https://github.com/react/react-router/blob/5590516ec228765cbb176c81fb15fe1d4662e475/upgrade-guides/v1.0.0.md) to upgrade react-router related code in your app.
 Then, add to your express error middleware, react-engine's MATCH_REDIRECT and MATCH_NOT_FOUND checks.
 
 ### Migration from 1.x to 2.x
 2.x version of react-engine brought in a major api change. Basically it affects the property names of the [object that gets passed in during the engine creation](https://github.com/paypal/react-engine#server-options-spec) on the server side and also how routes definition is passed into react-engine.
 
-In v2.x, `routes` need to be explicitly required and passed in to the engine creation method. Also, any [react-router known properties can be passed in](http://rackt.github.io/react-router/#Router.create).
+In v2.x, `routes` need to be explicitly required and passed in to the engine creation method. Also, any [react-router known properties can be passed in](https://github.com/reactjs/react-router/blob/0.13.x/doc/02%20Top-Level/Router.create.md).
 
 An example engine creation can be found [here](https://github.com/paypal/react-engine/blob/71ac27196e72059484332a491cd66982797a60a3/examples/complex/index.js#L28).
 
