@@ -19,6 +19,7 @@ var React = require('react');
 var Layout = require('./layout.jsx');
 
 module.exports = React.createClass({
+  displayName: '404',
 
   render: function render() {
     return (

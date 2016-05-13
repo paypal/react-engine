@@ -19,9 +19,9 @@ var React = require('react');
 var Router = require('react-router');
 
 module.exports = React.createClass({
+  displayName: 'List',
 
   render: function render() {
-
     return (
       <div id='list'>
         <h1>Movies</h1>
