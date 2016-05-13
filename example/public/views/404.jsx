@@ -15,21 +15,14 @@
 
 'use strict';
 
-import React from 'react';
-import { Router, Route, IndexRoute, Redirect, browserHistory } from 'react-router';
+var React = require('react');
+var Layout = require('./layout.jsx');
 
-import Layout from './views/layout.jsx';
-import ListPage from './views/list.jsx';
-import DetailPage from './views/detail.jsx';
-import Error404 from './views/404.jsx';
+module.exports = React.createClass({
 
-module.exports = (
-  <Router history={browserHistory}>
-    <Route path='/' component={Layout}>
-      <IndexRoute component={ListPage} />
-      <Route path='/movie/:id' component={DetailPage} />
-      <Redirect from='/gohome' to='/' />
-      <Route path='*' component={Error404} />
-    </Route>
-  </Router>
-);
+  render: function render() {
+    return (
+      <h1>URL: {this.props.location.pathname} - Not Found(404)</h1>
+    );
+  }
+});
