@@ -10,9 +10,8 @@
 
 ### Install
 ```sh
-# In your express app, react-engine needs to be installed along
-# side react and optionally react-router (+ history, react-router's dependency)
-npm install react-engine react react-router history --save
+# In your express app, react-engine needs to be installed alongside react (react-router is optional)
+$ npm install react-engine react@0.14 react-router --save
 ```
 
 ### Usage On Server Side
