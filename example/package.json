@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "webpack && node index.js"
+    "start": "webpack && node index.js",
+    "dev": "webpack -w & nodemon index.js"
   },
   "author": "Sam Selvanathan (sjasel@gmail.com)",
   "dependencies": {
@@ -19,5 +20,8 @@
     "react-router": "^2.4.0",
     "serve-favicon": "^2.3.0",
     "webpack": "^1.12.9"
+  },
+  "devDependencies": {
+    "nodemon": "^1.9.2"
   }
 }
