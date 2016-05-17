@@ -18,9 +18,9 @@
 var React = require('react');
 
 module.exports = React.createClass({
+  displayName: 'Layout',
 
   render: function render() {
-
     return (
       <html>
         <head>

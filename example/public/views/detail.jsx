@@ -18,6 +18,7 @@
 var React = require('react');
 
 module.exports = React.createClass({
+  displayName: 'Detail',
 
   render: function render() {
     var movieId = this.props.params.id;
