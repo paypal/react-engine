@@ -70,8 +70,8 @@ app.set('view', require('react-engine/lib/expressView'));
 ```
 
 ###### Server options spec
-Pass in an optional JavaScript object as options to the react-engine's [server engine create method](#setup-in-an-express-app).
-The options object can contain properties from [react router's create configuration object](https://github.com/reactjs/react-router/blob/0.13.x/doc/02%20Top-Level/Router.create.md).
+Pass in a JavaScript object as options to the react-engine's [server engine create method](#setup-in-an-express-app).
+The options object should contain the mandatory `routes` property with the route definition.
 
 Additionally, it can contain the following **optional** properties,
 
@@ -126,10 +126,9 @@ var data = client.data();
 
 ###### Client options spec
 Pass in a JavaScript object as options to the react-engine's client boot function.
-The options object can contain properties from [react router's create configuration object](https://github.com/reactjs/react-router/blob/0.13.x/doc/02%20Top-Level/Router.create.md).
+It can contain the following properties,
 
-Additionally, it can contain the following properties,
-
+- `routes` : **required** - _Object_ - the route definition file.
 - `viewResolver` : **required** - _Function_ - a function that react-engine needs to resolve the view file.
   an example of the viewResolver can be [found here](https://github.com/paypal/react-engine/blob/ecd27b30a9028d3f02b8f8e89d355bb5fc909de9/examples/simple/public/index.js#L29).
 - `mountNode` : **optional** - _HTMLDOMNode_ - supply a HTML DOM Node to mount the server rendered component in the case of partial/non-full page rendering.
@@ -155,7 +154,7 @@ Note: By default, the following three keys are always filtered out from `renderO
 - `_locals`
 
 ### Handling redirects and route not found errors on the server side
-While using react-router, it matches the url to a component based on the app's defined routes. react-engine captures the redirects and not-found cases that are encountered while trying to run the react-router's [match function on the server side](https://github.com/react/react-router/blob/5590516ec228765cbb176c81fb15fe1d4662e475/docs/guides/advanced/ServerRendering.md).
+While using react-router, it matches the url to a component based on the app's defined routes. react-engine captures the redirects and not-found cases that are encountered while trying to run the react-router's [match function on the server side](https://github.com/reactjs/react-router/blob/master/docs/guides/ServerRendering.md).
 
 To handle the above during the lifecycle of a request, add an error type check in your express error middleware. The following are the three types of error that get thrown by react-engine:
 
@@ -227,7 +226,7 @@ var engine = require('react-engine').server.create({
 * [Blog on react-engine](https://www.paypal-engineering.com/2015/04/27/isomorphic-react-apps-with-react-engine/)
 
 ### Migration from 2.x to 3.x
-While upgrading to 3.x version of react-engine, make sure to follow the [react-router's 1.x upgrade guide](https://github.com/react/react-router/blob/5590516ec228765cbb176c81fb15fe1d4662e475/upgrade-guides/v1.0.0.md) to upgrade react-router related code in your app.
+While upgrading to 3.x version of react-engine, make sure to follow the [react-router's 2.x upgrade guide](https://github.com/reactjs/react-router/blob/master/upgrade-guides/v2.0.0.md) to upgrade react-router related code in your app.
 Then, add to your express error middleware, react-engine's MATCH_REDIRECT and MATCH_NOT_FOUND checks.
 
 ### Migration from 1.x to 2.x

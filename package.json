@@ -1,6 +1,6 @@
 {
   "name": "react-engine",
-  "version": "3.4.0",
+  "version": "3.4.1",
   "description": "a composite render engine for express apps to render both plain react views and react-router views",
   "main": "index.js",
   "scripts": {
@@ -62,7 +62,8 @@
     "Jared Halpert <jaredhalpert90@gmail.com>",
     "Weng Zhi Ping",
     "Vincent Orr <vincent@cmdv.org>",
-    "skarflacka"
+    "skarflacka",
+    "Mark <mark@remarkablemark.org>"
   ],
   "licenses": [
     {

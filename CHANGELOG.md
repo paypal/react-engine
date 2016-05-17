@@ -1,3 +1,6 @@
+## 3.4.1 (May 16 2016)
+* add backward compatibility for react-router@1 (https://github.com/paypal/react-engine/pull/159)
+
 ## 3.4.0 (May 13 2016)
 * Update deprecated `history` and `RoutingContext` for react-router (https://github.com/paypal/react-engine/pull/155)
 
