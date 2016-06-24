@@ -33,7 +33,6 @@
     "eslint-plugin-react": "^5.2.2",
     "express": "^4.12",
     "faucet": "0.0.1",
-    "jscs": "^3.0.5",
     "jsdom": "^9.2.1",
     "react": "^15.1.0",
     "react-router": "^2.4.0",
