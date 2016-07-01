@@ -10,8 +10,8 @@
 
 ### Install
 ```sh
-# In your express app, react-engine needs to be installed alongside react (react-router is optional)
-$ npm install react-engine react@0.14 react-router --save
+# In your express app, react-engine needs to be installed alongside react/react-dom (react-router is optional)
+$ npm install react-engine react react-dom react-router --save
 ```
 
 ### Usage On Server Side
@@ -225,16 +225,6 @@ var engine = require('react-engine').server.create({
 * You can use `js` as the engine if you decide not to write your react views in `jsx`.
 * [Blog on react-engine](https://www.paypal-engineering.com/2015/04/27/isomorphic-react-apps-with-react-engine/)
 
-### Migration from 2.x to 3.x
-While upgrading to 3.x version of react-engine, make sure to follow the [react-router's 2.x upgrade guide](https://github.com/reactjs/react-router/blob/master/upgrade-guides/v2.0.0.md) to upgrade react-router related code in your app.
-Then, add to your express error middleware, react-engine's MATCH_REDIRECT and MATCH_NOT_FOUND checks.
-
-### Migration from 1.x to 2.x
-2.x version of react-engine brought in a major api change. Basically it affects the property names of the [object that gets passed in during the engine creation](https://github.com/paypal/react-engine#server-options-spec) on the server side and also how routes definition is passed into react-engine.
-
-In v2.x, `routes` need to be explicitly required and passed in to the engine creation method. Also, any [react-router known properties can be passed in](https://github.com/reactjs/react-router/blob/0.13.x/doc/02%20Top-Level/Router.create.md).
-
-An example engine creation can be found [here](https://github.com/paypal/react-engine/blob/71ac27196e72059484332a491cd66982797a60a3/examples/complex/index.js#L28).
 
 ### License
 [Apache Software License v2.0](http://www.apache.org/licenses/LICENSE-2.0)

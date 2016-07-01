@@ -1,3 +1,8 @@
+## 4.0.0 (July 1 2016)
+* removed `react-dom` from being a `react-engine` dependency
+* updated a lot of dependencies and fixed tests
+* remove JSCS/grunt and added airbnb eslint config
+
 ## 3.4.1 (May 16 2016)
 * add backward compatibility for react-router@1 (https://github.com/paypal/react-engine/pull/159)
 
