@@ -26,10 +26,10 @@ module.exports = React.createClass({
         <head>
           <meta charSet='utf-8' />
           <title>{this.props.title || 'Hello, world!'}</title>
-          <body>
-            {this.props.children}
-          </body>
         </head>
+        <body>
+          {this.props.children}
+        </body>
       </html>
     );
   }

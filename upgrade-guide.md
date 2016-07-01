@@ -1,4 +1,5 @@
 ### Migration from 3.x to 4.x
+4.x version of `react-engine` removes the dependency of `react-dom` from the project. Users of `react-engine` should install `react-dom` along side `react` going forward.
 
 ### Migration from 2.x to 3.x
 While upgrading to 3.x version of react-engine, make sure to follow the [react-router's 2.x upgrade guide](https://github.com/reactjs/react-router/blob/master/upgrade-guides/v2.0.0.md) to upgrade react-router related code in your app.

@@ -82,10 +82,7 @@ test('client side boot for plain react views', function(t) {
 });
 
 test('client side boot throws error for invalid markup', function(t) {
-  var client = prepare(assertions.PROFILE_OUTPUT_WITH_REACT_ATTRS);
-
-  // change the markup to simulate error
-  client.__get__('_document').documentElement.innerHTML = 'SOME_GARBAGE_HTML';
+  var client = prepare('SOME_GARBAGE_HTML');
   function _boot() {
     client.boot(options);
   }

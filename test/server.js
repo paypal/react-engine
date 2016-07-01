@@ -95,6 +95,12 @@ function setup(options) {
   });
 }
 
+function stripReactDataAttr($/*cheerio*/) {
+  $('*').removeAttr('data-reactid').
+    removeAttr('data-react-checksum').
+    removeAttr('data-reactroot');
+}
+
 /*
   -------------------------
   start of test definitions
@@ -131,7 +137,7 @@ test('rendering a react view', function(t) {
       inject('/profile', function(err, data) {
         t.error(err);
         var $ = cheerio.load(data);
-        $('*').removeAttr('data-reactid').removeAttr('data-react-checksum');
+        stripReactDataAttr($);
         t.strictEqual($.html(), assertions.PROFILE_OUTPUT);
         done(t);
       });
@@ -245,7 +251,7 @@ test('router gets run when we pass urls into render function', function(t) {
       inject('/account', function(err, data) {
         t.error(err);
         var $ = cheerio.load(data);
-        $('*').removeAttr('data-reactid').removeAttr('data-react-checksum');
+        stripReactDataAttr($);
         t.strictEqual($.html(), assertions.ACCOUNT_OUTPUT);
         done(t);
       });
