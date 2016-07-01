@@ -15,8 +15,9 @@
     "babel-register": "^6.3.13",
     "express": "^4.13.3",
     "json-loader": "^0.5.4",
-    "react": "^0.14.3",
-    "react-engine": "^3.0.0",
+    "react": "^15.1.0",
+    "react-dom": "^15.1.0",
+    "react-engine": "^4.0.0",
     "react-router": "^2.4.0",
     "serve-favicon": "^2.3.0",
     "webpack": "^1.12.9"
