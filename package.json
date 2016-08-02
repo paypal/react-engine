@@ -23,9 +23,7 @@
     "glob": "^7.0.5",
     "jsesc": "^2.2.0",
     "lodash": "^4.13.1",
-    "parent-require": "^1.0.0",
-    "react-redux": "^4.4.5",
-    "redux": "^3.5.2"
+    "parent-require": "^1.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.3.26",
