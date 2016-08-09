@@ -137,21 +137,25 @@ It can contain the following properties,
 ### Data for component rendering
 The actual data that gets fed into the component for rendering is the `renderOptions` object that [express generates](https://github.com/strongloop/express/blob/2f8ac6726fa20ab5b4a05c112c886752868ac8ce/lib/application.js#L535-L588).
 
-If you don't want to pass all that data, you can pass in an array of object keys that react-engine can filter out from the `renderOptions` object before passing it into the component for rendering.
+If you don't want to pass all that data, you can pass in an array of object keys or dot-lookup paths that react-engine can filter out from the `renderOptions` object before passing it into the component for rendering.
 
 ```javascript
 // example of using `renderOptionsKeysToFilter` to filter `renderOptions` keys
 var engine = ReactEngine.server.create({
-  renderOptionsKeysToFilter: ['mySensitiveDataThatIsIn_res.locals'],
+  renderOptionsKeysToFilter: [
+    'mySensitiveData',
+    'somearrayAtIndex[3].deeply.nested'
+  ],
   routes: require(path.join(__dirname + './reactRoutes'))
 });
 ```
 
-Note: By default, the following three keys are always filtered out from `renderOptions` no matter whether `renderOptionsKeysToFilter` is configured or not.
-
-- `settings`
-- `enrouten`
-- `_locals`
+Notes:
+ - The strings `renderOptionsKeysToFilter` will be used with [lodash.unset](https://lodash.com/docs/#unset), so they can be either plain object keys for first-level properties of `renderOptions`, or dot-separated "lookup paths" as shown in the `lodash.unset` documentation. Use these lookup paths to filter out nested sub-properties.
+ - By default, the following three keys are always filtered out from `renderOptions` no matter whether `renderOptionsKeysToFilter` is configured or not.
+    - `settings`
+    - `enrouten`
+    - `_locals`
 
 ### Handling redirects and route not found errors on the server side
 While using react-router, it matches the url to a component based on the app's defined routes. react-engine captures the redirects and not-found cases that are encountered while trying to run the react-router's [match function on the server side](https://github.com/reactjs/react-router/blob/master/docs/guides/ServerRendering.md).

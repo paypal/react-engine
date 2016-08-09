@@ -330,6 +330,38 @@ test('all keys in express render `renderOptionsKeysToFilter` should be used to f
   setup(options);
 });
 
+test('deep keys in express render `renderOptionsKeysToFilter` should be used to filter out nested renderOptions', function(t) {
+
+  var options = {
+    engine: renderer.create({
+      routes: require(path.join(__dirname + '/fixtures/reactRoutes.jsx')),
+      renderOptionsKeysToFilter: ['someSensitiveData.omitDeepProp']
+    }),
+    expressRoutes: function(req, res) {
+      res.locals.someSensitiveData = { passDeepPropThrough: 1234, omitDeepProp: 5678 };
+      res.render(req.url, DATA_MODEL);
+    },
+
+    onSetup: function(done) {
+      inject('/account', function(err, data) {
+        t.error(err);
+        var html = cheerio.load(data).html();
+        function present(str) {
+          t.notEqual(html.indexOf(str), -1, str + ' was not present in render');
+        }
+        function absent(str) {
+          t.equal(html.indexOf(str), -1, str + ' was not removed from render');
+        }
+        present('someSensitiveData');
+        present('passDeepPropThrough');
+        absent('omitDeepProp');
+        done(t);
+      });
+    }
+  };
+  setup(options);
+});
+
 test('error that renderer throws when asked to run a unknown route', function(t) {
 
   var options = {
