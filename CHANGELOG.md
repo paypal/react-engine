@@ -1,3 +1,6 @@
+## 4.1.0 (Aug 11 2016)
+* safeguard against property over look while fusing together data object and routerProps object in the server render (https://github.com/paypal/react-engine/pull/173/)
+
 ## 4.0.0 (July 1 2016)
 * removed `react-dom` from being a `react-engine` dependency
 * updated a lot of dependencies and fixed tests
