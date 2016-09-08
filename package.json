@@ -10,7 +10,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:paypal/react-engine.git"
+    "url": "https://github.com/paypal/react-engine"
+  },
+  "bugs": {
+    "url": "https://github.com/paypal/react-engine/issues"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
