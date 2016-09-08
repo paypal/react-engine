@@ -41,6 +41,10 @@
     "sinon": "^1.14.1",
     "tape": "^4.6.0"
   },
+  "peerDependencies": {
+    "react": ">=0.14",
+    "react-dom": ">=0.14"
+  },
   "keywords": [
     "react",
     "render",
