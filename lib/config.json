@@ -2,7 +2,6 @@
   "docType": "<!DOCTYPE html>",
   "defaultKeysToFilter": ["settings", "enrouten", "_locals"],
   "client": {
-    "markupId": "react-engine-props",
-    "variableName": "__REACT_ENGINE__"
+    "markupId": "react-engine-props"
   }
 }

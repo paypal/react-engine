@@ -1,3 +1,6 @@
+## 4.1.1 (Oct 14 2016)
+* XSS safe implementation of prop passing from server to client (https://github.com/paypal/react-engine/pull/179/)
+
 ## 4.1.0 (Aug 11 2016)
 * safeguard against property over look while fusing together data object and routerProps object in the server render (https://github.com/paypal/react-engine/pull/173/)
 
