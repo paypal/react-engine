@@ -1,6 +1,6 @@
 {
   "name": "react-engine",
-  "version": "4.1.1",
+  "version": "4.2.0",
   "description": "a composite render engine for express apps to render both plain react views and react-router views",
   "main": "index.js",
   "scripts": {
@@ -39,16 +39,16 @@
     "express": "^4.12",
     "faucet": "0.0.1",
     "jsdom": "^9.2.1",
-    "react": "^15.1.0",
-    "react-dom": "^15.1.0",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
     "react-router": "^2.4.0",
     "rewire": "^2.3.1",
     "sinon": "^1.14.1",
     "tape": "^4.6.0"
   },
   "peerDependencies": {
-    "react": ">=0.14",
-    "react-dom": ">=0.14"
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2"
   },
   "keywords": [
     "react",
@@ -70,10 +70,5 @@
     "skarflacka",
     "Mark <mark@remarkablemark.org>"
   ],
-  "licenses": [
-    {
-      "type": "Apache 2.0",
-      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
-    }
-  ]
+  "license": "Apache-2.0"
 }
