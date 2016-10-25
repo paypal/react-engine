@@ -1,3 +1,9 @@
+## 4.2.0 (Oct 24 2016)
+* XSS safe implementation of prop passing from server to client (https://github.com/paypal/react-engine/pull/179/)
+* Specify `react` and `react-dom` as peer dependencies (https://github.com/paypal/react-engine/pull/177)
+* replace full lodash inlined into client with lodash/assign (https://github.com/paypal/react-engine/pull/176)
+* support dot-lookup paths in renderOptionsKeysToFilter (https://github.com/paypal/react-engine/pull/175)
+
 ## 4.1.0 (Aug 11 2016)
 * safeguard against property over look while fusing together data object and routerProps object in the server render (https://github.com/paypal/react-engine/pull/173/)
 
