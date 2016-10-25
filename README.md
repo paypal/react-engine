@@ -101,8 +101,8 @@ res.render(req.url, data);
 
 ### Usage On Client Side (Mounting)
 ```js
-// assuming we use `browserify`
-var client = require('react-engine').client;
+// assuming we use a module bundler like `webpack` or `browserify`
+var client = require('react-engine/lib/client');
 
 // finally, boot whenever your app is ready
 // example:
