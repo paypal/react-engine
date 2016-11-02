@@ -147,6 +147,21 @@ test('rendering a react view', function(t) {
   setup(options);
 });
 
+test('rendering a react view to static markup', function(t) {
+  var options = {
+    engine: renderer.create({ staticMarkup: true }),
+    onSetup: function(done) {
+      inject('/profile', function(err, data) {
+        t.error(err);
+        var $ = cheerio.load(data);
+        t.strictEqual(unEscapeHtml($.html()), assertions.PROFILE_OUTPUT_STATIC_MARKUP);
+        done(t);
+      });
+    }
+  };
+  setup(options);
+});
+
 test('performance collector to be asserted to be a function', function(t) {
 
   function underTest1() {
