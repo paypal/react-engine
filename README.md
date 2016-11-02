@@ -86,6 +86,8 @@ Additionally, it can contain the following **optional** properties,
                     If the value is undefined or set to `body` the script is placed before the `</body>` tag.
                     The only other value is `head` which appends the script before the `</head>` tag.
 
+- `staticMarkup`: \<Boolean> - a boolean that indicates if render components without React data attributes and client data. This is useful if you want to use React as a simple static page generator, as stripping away the extra attributes and client data can save lots of bytes. (_Default: `false`_).
+
 ###### Rendering views on server side
 ```js
 var data = {}; // your data model
