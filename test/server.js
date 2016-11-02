@@ -147,7 +147,7 @@ test('rendering a react view', function(t) {
   setup(options);
 });
 
-test('rendering a react view as static markup', function(t) {
+test('rendering a react view to static markup', function(t) {
   var options = {
     engine: renderer.create({ staticMarkup: true }),
     onSetup: function(done) {
