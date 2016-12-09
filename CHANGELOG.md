@@ -1,3 +1,6 @@
+## 4.2.1 (Dec 9 2016)
+* Converted from escape-html to jsesc  (https://github.com/paypal/react-engine/pull/185)
+
 ## 4.2.0 (Oct 24 2016)
 * XSS safe implementation of prop passing from server to client (https://github.com/paypal/react-engine/pull/179/)
 * Specify `react` and `react-dom` as peer dependencies (https://github.com/paypal/react-engine/pull/177)
