@@ -25,12 +25,12 @@ var test = require('tape');
 var express = require('express');
 var cheerio = require('cheerio');
 var renderer = require('../index').server;
-var unEscapeHtml = require('unescape-html');
 var assertions = require('./fixtures/assertions.json');
 
 var DATA_MODEL = exports.DATA_MODEL = {
   title: 'Hello, world!',
-  name: 'Joshua'
+  name: 'Joshua',
+  xss: '</script><script>alert("xss")</script>'
 };
 
 // helpers
@@ -139,7 +139,7 @@ test('rendering a react view', function(t) {
         t.error(err);
         var $ = cheerio.load(data);
         stripReactDataAttr($);
-        t.strictEqual(unEscapeHtml($.html()), assertions.PROFILE_OUTPUT);
+        t.strictEqual($.html(), assertions.PROFILE_OUTPUT);
         done(t);
       });
     }
@@ -154,7 +154,7 @@ test('rendering a react view to static markup', function(t) {
       inject('/profile', function(err, data) {
         t.error(err);
         var $ = cheerio.load(data);
-        t.strictEqual(unEscapeHtml($.html()), assertions.PROFILE_OUTPUT_STATIC_MARKUP);
+        t.strictEqual($.html(), assertions.PROFILE_OUTPUT_STATIC_MARKUP);
         done(t);
       });
     }
@@ -268,7 +268,7 @@ test('router gets run when we pass urls into render function', function(t) {
         t.error(err);
         var $ = cheerio.load(data);
         stripReactDataAttr($);
-        t.strictEqual(unEscapeHtml($.html()), assertions.ACCOUNT_OUTPUT);
+        t.strictEqual($.html(), assertions.ACCOUNT_OUTPUT);
         done(t);
       });
     }
