@@ -1,3 +1,6 @@
+## 4.3.0 (Feb 7 2017)
+* Add option to change injected script type from the default 'application/json'.
+
 ## 4.2.1 (Dec 9 2016)
 * Converted from escape-html to jsesc  (https://github.com/paypal/react-engine/pull/185)
 
