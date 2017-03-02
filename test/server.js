@@ -147,6 +147,22 @@ test('rendering a react view', function(t) {
   setup(options);
 });
 
+test('rendering a react view with custom script type', function(t) {
+  var options = {
+    engine: renderer.create({scriptType: 'application/ld+json'}),
+    onSetup: function(done) {
+      inject('/profile', function(err, data) {
+        t.error(err);
+        var $ = cheerio.load(data);
+        stripReactDataAttr($);
+        t.strictEqual($.html(), assertions.PROFILE_OUTPUT_CUSTOM_SCRIPT_TYPE);
+        done(t);
+      });
+    }
+  };
+  setup(options);
+});
+
 test('rendering a react view to static markup', function(t) {
   var options = {
     engine: renderer.create({ staticMarkup: true }),

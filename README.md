@@ -87,6 +87,7 @@ Additionally, it can contain the following **optional** properties,
                     The only other value is `head` which appends the script before the `</head>` tag.
 
 - `staticMarkup`: \<Boolean> - a boolean that indicates if render components without React data attributes and client data. (_Default: `false`_). This is useful if you want to render simple static page, as stripping away the extra React attributes and client data can save lots of bytes.
+- `scriptType`: \<String> - a string that can be used as the type for the script (if it is included, which is only if staticMarkup is false). (_Default: `application/json`_).
 
 ###### Rendering views on server side
 ```js
