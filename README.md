@@ -184,7 +184,7 @@ var engine = require('react-engine').server.create({
 * When Express's `view cache` app property is false (mostly in non-production environments), views are automatically reloaded before render. So there is no need to restart the server for seeing the changes.
 * You can use `js` as the engine if you decide not to write your react views in `jsx`.
 * [Blog on react-engine](https://www.paypal-engineering.com/2015/04/27/isomorphic-react-apps-with-react-engine/)
-
+* You can add [nonce](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src#Unsafe_inline_script) in `_locals`, which will be added in `script` tag that gets injected into the server rendered pages, like `res.locals.nonce = 'nonce value'` 
 ### Migration from 1.x to 2.x
 2.x version of react-engine brought in a major api change. Basically it affects the property names of the [object that gets passed in during the engine creation](https://github.com/paypal/react-engine#server-options-spec) on the server side and also how routes definition is passed into react-engine.
 
