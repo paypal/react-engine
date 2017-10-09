@@ -223,6 +223,7 @@ var engine = require('react-engine').server.create({
 * On the client side, the state is exposed on the window object's property `__REACT_ENGINE__`
 * When Express's `view cache` app property is false (mostly in non-production environments), views are automatically reloaded before render. So there is no need to restart the server for seeing the changes.
 * You can use `js` as the engine if you decide not to write your react views in `jsx`.
+* You can add [nonce](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src#Unsafe_inline_script) in `_locals`, which will be added in `script` tag that gets injected into the server rendered pages, like `res.locals.nonce = 'nonce value'` 
 * [Blog on react-engine](https://www.paypal-engineering.com/2015/04/27/isomorphic-react-apps-with-react-engine/)
 
 
