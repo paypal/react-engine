@@ -17,20 +17,16 @@
 
 var React = require('react');
 
-module.exports = React.createClass({
-
-  render: function() {
-
-    return (
-      <html>
-        <head>
-          <meta charSet='utf-8' />
-          <title>{this.props.title || 'Hello, world!'}</title>
-        </head>
-        <body>
-          {this.props.children}
-        </body>
-      </html>
-    );
-  }
-});
+module.exports = (props) => {
+  return (
+    <html>
+      <head>
+        <meta charSet='utf-8' />
+        <title>{props.title || 'Hello, world!'}</title>
+      </head>
+      <body>
+        {props.children}
+      </body>
+    </html>
+  );
+};

@@ -17,13 +17,10 @@
 
 var React = require('react');
 
-module.exports = React.createClass({
-
-  render: function() {
-    return (
-      <div id='account'>
-        <h1>{this.props.name || 'Joshua'}</h1>
-      </div>
-    );
-  }
-});
+module.exports = (props) => {
+  return (
+    <div id='account'>
+      <h1>{props.name || 'Joshua'}</h1>
+    </div>
+  );
+};

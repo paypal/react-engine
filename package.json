@@ -8,6 +8,9 @@
     "lint": "eslint .",
     "tape": "tape test/*.js | faucet"
   },
+  "engines": {
+    "node": ">=4"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/paypal/react-engine"
@@ -38,16 +41,16 @@
     "express": "^4.12",
     "faucet": "0.0.1",
     "jsdom": "^9.2.1",
-    "react": "^15.3.2",
-    "react-dom": "^15.3.2",
-    "react-router": "^2.4.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-router": "^3.2.0",
     "rewire": "^2.3.1",
     "sinon": "^1.14.1",
     "tape": "^4.6.0"
   },
   "peerDependencies": {
-    "react": "^15.3.2",
-    "react-dom": "^15.3.2"
+    "react": "15.x.x || 16.x.x",
+    "react-dom": "15.x.x || 16.x.x"
   },
   "keywords": [
     "react",
