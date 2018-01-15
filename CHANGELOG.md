@@ -1,3 +1,8 @@
+## 4.4.0
+* Add support to React 16
+* Update peerDependencies to remove installation warnings
+* Update devDependencies to execute test in React 16
+
 ## 4.3.0 (Feb 7 2017)
 * Add option to change injected script type from the default 'application/json'.
 
