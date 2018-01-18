@@ -16,17 +16,12 @@
 'use strict';
 
 var React = require('react');
-var Router = require('react-router');
 var Layout = require('./layout.jsx');
 
-module.exports = React.createClass({
-
-  render: function render() {
-
-    return (
-      <Layout>
-        {this.props.children}
-      </Layout>
-    );
-  }
-});
+module.exports = (props) => {
+  return (
+    <Layout>
+      {props.children}
+    </Layout>
+  );
+};

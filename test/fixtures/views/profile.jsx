@@ -18,16 +18,12 @@
 var React = require('react');
 var Layout = require('./layout.jsx');
 
-module.exports = React.createClass({
-
-  render: function render() {
-
-    return (
-      <Layout>
-        <div id='profile'>
-          <h1>{this.props.name}</h1>
-        </div>
-      </Layout>
-    );
-  }
-});
+module.exports = (props) => {
+  return (
+    <Layout>
+      <div id='profile'>
+        <h1>{props.name}</h1>
+      </div>
+    </Layout>
+  );
+};
