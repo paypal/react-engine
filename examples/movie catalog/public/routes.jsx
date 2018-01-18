@@ -13,8 +13,6 @@
 |  the specific language governing permissions and limitations under the License.                                     |
 \*-------------------------------------------------------------------------------------------------------------------*/
 
-'use strict';
-
 import React from 'react';
 import { Router, Route, IndexRoute, Redirect, browserHistory } from 'react-router';
 

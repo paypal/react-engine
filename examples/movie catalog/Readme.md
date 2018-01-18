@@ -4,8 +4,8 @@ This movie catalog app illustrates the usage of react-engine to build and run an
 ## app composition
 * [express - 4.x](https://github.com/strongloop/express) on the server side
 * [react-engine - 4.x](https://github.com/paypal/react-engine) as the express view render engine
-* [react - 15.x](https://github.com/facebook/react) for building the UI
-* [react-router - 2.x](https://github.com/rackt/react-router) for UI routing
+* [react - 16.x](https://github.com/facebook/react) for building the UI
+* [react-router - 3.x](https://github.com/rackt/react-router) for UI routing
 * [webpack - 1.x](https://github.com/webpack/webpack) as the client side module loader
 * [babel - 6.x](https://github.com/babel/babel) for compiling the ES6/JSX code
 
