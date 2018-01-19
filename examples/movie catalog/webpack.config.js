@@ -16,14 +16,11 @@
 'use strict';
 
 module.exports = {
-
   entry: __dirname + '/public/index.js',
-
   output: {
     path: __dirname + '/public',
     filename: 'bundle.js'
   },
-
   module: {
     loaders: [
       {
@@ -40,7 +37,6 @@ module.exports = {
       }
     ]
   },
-
   resolve: {
     extensions: ['', '.js', '.jsx', '.json']
   }

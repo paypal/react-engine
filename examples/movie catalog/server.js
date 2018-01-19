@@ -17,7 +17,7 @@
 
 const PORT = 3000;
 
-import {join} from 'path';
+import { join } from 'path';
 import express from 'express';
 import favicon from 'serve-favicon';
 import ReactEngine from 'react-engine';
@@ -28,9 +28,9 @@ let app = express();
 
 // create the view engine with `react-engine`
 let engine = ReactEngine.server.create({
-  routes: routes,
+  routes,
   routesFilePath: join(__dirname, '/public/routes.jsx'),
-  performanceCollector: function(stats) {
+  performanceCollector: (stats) => {
     console.log(stats);
   }
 });
@@ -53,13 +53,11 @@ app.use(express.static(join(__dirname, '/public')));
 app.use(favicon(join(__dirname, '/public/favicon.ico')));
 
 // add our app routes
-app.get('*', function(req, res) {
-  res.render(req.url, {
-    movies: movies
-  });
+app.get('*', (req, res) => {
+  res.render(req.url, { movies });
 });
 
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
   console.error(err);
 
   // http://expressjs.com/en/guide/error-handling.html
@@ -85,6 +83,6 @@ app.use(function(err, req, res, next) {
   }
 });
 
-const server = app.listen(PORT, function() {
+app.listen(PORT, () => {
   console.log('Example app listening at http://localhost:%s', PORT);
 });
