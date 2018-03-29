@@ -26,7 +26,8 @@
     "glob": "^7.0.5",
     "jsesc": "^2.2.0",
     "lodash": "^4.13.1",
-    "parent-require": "^1.0.0"
+    "parent-require": "^1.0.0",
+    "react-router": "^3.2.0"
   },
   "devDependencies": {
     "babel-core": "^6.3.26",
@@ -43,7 +44,6 @@
     "jsdom": "^9.2.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-router": "^3.2.0",
     "rewire": "^2.3.1",
     "sinon": "^1.14.1",
     "tape": "^4.6.0"
