@@ -88,6 +88,7 @@ Additionally, it can contain the following **optional** properties,
 
 - `staticMarkup`: \<Boolean> - a boolean that indicates if render components without React data attributes and client data. (_Default: `false`_). This is useful if you want to render simple static page, as stripping away the extra React attributes and client data can save lots of bytes.
 - `scriptType`: \<String> - a string that can be used as the type for the script (if it is included, which is only if staticMarkup is false). (_Default: `application/json`_).
+- `styledComponents`: \<Boolean> - a boolean that indicates if `styled-components` should collect styles on the server and add style tags to the head. (_Default: `false`_). Set this to `true` if you are using `styled-components` in your project.
 
 ###### Rendering views on server side
 ```js
@@ -231,7 +232,7 @@ var engine = require('react-engine').server.create({
 * When Express's `view cache` app property is false (mostly in non-production environments), views are automatically reloaded before render. So there is no need to restart the server for seeing the changes.
 * You can use `js` as the engine if you decide not to write your react views in `jsx`.
 * [Blog on react-engine](https://www.paypal-engineering.com/2015/04/27/isomorphic-react-apps-with-react-engine/)
-* You can add [nonce](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src#Unsafe_inline_script) in `_locals`, which will be added in `script` tag that gets injected into the server rendered pages, like `res.locals.nonce = 'nonce value'` 
+* You can add [nonce](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src#Unsafe_inline_script) in `_locals`, which will be added in `script` tag that gets injected into the server rendered pages, like `res.locals.nonce = 'nonce value'`
 
 
 ### License
