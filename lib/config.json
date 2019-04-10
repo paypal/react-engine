@@ -4,6 +4,7 @@
   "client": {
     "markupId": "react-engine-props"
   },
+  "styledComponents": false,
   "staticMarkup": false,
   "scriptType": "application/json"
 }
